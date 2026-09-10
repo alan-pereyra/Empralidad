@@ -2357,7 +2357,7 @@ span.woocommerce-Price-amount.amount bdi{
 }
 @media (max-width: 991px){
 	.product-category.product h2 {
-		font-size: 60%;
+		font-size: 60%!important;
 	}
 }
 .product-category.product mark {
