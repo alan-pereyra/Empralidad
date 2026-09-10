@@ -2400,6 +2400,7 @@ span.woocommerce-Price-amount.amount bdi{
 	overflow: hidden;
 }
 .woocommerce ul.products li.product-category.product {
+	clear: none;
 	float: left!important;
 }
 .woocommerce ul.products li.product .price {
