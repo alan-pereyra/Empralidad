@@ -162,7 +162,7 @@ if($emp_title_show){ ?>
       <?php if ($emp_home_categories){?>
         <div class="m-auto" >
           <div class="mw-100 support-woo-shortcode mw-1200px pb-personalized-1 text-<?php echo get_theme_mod('emp_homepage_text_aling1'); ?> ">
-            <?php echo do_shortcode('[product_categories number="0" parent="0"]'); ?>
+            <?php echo do_shortcode('[product_categories columns="5" number="0" parent="0"]'); ?>
           </div>
         </div>
       <?php } ?>
