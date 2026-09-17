@@ -25,7 +25,9 @@ if ( class_exists( 'WooCommerce' ) ) {
 
 <?php get_header(); ?>
 <article class="content-background content-color woo-page-margin" style="">
-  <?php echo do_shortcode('[yith_wcan_filters slug="default-preset"]');?>
+  <?php if ( shortcode_exists( 'yith_wcan_filters' ) ) {
+    echo do_shortcode( '[yith_wcan_filters slug="default-preset"]' );
+  } ?>
   <div class="sidebar">
     <?php woocommerce_breadcrumb(); ?>
     <?php woocommerce_catalog_ordering(); ?>
