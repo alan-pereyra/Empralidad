@@ -519,7 +519,6 @@ section .btn-outline-light {
 }
 /*---------------------------------------------3)Sliders-------------------------------------------------*/
 #emp-sliders{
-  background: var(--emp-btn-bg);
 	margin: auto;
 	max-height: 822px;
 	overflow: hidden;
