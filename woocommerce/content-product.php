@@ -91,6 +91,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
     ?>
 
 	<div class="emp-product-bottom-row">
+		<div class="emp-product-bottom-spacer" aria-hidden="true"></div>
 		<div class="emp-product-price-centered">
 			<?php woocommerce_template_loop_price(); ?>
 		</div>

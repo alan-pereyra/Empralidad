@@ -2354,64 +2354,98 @@ div.woocommerce-tabs.wc-tabs-wrapper h2{
 .emp-product-bottom-row {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	position: relative;
 	width: 100%;
 	margin-top: auto;
-	padding: 8px 12px 6px;
+	padding: 6px 12px 10px;
+	box-sizing: border-box;
+	gap: 6px;
 	min-height: 48px;
 }
 
+.emp-product-bottom-spacer {
+	flex: 0 0 36px;
+	width: 36px;
+	height: 1px;
+	visibility: hidden;
+	pointer-events: none;
+}
+
 .emp-product-price-centered {
+	flex: 1 1 auto;
+	min-width: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	margin: 0 auto;
-	padding-right: 36px;
+	margin: 0;
+	padding: 0;
 }
 
 .woocommerce ul.products li.product .price,
 .woocommerce-page ul.products li.product .price {
 	color: var(--emp-woocommerce-color, inherit) !important;
-	font-size: 1.15rem !important;
+	font-size: clamp(0.92rem, 2.2vw, 1.15rem) !important;
 	font-weight: 700 !important;
 	margin: 0 !important;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	line-height: 1.2;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	line-height: 1.2 !important;
+	white-space: nowrap !important;
+	max-width: 100%;
 }
 
 .woocommerce ul.products li.product .price del,
 .woocommerce-page ul.products li.product .price del {
-	font-size: 0.8em !important;
-	opacity: 0.55;
+	font-size: clamp(0.7rem, 1.6vw, 0.82rem) !important;
+	opacity: 0.55 !important;
 	font-weight: 400 !important;
 	color: inherit !important;
-	margin-bottom: 2px;
+	margin-bottom: 2px !important;
+	text-decoration: line-through !important;
+	display: inline-block !important;
+	line-height: 1.1 !important;
+}
+
+.woocommerce ul.products li.product .price del bdi,
+.woocommerce-page ul.products li.product .price del bdi {
+	text-decoration: line-through !important;
+	color: inherit !important;
+	font-size: inherit !important;
+}
+
+.woocommerce ul.products li.product .price del bdi::before,
+.woocommerce-page ul.products li.product .price del bdi::before {
+	content: none !important;
 }
 
 .woocommerce ul.products li.product .price ins,
 .woocommerce-page ul.products li.product .price ins {
-	font-size: 1.05em !important;
+	font-size: 1em !important;
 	font-weight: 800 !important;
 	text-decoration: none !important;
 	color: inherit !important;
+	line-height: 1.1 !important;
 }
 
 .woocommerce ul.products li.product .price bdi,
 .woocommerce-page ul.products li.product .price bdi {
 	color: inherit !important;
+	font-size: inherit !important;
 }
 
 .emp-product-action-right {
-	position: absolute;
-	right: 12px;
-	bottom: 8px;
+	flex: 0 0 36px;
+	width: 36px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: static;
+	right: auto;
+	bottom: auto;
 }
 
 .emp-loop-btn-circle,
@@ -2435,6 +2469,8 @@ div.woocommerce-tabs.wc-tabs-wrapper h2{
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16) !important;
 	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
 	cursor: pointer;
+	position: static !important;
+	left: auto !important;
 }
 
 .emp-loop-btn-circle:hover,
@@ -2456,6 +2492,43 @@ div.woocommerce-tabs.wc-tabs-wrapper h2{
 }
 .emp-loop-btn-circle.added::after {
 	display: none !important;
+}
+
+@media (max-width: 575px) {
+	.emp-product-bottom-row {
+		padding: 4px 6px 8px !important;
+		gap: 3px !important;
+		min-height: 40px !important;
+	}
+	.emp-product-bottom-spacer {
+		display: none !important;
+		width: 0 !important;
+		flex: 0 0 0 !important;
+	}
+	.emp-product-action-right {
+		flex: 0 0 30px !important;
+		width: 30px !important;
+	}
+	.emp-loop-btn-circle,
+	.woocommerce ul.products li.product a.button.emp-loop-btn-circle,
+	.woocommerce-page ul.products li.product a.button.emp-loop-btn-circle {
+		width: 30px !important;
+		height: 30px !important;
+		min-width: 30px !important;
+		max-width: 30px !important;
+		font-size: 13px !important;
+	}
+	.emp-loop-btn-circle i.fa {
+		font-size: 13px !important;
+	}
+	.woocommerce ul.products li.product .price,
+	.woocommerce-page ul.products li.product .price {
+		font-size: clamp(0.8rem, 3.2vw, 0.95rem) !important;
+	}
+	.woocommerce ul.products li.product .price del,
+	.woocommerce-page ul.products li.product .price del {
+		font-size: clamp(0.65rem, 2.4vw, 0.76rem) !important;
+	}
 }
 .woocommerce div.product form.cart .variations td.label {
   padding-right: 10px!important;
@@ -2492,23 +2565,27 @@ a.button.product_type_variable,a.button.product_type_simple, a.button.product_ty
   background: var(--emp-btn-bg)!important;
   color: var(--emp-btn-color)!important;
 }
+.woocommerce ul.products li.product .onsale,
+.woocommerce-page ul.products li.product .onsale,
 .woocommerce span.onsale,
 .product span.onsale {
 	top: 0 !important;
 	right: 0 !important;
 	left: auto !important;
 	margin: 0 !important;
-	padding: 7px 16px 9px !important;
+	padding: 6px 14px 7px !important;
 	min-height: auto !important;
 	min-width: auto !important;
-	line-height: 1.1 !important;
-	font-size: 13px !important;
-	font-weight: 700 !important;
-	background: var(--emp-btn-bg) !important;
-	color: var(--emp-btn-color) !important;
-	border-radius: 0 20px 0 16px !important;
+	height: auto !important;
+	line-height: 1.2 !important;
+	font-size: clamp(11px, 2.2vw, 13px) !important;
+	font-weight: 600 !important;
+	background: var(--emp-btn-bg, #28a745) !important;
+	color: var(--emp-btn-color, #ffffff) !important;
+	border-radius: 0 22px 0 16px !important;
 	z-index: 5;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+	display: inline-block !important;
 }
 .woocommerce form .show-password-input, .woocommerce-page form .show-password-input{
 	top: 0!important;
@@ -2654,10 +2731,6 @@ h2.woocommerce-loop-product__title {
 }
 li.product.type-product {
 	text-align: center
-}
-.woocommerce ul.products li.product .price del {
-	display: block;
-	font-size: 10px;
 }
 del bdi:before {
 	content: 'Antes: '
@@ -3087,15 +3160,6 @@ li.product-category.product {
 h2.woocommerce-loop-category__title {
 	padding: .5em 0;
 }
-.woocommerce ul.products li.product .onsale {
-	border-radius: 0;
-	font-size: 14px;
-	font-weight: 100;
-	height: 0;
-	margin: -0.5em 0 0 0;
-	min-height: 3em;
-	padding: 0 6px;
-}
 span#reply-title {
 	display: none
 }
@@ -3105,9 +3169,6 @@ div#respond {
 .woocommerce #reviews #comments ol.commentlist li .comment-text {
 	padding: 1em 0 0;
 	margin: 0;
-}
-li span.price del {
-	display: none!important;
 }
 .woocommerce ul.products li.product .star-rating {
 	background: #00000099;
