@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <!-- PWA -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="<?php echo get_theme_mod('emp_components_head_title_background'); ?>">
-    <link rel="apple-touch-icon" href="<?php get_site_icon_url(); ?>">
-    <link rel="preload" href="https://site-assets.fontawesome.com/releases/v6.3.0/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.3.0/css/all.css"></noscript>
+    <meta name="theme-color" content="<?php echo esc_attr( get_theme_mod('emp_components_head_title_background') ); ?>">
+    <link rel="apple-touch-icon" href="<?php echo esc_url( get_site_icon_url() ); ?>">
 
     <?php
     wp_head();
@@ -22,7 +20,7 @@
     <?php $global_notice = get_theme_mod('emp_components_notice_show');
     if ($global_notice){ ?>
       <div id="top-notice" class="show-from-md">
-        <?php echo get_theme_mod('emp_components_notice_text'); ?>
+        <?php echo wp_kses_post( get_theme_mod('emp_components_notice_text') ); ?>
       </div>
     <?php }?>
 
@@ -40,11 +38,11 @@
               $home_url = home_url();
             }
             ?>
-            <a class="navbar-brand mx-auto" href="<?php echo $home_url ?>">
-            	<img src="<?php echo wp_get_attachment_url(get_theme_mod('emp_components_nav_logo')); ?>" class="navbar-img" alt="NavbarBrand">
+            <a class="navbar-brand mx-auto" href="<?php echo esc_url( $home_url ); ?>">
+            	<img src="<?php echo esc_url( wp_get_attachment_url(get_theme_mod('emp_components_nav_logo')) ); ?>" class="navbar-img" alt="NavbarBrand">
             </a>
           <?php } else { ?>
-            <a class=" mx-auto" href="<?php echo home_url(); ?>">
+            <a class=" mx-auto" href="<?php echo esc_url( home_url() ); ?>">
               <h2 class="p-3 color-personalized"><?php bloginfo(); ?></h2>
             </a>
           <?php } ?>
@@ -61,28 +59,28 @@
             $search_icon = '';
           }
 
-        	$facebook_link = get_theme_mod('emp_components_footer_face');
-          $twitter_link = get_theme_mod('emp_components_footer_tw');
+        	$facebook_link  = get_theme_mod('emp_components_footer_face');
+          $twitter_link   = get_theme_mod('emp_components_footer_tw');
           $instagram_link = get_theme_mod('emp_components_footer_insta');
-          $youtube_link = get_theme_mod('emp_components_footer_yt');
-          $tiktok_link = get_theme_mod('emp_components_footer_tiktok');
+          $youtube_link   = get_theme_mod('emp_components_footer_yt');
+          $tiktok_link    = get_theme_mod('emp_components_footer_tiktok');
 
           $social_icon = '';
 
           if ($instagram_link){
-            $social_icon .= '<a href="'.get_theme_mod('emp_components_footer_insta').'" class="fab fa-instagram m-auto"></a>';
+            $social_icon .= '<a href="'.esc_url( $instagram_link ).'" class="fab fa-instagram m-auto"></a>';
           }
           if ($tiktok_link){
-            $social_icon .= '<a href="'.get_theme_mod('emp_components_footer_tiktok').'" class="fab fa-tiktok m-auto"></a>';
+            $social_icon .= '<a href="'.esc_url( $tiktok_link ).'" class="fab fa-tiktok m-auto"></a>';
           }
           if ($youtube_link){
-            $social_icon .= '<a href="'.get_theme_mod('emp_components_footer_yt').'" class="fab fa-youtube m-auto"></a>';
+            $social_icon .= '<a href="'.esc_url( $youtube_link ).'" class="fab fa-youtube m-auto"></a>';
           }
           if ($facebook_link){
-            $social_icon .= '<a href="'.get_theme_mod('emp_components_footer_face').'" class="fab fa-facebook-f m-auto"></a>';
+            $social_icon .= '<a href="'.esc_url( $facebook_link ).'" class="fab fa-facebook-f m-auto"></a>';
           }
           if ($twitter_link){
-            $social_icon .= '<a href="'.get_theme_mod('emp_components_footer_tw').'" class="fab fa-twitter m-auto"></a>';
+            $social_icon .= '<a href="'.esc_url( $twitter_link ).'" class="fab fa-twitter m-auto"></a>';
           }
 
           $social_icon_div = '<div class="d-flex mt-5 mt-md-0 w-mobile-75 show-mobile">'.$social_icon.'</div>';
@@ -114,7 +112,7 @@
     <div class="FullScreenLanding emp_img_slide1 col-12 mx-auto bg-personalized">
       <div id="emp-background-image" class="emp-background-image1 emp-background-media-opacity">
         <?php if ($video_bg_url){ ?>
-          <video autoplay muted loop src="<?php echo $video_bg_url ?>" poster="https://empralidad.com.ar/wp-content/uploads/2022/11/pixel-negro.jpeg" class="emp-video-background">
+          <video autoplay muted loop src="<?php echo esc_url( $video_bg_url ); ?>" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="emp-video-background">
           </video>
         <?php } ?>
       </div>

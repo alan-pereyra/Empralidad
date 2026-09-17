@@ -1,23 +1,31 @@
-<?php $products = get_posts(array(
-  'post_type' => 'product',
-  'post_status' => 'publish',
-  'orderby' => 'meta_value_num',
-  'meta_key'=> '_price',
-  'posts_per_page' => -1,
-));
+<?php
+$highest_price = 0;
+$lowest_price  = 0;
 
-  if($products){
-    $highest = $products[array_key_first($products)];
-    $lowest = $products[array_key_last($products)];
-    
-    $highest_price = get_post_meta( $highest->ID, '_price', true );
-    $lowest_price = get_post_meta( $lowest->ID, '_price', true );
+if ( class_exists( 'WooCommerce' ) ) {
+  global $wpdb;
+  $price_range = $wpdb->get_row( "
+    SELECT 
+      MIN(CAST(meta_value AS DECIMAL(10,2))) as min_price, 
+      MAX(CAST(meta_value AS DECIMAL(10,2))) as max_price 
+    FROM {$wpdb->postmeta} pm
+    INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+    WHERE pm.meta_key = '_price' 
+      AND pm.meta_value > ''
+      AND p.post_status = 'publish' 
+      AND p.post_type = 'product'
+  " );
+
+  if ( $price_range ) {
+    $lowest_price  = ! empty( $price_range->min_price ) ? floor( (float) $price_range->min_price ) : 0;
+    $highest_price = ! empty( $price_range->max_price ) ? ceil( (float) $price_range->max_price ) : 0;
   }
+}
 ?>
 
 <?php get_header(); ?>
 <article class="content-background content-color woo-page-margin" style="">
-  <?php do_shortcode('[yith_wcan_filters slug="default-preset"]');?>
+  <?php echo do_shortcode('[yith_wcan_filters slug="default-preset"]');?>
   <div class="sidebar">
     <?php woocommerce_breadcrumb(); ?>
     <?php woocommerce_catalog_ordering(); ?>

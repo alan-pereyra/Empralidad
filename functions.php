@@ -297,6 +297,9 @@ add_action('woocommerce_product_options_general_product_data', 'woocommerce_prod
 add_action('woocommerce_process_product_meta', 'woocommerce_product_custom_fields_save');
 function woocommerce_product_custom_fields1(){
     global $woocommerce, $post;
+
+    wp_nonce_field( 'emp_save_product_custom_fields', 'emp_product_custom_fields_nonce' );
+
     echo '<div class="product_custom_field">';
     echo '<p class="form-field _custom_product_component_field_mother_field ">
 			<label class="product_custom_field"><b>PC Gamer</b></label>
@@ -330,7 +333,7 @@ function woocommerce_product_custom_fields1(){
 	woocommerce_wp_select( 
 		array( 
 			'id'      => '_custom_product_component_field_gpu_brand', 
-			'label'   => __( '', 'woocommerce' ),
+			'label'   => __( 'Marca Gráfica', 'woocommerce' ),
 			'options' =>  array('', 'Nvidia', 'AMD')
 		)
 	);
@@ -364,140 +367,87 @@ function woocommerce_product_custom_fields1(){
 			<label class="product_custom_field"><b>Benchmark</b></label>
 		</p>';
 	
-	// Custom Fields
-    woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_cpu',
-        'placeholder' => 'Calidad y resolución',
-        'label' => __('Calidad', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_mother',
-        'placeholder' => 'Solo el número',
-        'label' => __('FPS', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	echo '<br>';
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_cpu',
-        'placeholder' => 'Calidad y resolución',
-        'label' => __('Calidad', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_mother',
-        'placeholder' => 'Solo el número',
-        'label' => __('FPS', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	echo '<br>';
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_cpu',
-        'placeholder' => 'Calidad y resolución',
-        'label' => __('Calidad', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_mother',
-        'placeholder' => 'Solo el número',
-        'label' => __('FPS', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	echo '<br>';
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_cpu',
-        'placeholder' => 'Calidad y resolución',
-        'label' => __('Calidad', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_mother',
-        'placeholder' => 'Solo el número',
-        'label' => __('FPS', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	echo '<br>';
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_cpu',
-        'placeholder' => 'Calidad y resolución',
-        'label' => __('Calidad', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
-	woocommerce_wp_text_input(array(
-        'id' => '_custom_benchmark_component_field_mother',
-        'placeholder' => 'Solo el número',
-        'label' => __('FPS', 'woocommerce'),
-        'desc_tip' => 'true'
-    ));
+	for ( $i = 1; $i <= 5; $i++ ) {
+		woocommerce_wp_text_input(array(
+			'id'          => '_custom_benchmark_quality_' . $i,
+			'placeholder' => 'Juego / Calidad y resolución (ej: Cyberpunk 1080p Ultra)',
+			'label'       => sprintf( __( 'Juego %d', 'empralidad' ), $i ),
+			'desc_tip'    => 'true'
+		));
+		woocommerce_wp_text_input(array(
+			'id'          => '_custom_benchmark_fps_' . $i,
+			'placeholder' => 'Solo el número (ej: 60)',
+			'label'       => __( 'FPS', 'woocommerce' ),
+			'desc_tip'    => 'true'
+		));
+		echo '<br>';
+	}
 
     echo '</div>';
 }
 function woocommerce_product_custom_fields_save($post_id){
-    // Custom Product Text Field
-    $woocommerce_custom_product_component_field_cpu = $_POST['_custom_product_component_field_cpu'];
-    if (!empty($woocommerce_custom_product_component_field_cpu)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_cpu', 
-			esc_attr($woocommerce_custom_product_component_field_cpu)
-		);
-	}
-	$woocommerce_custom_product_component_field_mother = $_POST['_custom_product_component_field_mother'];
-    if (!empty($woocommerce_custom_product_component_field_mother)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_mother', 
-			esc_attr($woocommerce_custom_product_component_field_mother)
-		);
-	}
-	$woocommerce_custom_product_component_field_ram = $_POST['_custom_product_component_field_ram'];
-    if (!empty($woocommerce_custom_product_component_field_ram)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_ram', 
-			esc_attr($woocommerce_custom_product_component_field_ram)
-		);
-	}
-	$woocommerce_custom_product_component_field_gpu = $_POST['_custom_product_component_field_gpu'];
-    if (!empty($woocommerce_custom_product_component_field_gpu)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_gpu', 
-			esc_attr($woocommerce_custom_product_component_field_gpu)
-		);
-	}
-	$woocommerce_custom_product_component_field_gpu_brand = $_POST['_custom_product_component_field_gpu_brand'];
-    if (!empty($woocommerce_custom_product_component_field_gpu_brand)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_gpu_brand', 
-			esc_attr($woocommerce_custom_product_component_field_gpu_brand)
-		);
-	}
-	$woocommerce_custom_product_component_field_ssd_hdd = $_POST['_custom_product_component_field_ssd_hdd'];
-    if (!empty($woocommerce_custom_product_component_field_ssd_hdd)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_ssd_hdd', 
-			esc_attr($woocommerce_custom_product_component_field_ssd_hdd)
-		);
-	}
-	$woocommerce_custom_product_component_field_power_supply = $_POST['_custom_product_component_field_power_supply'];
-    if (!empty($woocommerce_custom_product_component_field_power_supply)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_power_supply', 
-			esc_attr($woocommerce_custom_product_component_field_power_supply)
-		);
-	}
-	$woocommerce_custom_product_component_field_chassis = $_POST['_custom_product_component_field_chassis'];
-    if (!empty($woocommerce_custom_product_component_field_chassis)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_chassis', 
-			esc_attr($woocommerce_custom_product_component_field_chassis)
-		);
-	}
-	$woocommerce_custom_product_component_field_display = $_POST['_custom_product_component_field_display'];
-    if (!empty($woocommerce_custom_product_component_field_display)){
-        update_post_meta(
-			$post_id, '_custom_product_component_field_display', 
-			esc_attr($woocommerce_custom_product_component_field_display)
-		);
-	}
-    
+    // Nonce verification
+    if ( ! isset( $_POST['emp_product_custom_fields_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['emp_product_custom_fields_nonce'] ) ), 'emp_save_product_custom_fields' ) ) {
+        return;
+    }
+
+    // Check autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    // Check permissions
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+
+    // Custom Product Component Text Fields
+    $component_fields = array(
+        '_custom_product_component_field_cpu',
+        '_custom_product_component_field_mother',
+        '_custom_product_component_field_ram',
+        '_custom_product_component_field_gpu',
+        '_custom_product_component_field_gpu_brand',
+        '_custom_product_component_field_ssd_hdd',
+        '_custom_product_component_field_power_supply',
+        '_custom_product_component_field_chassis',
+        '_custom_product_component_field_display',
+    );
+
+    foreach ( $component_fields as $field ) {
+        if ( isset( $_POST[ $field ] ) ) {
+            $value = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
+            if ( $value !== '' ) {
+                update_post_meta( $post_id, $field, $value );
+            } else {
+                delete_post_meta( $post_id, $field );
+            }
+        }
+    }
+
+    // Custom Benchmark Fields (1 to 5)
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $quality_key = '_custom_benchmark_quality_' . $i;
+        $fps_key     = '_custom_benchmark_fps_' . $i;
+
+        if ( isset( $_POST[ $quality_key ] ) ) {
+            $quality_val = sanitize_text_field( wp_unslash( $_POST[ $quality_key ] ) );
+            if ( $quality_val !== '' ) {
+                update_post_meta( $post_id, $quality_key, $quality_val );
+            } else {
+                delete_post_meta( $post_id, $quality_key );
+            }
+        }
+
+        if ( isset( $_POST[ $fps_key ] ) ) {
+            $fps_val = sanitize_text_field( wp_unslash( $_POST[ $fps_key ] ) );
+            if ( $fps_val !== '' ) {
+                update_post_meta( $post_id, $fps_key, $fps_val );
+            } else {
+                delete_post_meta( $post_id, $fps_key );
+            }
+        }
+    }
 }
 
 //  12) GitHub Updates
@@ -539,13 +489,16 @@ if ( ! current_user_can( 'manage_options' ) ) {
 add_action( 'emp_max_min_price', 'get_max_and_min_price' );
 function get_max_and_min_price() {
 	global $wpdb;
-	$sql = "SELECT MAX(meta_value), post_id from {$wpdb->prefix}postmeta where meta_key = '_price'";
+	$sql = "SELECT MIN(CAST(meta_value AS DECIMAL(10,2))) as min_price, MAX(CAST(meta_value AS DECIMAL(10,2))) as max_price 
+          FROM {$wpdb->postmeta} pm
+          INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+          WHERE pm.meta_key = '_price' AND pm.meta_value > '' AND p.post_status = 'publish' AND p.post_type = 'product'";
 
-	$result = $wpdb->get_results($sql);
-
-	$_product = wc_get_product( $result[0]->post_id );
-
-	return 3;
+	$result = $wpdb->get_row( $sql );
+	return $result ? array(
+    'min' => (float) $result->min_price,
+    'max' => (float) $result->max_price
+  ) : array( 'min' => 0, 'max' => 0 );
 }
 
 // Emogi on database

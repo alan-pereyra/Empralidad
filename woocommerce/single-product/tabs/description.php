@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 global $post, $product;
 
-$id = $product->id;
+$id = $product ? $product->get_id() : get_the_ID();
 $icon_url = esc_url( get_template_directory_uri() ).'/includes/icons/';
 
 $heading = apply_filters( 'woocommerce_product_description_heading', __( 'Description', 'woocommerce' ) );
@@ -34,14 +34,16 @@ $heading = apply_filters( 'woocommerce_product_description_heading', __( 'Descri
 
 <!-- Custom fields -->
 <?php
-if(get_post_meta($id, '_custom_product_component_field_gpu', true)){
-    $class_gpu = get_post_meta($id, '_custom_product_component_field_gpu_brand', true);
-    if(get_post_meta($id, '_custom_product_component_field_gpu_brand', true) == 1){
+$gpu_val = get_post_meta($id, '_custom_product_component_field_gpu', true);
+if($gpu_val){
+    $gpu_brand = get_post_meta($id, '_custom_product_component_field_gpu_brand', true);
+    $class_gpu = '';
+    if($gpu_brand == 1 || $gpu_brand === 'Nvidia'){
         $class_gpu = 'nvidia';
-    }else if(get_post_meta($id, '_custom_product_component_field_gpu_brand', true) == 2){
+    }else if($gpu_brand == 2 || $gpu_brand === 'AMD'){
         $class_gpu = 'amd';
     }
-    echo '<p class="gpu '.$class_gpu.'">'.get_post_meta($id, '_custom_product_component_field_gpu', true).'</p>';
+    echo '<p class="gpu '.esc_attr($class_gpu).'">'.esc_html($gpu_val).'</p>';
 }
 ?>
 

@@ -45,16 +45,16 @@
         <?php if(is_active_sidebar( 'footer' )){
           get_sidebar( 'footer' );
         } ?>
-        <p><?php echo get_theme_mod('emp_components_footer_text'); ?></p>
-        <p><small><a href="<?php echo get_permalink(get_theme_mod('emp_components_footer_term')); ?>" >Terminos y Condiciones</a> -
-        <a href="<?php echo get_permalink(get_theme_mod('emp_components_footer_poli')); ?>">Politicas de Privacidad</a></small></p>
+        <p><?php echo wp_kses_post( get_theme_mod('emp_components_footer_text') ); ?></p>
+        <p><small><a href="<?php echo esc_url( get_permalink(get_theme_mod('emp_components_footer_term')) ); ?>" >Terminos y Condiciones</a> -
+        <a href="<?php echo esc_url( get_permalink(get_theme_mod('emp_components_footer_poli')) ); ?>">Politicas de Privacidad</a></small></p>
         <?php $owner_enable = get_theme_mod('emp_components_footer_owner'); 
         if (!$owner_enable){ ?>
           <!-- Owner -->
-          <p class="owner"><small>Desarrollado por</small> <a href="https://empralidad.com.ar"><b>Empralidad</b></a></p>
+          <p class="owner"><small>Desarrollado por</small> <a href="https://empralidad.com.ar" target="_blank" rel="noopener"><b>Empralidad</b></a></p>
           <br>
         <?php } ?>
-        <p class="qr-afip" style="width:50px;" class="mx-auto"><?php echo get_theme_mod('emp_components_footer_qr') ?></p>
+        <p class="qr-afip" style="width:50px;" class="mx-auto"><?php echo wp_kses_post( get_theme_mod('emp_components_footer_qr') ); ?></p>
         <br>
       </div>
     </footer>
@@ -64,20 +64,23 @@
       $perma_button = get_theme_mod('emp_components_nav_wsp');
       $wsp_custom_link = get_theme_mod('emp_components_nav_wsp_custom_link');
       $link_chat_emp = get_theme_mod('emp_components_nav_chat_emp');
+      $wsp_phone = preg_replace('/[^0-9]/', '', (string) get_theme_mod('emp_components_nav_wsp_numb'));
       if($link_chat_emp != ''){ ?>
-        <div id="chat-emp-btn-fixed" class="img-fixed show-desktop"><a href="<?php echo get_theme_mod('emp_components_nav_chat_emp'); ?>" class="fas fa-comment-dots"></a></div>
+        <div id="chat-emp-btn-fixed" class="img-fixed show-desktop"><a href="<?php echo esc_url( get_theme_mod('emp_components_nav_chat_emp') ); ?>" class="fas fa-comment-dots"></a></div>
       <?php }else if($perma_button){ ?>
-      	<?php if (!$wsp_custom_link){ ?>
+      	<?php if (!$wsp_custom_link){ 
+          $wsp_text = rawurlencode( "Hola tengo una consulta desde:\n\n*" . wp_get_document_title() . "*\n\n" . get_permalink() );
+        ?>
           <div class="img-fixed show-desktop">
-            <a onclick="<?php echo get_theme_mod('emp_components_nav_wsp_event'); ?>"
-              href="https://api.whatsapp.com/send?phone=<?php echo get_theme_mod('emp_components_nav_wsp_numb'); ?>&text=Hola%20tengo%20una%20consulta%20desde:%0A%0A*<?php echo str_replace(' ', '%20', wp_get_document_title() );?>*%0A%0A<?php echo get_permalink(); ?>">
+            <a onclick="<?php echo esc_attr( get_theme_mod('emp_components_nav_wsp_event') ); ?>"
+              href="https://api.whatsapp.com/send?phone=<?php echo esc_attr($wsp_phone); ?>&text=<?php echo $wsp_text; ?>">
               <img class="img-btn-fixed-wsp" height="512" width="512" src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/whatsapp-logo.png" alt="emp-whatsapp" loading="lazy">
             </a>
           </div>
         <?php }else{ ?>
           <div class="img-fixed show-desktop">
-            <a onclick="<?php echo get_theme_mod('emp_components_nav_wsp_event'); ?>"
-              href="<?php echo get_theme_mod('emp_components_nav_wsp_custom_link'); ?>">
+            <a onclick="<?php echo esc_attr( get_theme_mod('emp_components_nav_wsp_event') ); ?>"
+              href="<?php echo esc_url( get_theme_mod('emp_components_nav_wsp_custom_link') ); ?>">
               <img class="img-btn-fixed-wsp" height="512" width="512" src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/whatsapp-logo.png" alt="emp-whatsapp" loading="lazy">
             </a>
           </div>
@@ -94,11 +97,11 @@
         $home_url = home_url();
       }
       ?>
-      <a href="<?php echo $home_url ?>" class="fa-dark fa fa-home mx-auto"><span class="fa-text">Inicio</span></a>
+      <a href="<?php echo esc_url( $home_url ); ?>" class="fa-dark fa fa-home mx-auto"><span class="fa-text">Inicio</span></a>
       <!-- User -->
       <?php $emp_user_link = get_theme_mod('emp_components_nav_user');
       if ($emp_user_link){ ?>
-        <a href="<?php echo get_theme_mod('emp_components_nav_user'); ?>" class="fa-dark fa fa-user mx-auto">
+        <a href="<?php echo esc_url( get_theme_mod('emp_components_nav_user') ); ?>" class="fa-dark fa fa-user mx-auto">
             <span class="fa-text">Ingresar</span>
         </a>
       <?php } ?>
@@ -114,15 +117,17 @@
       <?php } ?>
       <!-- Whatsapp -->
       <?php $emp_wp_link = get_theme_mod('emp_components_nav_wsp');
-      if ($emp_wp_link && $perma_button){ ?>
-        <a onclick="<?php echo get_theme_mod('emp_components_nav_wsp_event'); ?>" href="https://api.whatsapp.com/send?phone=<?php echo get_theme_mod('emp_components_nav_wsp_numb'); ?>&text=Hola%20tengo%20una%20consulta%20desde:%0A%0A*<?php echo str_replace(' ', '%20', bloginfo('name'));?>*%0A%0A<?php echo get_permalink(); ?>" class="fa-dark fab fa-whatsapp fa-whatsapp-size mx-auto">
+      if ($emp_wp_link && $perma_button){ 
+        $wsp_mobile_text = rawurlencode( "Hola tengo una consulta desde:\n\n*" . get_bloginfo('name') . "*\n\n" . get_permalink() );
+      ?>
+        <a onclick="<?php echo esc_attr( get_theme_mod('emp_components_nav_wsp_event') ); ?>" href="https://api.whatsapp.com/send?phone=<?php echo esc_attr($wsp_phone); ?>&text=<?php echo $wsp_mobile_text; ?>" class="fa-dark fab fa-whatsapp fa-whatsapp-size mx-auto">
           <span class="fa-text">Whatsapp</span>
         </a>
       <?php } ?>
       <!-- Chat-EMP -->
       <?php
       if ($link_chat_emp){ ?>
-        <a href="<?php echo get_theme_mod('emp_components_nav_chat_emp'); ?>" class="fas fa-comment-dots mx-auto">
+        <a href="<?php echo esc_url( get_theme_mod('emp_components_nav_chat_emp') ); ?>" class="fas fa-comment-dots mx-auto">
           <span class="fa-text">Chat</span>
         </a>
       <?php } ?>
