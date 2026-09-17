@@ -268,7 +268,10 @@ a.button.product_type_variable, a.button.product_type_simple.add_to_cart_button,
 $emp_slider1 = get_theme_mod('emp_slider_image1');
 $emp_slider2 = get_theme_mod('emp_slider_image2');
 $emp_slider3 = get_theme_mod('emp_slider_image3');
-if ($emp_slider1||$emp_slider2||$emp_slider3){ ?>
+$emp_slider_desktop1 = get_theme_mod('emp_slider_desktop_image1');
+$emp_slider_desktop2 = get_theme_mod('emp_slider_desktop_image2');
+$emp_slider_desktop3 = get_theme_mod('emp_slider_desktop_image3');
+if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_desktop2||$emp_slider_desktop3){ ?>
   #main-head{
     height: 73vh;
   }

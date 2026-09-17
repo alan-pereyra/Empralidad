@@ -552,6 +552,9 @@ section .btn-outline-light {
 	transform: translate(0, -50%);
 }
 @media (max-width: 768px){
+	#emp-sliders {
+		max-height: none;
+	}
 	#emp-sliders i{
 		display: none;
 	}
@@ -569,10 +572,23 @@ section .btn-outline-light {
 #emp-sliders i.disabled{
 	display: none;
 }
-#emp-sliders ul li img{
+#emp-sliders ul li {
+	flex: 0 0 100%;
+	width: 100%;
+	scroll-snap-align: center;
+}
+#emp-sliders ul li picture {
+	display: block;
+	width: 100%;
+}
+#emp-sliders ul li img,
+#emp-sliders ul li picture img {
 	max-width: 1200px!important;
 	scroll-snap-align: center;
-	width: 100vw;
+	width: 100%;
+	height: auto;
+	display: block;
+	margin: auto;
 }
 .home-btn-down{
 	color: var(--emp-head-title-color)!important;

@@ -4,12 +4,54 @@ $emp_slider1 = get_theme_mod('emp_slider_image1');
 $emp_slider2 = get_theme_mod('emp_slider_image2');
 $emp_slider3 = get_theme_mod('emp_slider_image3');
 
-if($emp_slider1||$emp_slider2||$emp_slider3){ ?>
+$emp_slider_desktop1 = get_theme_mod('emp_slider_desktop_image1');
+$emp_slider_desktop2 = get_theme_mod('emp_slider_desktop_image2');
+$emp_slider_desktop3 = get_theme_mod('emp_slider_desktop_image3');
+
+$mobile_url1  = $emp_slider1 ? wp_get_attachment_url($emp_slider1) : '';
+$desktop_url1 = $emp_slider_desktop1 ? wp_get_attachment_url($emp_slider_desktop1) : '';
+
+$mobile_url2  = $emp_slider2 ? wp_get_attachment_url($emp_slider2) : '';
+$desktop_url2 = $emp_slider_desktop2 ? wp_get_attachment_url($emp_slider_desktop2) : '';
+
+$mobile_url3  = $emp_slider3 ? wp_get_attachment_url($emp_slider3) : '';
+$desktop_url3 = $emp_slider_desktop3 ? wp_get_attachment_url($emp_slider_desktop3) : '';
+
+$has_sliders = $mobile_url1 || $desktop_url1 || $mobile_url2 || $desktop_url2 || $mobile_url3 || $desktop_url3;
+
+if($has_sliders){ ?>
   <div id="emp-sliders">
     <ul>
-      <?php if($emp_slider1){ ?><li><img src="<?php echo wp_get_attachment_url(get_theme_mod('emp_slider_image1')); ?>" class="emp-slider" alt="" loading="lazy"></li><?php } ?>
-      <?php if($emp_slider2){ ?><li><img src="<?php echo wp_get_attachment_url(get_theme_mod('emp_slider_image2')); ?>" class="emp-slider" alt="" loading="lazy"></li><?php } ?>
-      <?php if($emp_slider3){ ?><li><img src="<?php echo wp_get_attachment_url(get_theme_mod('emp_slider_image3')); ?>" class="emp-slider" alt="" loading="lazy"></li><?php } ?>
+      <?php if($desktop_url1 || $mobile_url1){ ?>
+        <li>
+          <picture>
+            <?php if($mobile_url1){ ?>
+              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url1); ?>">
+            <?php } ?>
+            <img src="<?php echo esc_url($desktop_url1 ? $desktop_url1 : $mobile_url1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+          </picture>
+        </li>
+      <?php } ?>
+      <?php if($desktop_url2 || $mobile_url2){ ?>
+        <li>
+          <picture>
+            <?php if($mobile_url2){ ?>
+              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url2); ?>">
+            <?php } ?>
+            <img src="<?php echo esc_url($desktop_url2 ? $desktop_url2 : $mobile_url2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+          </picture>
+        </li>
+      <?php } ?>
+      <?php if($desktop_url3 || $mobile_url3){ ?>
+        <li>
+          <picture>
+            <?php if($mobile_url3){ ?>
+              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url3); ?>">
+            <?php } ?>
+            <img src="<?php echo esc_url($desktop_url3 ? $desktop_url3 : $mobile_url3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+          </picture>
+        </li>
+      <?php } ?>
     </ul>
     <i id="emp-slider-prev" class="fa fa-arrow-circle-left disabled"></i>
     <i id="emp-slider-next" class="fa fa-arrow-circle-right disabled"></i>
