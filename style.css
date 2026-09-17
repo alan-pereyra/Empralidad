@@ -2120,6 +2120,122 @@ div#first-content-home.categories-active{
 	padding-right: 5px;
 	width: 47%!important;
 }
+
+/* ==========================================================================
+   Empralidad - Benchmarks & Gaming Performance
+   ========================================================================== */
+.emp-benchmarks-wrapper {
+	margin: 25px 0 15px;
+	padding: 20px;
+	background: rgba(127, 127, 127, 0.06);
+	border-radius: 16px;
+	border: 1px solid rgba(127, 127, 127, 0.12);
+}
+
+.emp-benchmarks-heading {
+	font-size: 1.15rem;
+	font-weight: 700;
+	margin-bottom: 18px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--emp-content-color, inherit);
+}
+
+.emp-benchmarks-heading .fa {
+	font-size: 1.3rem;
+	color: var(--emp-nav-color-accent, #2563eb);
+}
+
+.emp-benchmarks-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 14px;
+}
+
+@media (min-width: 768px) {
+	.emp-benchmarks-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+	}
+}
+
+.emp-benchmark-item {
+	background: rgba(127, 127, 127, 0.08);
+	border-radius: 12px;
+	padding: 12px 14px;
+	border: 1px solid rgba(127, 127, 127, 0.1);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.emp-benchmark-item:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.emp-benchmark-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 8px;
+	gap: 10px;
+}
+
+.emp-benchmark-game {
+	font-weight: 600;
+	font-size: 0.92rem;
+	color: var(--emp-content-color, inherit);
+	word-break: break-word;
+}
+
+.emp-benchmark-fps-badge {
+	font-size: 0.82rem;
+	font-weight: 700;
+	padding: 3px 10px;
+	border-radius: 20px;
+	white-space: nowrap;
+	letter-spacing: 0.5px;
+}
+
+/* FPS Tier Colors */
+.emp-fps-ultra .emp-benchmark-fps-badge {
+	background: #ede9fe;
+	color: #6d28d9;
+}
+.emp-fps-ultra .emp-benchmark-bar-fill {
+	background: linear-gradient(90deg, #8b5cf6, #6d28d9);
+}
+
+.emp-fps-smooth .emp-benchmark-fps-badge {
+	background: #d1fae5;
+	color: #047857;
+}
+.emp-fps-smooth .emp-benchmark-bar-fill {
+	background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.emp-fps-playable .emp-benchmark-fps-badge {
+	background: #fef3c7;
+	color: #b45309;
+}
+.emp-fps-playable .emp-benchmark-bar-fill {
+	background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.emp-benchmark-bar-track {
+	width: 100%;
+	height: 7px;
+	background: rgba(127, 127, 127, 0.18);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.emp-benchmark-bar-fill {
+	height: 100%;
+	border-radius: 10px;
+	transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .woocommerce div.product div.summary{
 	height: 100%;
     margin-top: auto;
