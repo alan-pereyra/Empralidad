@@ -87,8 +87,8 @@ Como práctica y convención estándar en el tema, las propiedades dentro de cad
   /* Ejemplo correcto */
   .mi-clase {
   	align-items: center;
-  	background: #ffffff;
-  	color: #333333;
+  	background: var(--emp-woocommerce-color);
+  	color: var(--emp-woocommerce-bg);
   	display: flex;
   	justify-content: center;
   	margin: 0 auto;
@@ -97,4 +97,15 @@ Como práctica y convención estándar en el tema, las propiedades dentro de cad
   }
   ```
 - **Excepción:** Las secciones o bloques minificados (aquellos que se encuentran en una sola línea continua, sin saltos de línea ni espacios) no requieren orden alfabético, ya que se consideran código compilado/terceros no sujeto a mantenimiento manual directo.
+
+---
+
+## 6. Protocolo de Colores y Variables CSS
+
+Para garantizar la coherencia visual, la personalización dinámica desde el Customizer y evitar código redundante:
+
+- **Uso estricto de variables del tema:** Siempre utilizar las variables CSS existentes (`var(--emp-woocommerce-bg)`, `var(--emp-woocommerce-color)`, `var(--emp-btn-bg)`, `var(--emp-btn-color)`, `var(--emp-content-bg)`, etc.) para colores de texto, fondos y botones.
+- **Evitar `rgba()` hardcodeado:** Nunca utilizar colores en formato `rgba()` salvo que sea estrictamente indispensable (por ejemplo, efectos de fondo semitransparentes o sombras sutiles). Para regular la intensidad o jerarquía de un texto, utilizar la propiedad `opacity` sobre la variable correspondiente.
+- **Eliminar estilos redundantes:** No declarar colores directos que el elemento ya herede limpiamente del contenedor padre o de las reglas globales del tema.
+
 
