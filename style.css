@@ -3,7 +3,7 @@ Theme Name: Empralidad - Theme
 Author: Alan Pereyra
 Author URI: https://empralidad.com.ar/alan-pereyra/
 Description: Empralidad - Theme es un tema integramente hecho por Alan Pereyra. Pensado para ser gestionado por personas sin ningún conocimiento de programación. Es un tema minimalista flat desing, pensado con la filosofía de menos es más. Hecho con PHP, CSS, HTML5 y Javascript.
-Version: 9.4.9
+Version: 9.5.1
 License: Attribution-NonCommercial-NoDerivatives 3.0 IGO
 License URI: https://creativecommons.org/licenses/by-nc-nd/3.0/igo/legalcode
 Text Domain: empralidad
@@ -127,10 +127,51 @@ label {
 }
 #top-notice{
 	background: var(--emp-notice-bg);
+	box-sizing: border-box;
 	color: var(--emp-notice-color);
-	font-size: 18px;
+	font-size: 14px;
+	padding: 8px 15px;
 	text-align: center;
-	padding: 10px 0px;
+	width: 100%;
+}
+.emp-top-notice-wrapper{
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 18px;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 1200px;
+	width: 100%;
+}
+.emp-top-notice-item{
+	align-items: center;
+	display: inline-flex;
+	gap: 6px;
+	justify-content: center;
+	line-height: 1.2;
+}
+.emp-top-notice-icon,
+#top-notice i.emp-top-notice-icon{
+	color: var(--emp-nav-color-accent, var(--emp-btn-bg)) !important;
+	display: inline-block;
+	font-size: 13px;
+	line-height: 1;
+	transition: filter 0.25s ease, text-shadow 0.25s ease;
+}
+#top-notice.has-neon .emp-top-notice-icon,
+#top-notice.has-neon i.emp-top-notice-icon{
+	filter: drop-shadow(0 0 6px var(--emp-nav-color-accent, var(--emp-btn-bg)));
+	text-shadow: 0 0 8px var(--emp-nav-color-accent, var(--emp-btn-bg));
+}
+.emp-top-notice-text{
+	color: var(--emp-notice-color);
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: -0.1px;
+	line-height: 1.2;
 }
 nav.navbar{
 	transition: all .5s;
@@ -541,18 +582,27 @@ section .btn-outline-light {
 	display: none;
 }
 #emp-sliders i{
-	background: #fff;
+	align-items: center;
+	backdrop-filter: blur(8px);
+	background: rgba(0, 0, 0, 0.45);
+	border: 1px solid rgba(255, 255, 255, 0.15);
 	border-radius: 50%;
-	color: #000000!important;
-	display: block;
-	font-size: 60px;
-	opacity: .4;
-	padding: 4px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+	box-sizing: border-box;
+	color: #ffffff !important;
+	cursor: pointer;
+	display: flex;
+	font-size: 18px;
+	height: 48px;
+	justify-content: center;
+	opacity: 0.8;
 	position: absolute;
 	top: 50%;
 	transform: translate(0, -50%);
-	z-index: 10;
+	transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 	user-select: none;
+	width: 48px;
+	z-index: 10;
 }
 @media (max-width: 768px){
 	#emp-sliders {
@@ -563,14 +613,23 @@ section .btn-outline-light {
 	}
 }
 #emp-sliders i:hover{
+	background: rgba(0, 0, 0, 0.75);
+	border-color: var(--emp-woocommerce-color);
+	box-shadow: 0 0 16px var(--emp-woocommerce-color);
+	color: var(--emp-woocommerce-color) !important;
 	cursor: pointer;
-	opacity: .85;
+	opacity: 1;
+	transform: translate(0, -50%) scale(1.08);
 }
-#emp-sliders i.fa-arrow-circle-left{
-	left: 30px;
+#emp-sliders i#emp-slider-prev,
+#emp-sliders i.fa-arrow-circle-left,
+#emp-sliders i.fa-chevron-left{
+	left: 20px;
 }
-#emp-sliders i.fa-arrow-circle-right{
-	right: 30px;
+#emp-sliders i#emp-slider-next,
+#emp-sliders i.fa-arrow-circle-right,
+#emp-sliders i.fa-chevron-right{
+	right: 20px;
 }
 #emp-sliders i.disabled{
 	display: none;
@@ -586,11 +645,146 @@ section .btn-outline-light {
 }
 #emp-sliders ul li img,
 #emp-sliders ul li picture img {
-	max-width: 1200px!important;
-	width: 100%;
-	height: auto;
 	display: block;
+	height: auto;
 	margin: auto;
+	max-width: 1200px !important;
+	width: 100%;
+}
+/* Badges de Confianza bajo el Slider */
+#emp-trust-badges {
+	background: rgba(18, 24, 38, 0.7);
+	border-radius: 12px;
+	box-sizing: border-box;
+	margin: 10px auto 14px auto;
+	max-width: 100%;
+	padding: 8px;
+	transition: box-shadow 0.3s ease;
+	width: 100%;
+}
+#emp-trust-badges.has-neon {
+	box-shadow: 0 0 15px rgba(34, 197, 94, 0.15);
+}
+.emp-trust-badges-wrapper {
+	align-items: stretch;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	gap: 6px;
+	justify-content: center;
+	margin: 0;
+	overflow-x: auto;
+	padding: 4px 0;
+	scrollbar-width: none;
+	width: 100%;
+}
+.emp-trust-badges-wrapper::-webkit-scrollbar {
+	display: none;
+}
+.emp-trust-badge-item {
+	align-items: center;
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 12px;
+	box-sizing: border-box;
+	display: flex;
+	flex: 1 1 0;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 160px;
+	min-width: 76px;
+	padding: 10px 6px;
+	text-align: center;
+	transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+#emp-trust-badges.has-neon .emp-trust-badge-item {
+	border-color: rgba(34, 197, 94, 0.22);
+}
+.emp-trust-badge-icon,
+i.fas.emp-trust-badge-icon,
+i.fab.emp-trust-badge-icon,
+i.fa.emp-trust-badge-icon {
+	color: var(--emp-btn-bg) !important;
+	display: inline-block;
+	font-size: 22px;
+	line-height: 1;
+	margin: 0 0 6px 0;
+	transition: filter 0.25s ease, text-shadow 0.25s ease;
+}
+#emp-trust-badges.has-neon .emp-trust-badge-icon,
+#emp-trust-badges.has-neon i.fas.emp-trust-badge-icon,
+#emp-trust-badges.has-neon i.fab.emp-trust-badge-icon,
+#emp-trust-badges.has-neon i.fa.emp-trust-badge-icon {
+	filter: drop-shadow(0 0 8px var(--emp-btn-bg));
+	text-shadow: 0 0 12px var(--emp-btn-bg);
+}
+.emp-trust-badge-text {
+	color: var(--emp-content-color, #ffffff);
+	display: block;
+	font-size: 11px;
+	font-weight: 600;
+	hyphens: auto;
+	line-height: 1.25;
+	word-break: break-word;
+}
+@media (min-width: 769px) {
+	#emp-trust-badges {
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-bottom: 2px solid var(--emp-btn-bg);
+		border-radius: 14px;
+		margin: 14px auto 20px auto;
+		max-width: 1200px;
+		padding: 14px 20px;
+		width: 100%;
+	}
+	#emp-trust-badges.has-neon {
+		box-shadow: 0 0 20px rgba(34, 197, 94, 0.18);
+	}
+	.emp-trust-badges-wrapper {
+		align-items: center;
+		flex-direction: row;
+		gap: 0;
+		justify-content: space-evenly;
+		overflow-x: visible;
+		padding: 0;
+	}
+	.emp-trust-badge-item {
+		align-items: center;
+		background: transparent;
+		border: none;
+		border-radius: 0;
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		flex: 1 1 0;
+		flex-direction: row;
+		gap: 12px;
+		max-width: none;
+		min-width: 0;
+		padding: 4px 14px;
+		text-align: left;
+	}
+	.emp-trust-badge-item:last-child {
+		border-right: none;
+	}
+	.emp-trust-badge-item:hover {
+		transform: translateY(-1px);
+	}
+	.emp-trust-badge-icon,
+	i.fas.emp-trust-badge-icon,
+	i.fab.emp-trust-badge-icon,
+	i.fa.emp-trust-badge-icon {
+		font-size: 24px;
+		margin: 0;
+	}
+	.emp-trust-badge-text {
+		color: #ffffff;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: -0.2px;
+		line-height: 1.25;
+		white-space: nowrap;
+	}
 }
 .home-btn-down{
 	color: var(--emp-head-title-color)!important;

@@ -18,11 +18,39 @@
   <body <?php body_class(); ?> >
     <div id="top_content"></div>
     <?php $global_notice = get_theme_mod('emp_components_notice_show');
-    if ($global_notice){ ?>
-      <div id="top-notice" class="show-from-md">
-        <?php echo wp_kses_post( get_theme_mod('emp_components_notice_text') ); ?>
-      </div>
-    <?php }?>
+    if ($global_notice){
+      $notice_items = array();
+      for ($i = 1; $i <= 4; $i++) {
+        $item_icon = get_theme_mod('emp_components_notice_icon_' . $i, '');
+        $item_text = get_theme_mod('emp_components_notice_text_' . $i, '');
+        if (!empty($item_icon) || !empty($item_text)) {
+          $notice_items[] = array('icon' => $item_icon, 'text' => $item_text);
+        }
+      }
+      $legacy_notice_text = get_theme_mod('emp_components_notice_text');
+      $notice_has_neon = get_theme_mod('emp_components_notice_neon', true);
+      $notice_neon_class = (!empty($notice_has_neon) && $notice_has_neon !== '0' && $notice_has_neon !== 0) ? 'has-neon' : '';
+      if (!empty($notice_items) || !empty($legacy_notice_text)){ ?>
+        <div id="top-notice" class="show-from-md <?php echo esc_attr($notice_neon_class); ?>">
+          <?php if (!empty($notice_items)) { ?>
+            <div class="emp-top-notice-wrapper">
+              <?php foreach ($notice_items as $item) { ?>
+                <span class="emp-top-notice-item">
+                  <?php if (!empty($item['icon'])) { ?>
+                    <i class="<?php echo esc_attr($item['icon']); ?> emp-top-notice-icon"></i>
+                  <?php } ?>
+                  <?php if (!empty($item['text'])) { ?>
+                    <span class="emp-top-notice-text"><?php echo esc_html($item['text']); ?></span>
+                  <?php } ?>
+                </span>
+              <?php } ?>
+            </div>
+          <?php } else {
+            echo wp_kses_post($legacy_notice_text);
+          } ?>
+        </div>
+      <?php }
+    }?>
 
     <!-- navbar -->
       <div id="navbar-background" class="sticky-top empFadeInBottom <?php if( is_admin_bar_showing() ){ ?> admin-fixed-top <?php } ?> <?php if (get_theme_mod('emp_slider_image1')||get_theme_mod('emp_slider_image2')||get_theme_mod('emp_slider_image3')||get_theme_mod('emp_slider_desktop_image1')||get_theme_mod('emp_slider_desktop_image2')||get_theme_mod('emp_slider_desktop_image3')) { ?>hover<?php }?>" style="z-index:1032;">

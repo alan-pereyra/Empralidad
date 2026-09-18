@@ -53,9 +53,10 @@ if($has_sliders){ ?>
         </li>
       <?php } ?>
     </ul>
-    <i id="emp-slider-prev" class="fa fa-arrow-circle-left disabled"></i>
-    <i id="emp-slider-next" class="fa fa-arrow-circle-right disabled"></i>
+    <i id="emp-slider-prev" class="fa fa-chevron-left disabled"></i>
+    <i id="emp-slider-next" class="fa fa-chevron-right disabled"></i>
   </div>
+  <?php get_template_part('includes/trust-badges'); ?>
 <?php }
 
 $emp_carousel_slide1 = get_theme_mod('emp_head_slide1');
