@@ -75,3 +75,26 @@ Antes de hacer commit de cualquier cambio en archivos PHP, ejecuta una validaci�
 ```powershell
 & "C:\xampp\php\php.exe" -l archivo-modificado.php
 ```
+
+---
+
+## 5. Protocolo de Estilos CSS (Orden Alfabético)
+
+Como práctica y convención estándar en el tema, las propiedades dentro de cada bloque de código `{}` deben ordenarse de forma **alfabética**:
+
+- **Regla general:** Todas las reglas CSS no minificadas deben listar sus propiedades ordenadas alfabéticamente (`a` -> `z`). Esto permite mantener la uniformidad en todo el código y facilita la búsqueda rápida de propiedades específicas.
+  ```css
+  /* Ejemplo correcto */
+  .mi-clase {
+  	align-items: center;
+  	background: #ffffff;
+  	color: #333333;
+  	display: flex;
+  	justify-content: center;
+  	margin: 0 auto;
+  	padding: 10px;
+  	width: 100%;
+  }
+  ```
+- **Excepción:** Las secciones o bloques minificados (aquellos que se encuentran en una sola línea continua, sin saltos de línea ni espacios) no requieren orden alfabético, ya que se consideran código compilado/terceros no sujeto a mantenimiento manual directo.
+
