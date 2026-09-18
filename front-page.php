@@ -273,6 +273,7 @@ if($emp_title_show){ ?>
       <div>
         <?php get_template_part('content-home') ?>
       </div>
+      <?php get_template_part('includes/secondary-banners') ?>
   <?php } else { ?>
       <div class="mx-auto">
         <?php get_template_part('includes/wc-featured-products') ?>
@@ -289,6 +290,7 @@ if($emp_title_show){ ?>
         <?php if(is_active_sidebar( 'homepage1' )){
             get_sidebar( 'homepage1' );
         } ?>
+        <?php get_template_part('includes/secondary-banners') ?>
       </div>
   <?php }?>
   </section>

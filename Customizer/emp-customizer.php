@@ -4,6 +4,7 @@ function empralidad_customize_register($wp_customize){
 	include get_template_directory().'/Customizer/woocommerce/index.php';
 	include get_template_directory().'/Customizer/frontpage/titles.php';
 	include get_template_directory().'/Customizer/frontpage/sliders.php';
+	include get_template_directory().'/Customizer/frontpage/secondary-banners.php';
 	include get_template_directory().'/Customizer/frontpage/contents.php';
 	include get_template_directory().'/Customizer/analytics/index.php';
 }
