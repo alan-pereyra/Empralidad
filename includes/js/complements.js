@@ -146,7 +146,7 @@ function showWoocommerceCart() {
 }
 
 // woocomerce columns
-window.onload = function() {
+function initWooColumns() {
   var wooFeaturedProducts = document.querySelector('#woo_featured_products ul');
   if(wooFeaturedProducts){
     wooFeaturedProducts.classList.remove('columns-3');
@@ -155,6 +155,11 @@ window.onload = function() {
   if(columns4){
     columns4.classList.add('columns-x');
   }
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWooColumns);
+} else {
+  initWooColumns();
 }
 
 // Carousel fade
@@ -205,150 +210,181 @@ function carouselItemPrev() {
 // Sliders front page
 function slidersFrontpage(){
   var empSliders = document.getElementById('emp-sliders');
+  if (!empSliders) return;
 
-  var sliders = document.getElementsByClassName('emp-slider');
-  var sliderUl = document.querySelector('#emp-sliders ul');
+  var sliderUl = empSliders.querySelector('ul');
+  if (!sliderUl) return;
+
+  var slides = sliderUl.querySelectorAll('li');
+  var totalSliders = slides.length;
+  if (totalSliders <= 1) return;
+
   var prevBtn = document.getElementById('emp-slider-prev');
   var nextBtn = document.getElementById('emp-slider-next');
-  var totalSliders = sliders.length;
+
+  if (prevBtn) prevBtn.classList.remove('disabled');
+  if (nextBtn) nextBtn.classList.remove('disabled');
+
   var actualSlider = 0;
-  var widthSlider = [];
-  var enabled = true;
-  var position = 0;
-  var totalWidth = 0;
-  var userClicked = false;
+  var autoTimer = null;
+  var defaultDelay = 4500;
+  var readingDelay = 8000;
 
-  if(!empSliders||totalSliders==1)return;//checks if the slider is active
-  prevBtn.classList.remove('disabled');
-  nextBtn.classList.remove('disabled');
-
-  for(var i = 0; i < totalSliders; i++){
-    widthSlider[i] = sliders[i].width;
-    totalWidth = totalWidth+widthSlider[i];
-  }
-
-  function slowPrevSlider(){
-    userClicked = true;
-    prevSlider();
-  }
-  function prevSlider(){
-    if(!enabled)return;
-
-    window.clearInterval(autoSlider);
-
-    enabled = false;
-    setTimeout(function(){
-      enabled = true
-    }, 500);
-
-    actualSlider--;
-    if(actualSlider<0){
-      actualSlider = totalSliders-1;
-      sliderUl.scroll({
-        left: totalWidth,
-        behavior: 'smooth'
-      });
-      position = totalWidth-(widthSlider[actualSlider]/1.9);
-    }else{
-      sliderUl.scroll({
-        left: position-(widthSlider[actualSlider]*1.9),
-        behavior: 'smooth'
-      });
-      position = position-widthSlider[actualSlider];
-    }
-
-    userIsReading();
-  }
-
-  function slowNextSlider(){
-    userClicked = true;
-    nextSlider();
-  }
-  function nextSlider(){
-    if(!enabled)return;
-
-    window.clearInterval(autoSlider);
-
-    enabled = false;
-    setTimeout(function(){
-      enabled = true
-    }, 500);
-
-    actualSlider++;
-    if(actualSlider>totalSliders-1){
-      actualSlider = 0;
-      sliderUl.scroll({
-        left: 0,
-        behavior: 'smooth'
-      });
-      position = 0;
-    }else{
-      sliderUl.scroll({
-        left: position+(widthSlider[actualSlider]/1.9),
-        behavior: 'smooth'
-      });
-      position = position+widthSlider[actualSlider];
-    }
-
-    userIsReading();
-  }
-
-  // Detect if de user is reading de actual slider
-  function userIsReading() {
-    if(userClicked){
-      autoSlider = window.setInterval(setAutoSlider, 10000);
-      userClicked = false;
-    } else {
-      autoSlider = window.setInterval(setAutoSlider, 4000);
+  function stopTimer(){
+    if (autoTimer) {
+      clearTimeout(autoTimer);
+      autoTimer = null;
     }
   }
 
-  empSliders.addEventListener('scroll', userIsReading, false);
-  prevBtn.addEventListener('click', slowPrevSlider, false);
-  nextBtn.addEventListener('click', slowNextSlider, false);
-
-  // Init automatic scroll Slider
-  var autoSlider = window.setInterval(setAutoSlider, 4000);
-
-  function setAutoSlider(){
-    nextSlider();
+  function startTimer(delay){
+    stopTimer();
+    autoTimer = setTimeout(function(){
+      nextSlider(false);
+    }, delay || defaultDelay);
   }
+
+  function goToSlide(index, isUserAction){
+    if (index < 0) {
+      index = totalSliders - 1;
+    } else if (index >= totalSliders) {
+      index = 0;
+    }
+    actualSlider = index;
+    stopTimer();
+
+    sliderUl.style.transform = 'translateX(-' + (actualSlider * 100) + '%)';
+
+    startTimer(isUserAction ? readingDelay : defaultDelay);
+  }
+
+  function nextSlider(isUserAction){
+    goToSlide(actualSlider + 1, isUserAction);
+  }
+
+  function prevSlider(isUserAction){
+    goToSlide(actualSlider - 1, isUserAction);
+  }
+
+  if (prevBtn) {
+    prevBtn.onclick = function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      prevSlider(true);
+    };
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      nextSlider(true);
+    };
+  }
+
+  // Pausar al pasar el mouse por encima en PC
+  empSliders.addEventListener('mouseenter', stopTimer, false);
+  empSliders.addEventListener('mouseleave', function(){
+    startTimer(defaultDelay);
+  }, false);
+
+  // Soporte táctil para móvil (Touch swipe)
+  var touchStartX = 0;
+  var touchEndX = 0;
+
+  empSliders.addEventListener('touchstart', function(e){
+    stopTimer();
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+  }, { passive: true });
+
+  empSliders.addEventListener('touchend', function(e){
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          nextSlider(true);
+        } else {
+          prevSlider(true);
+        }
+      } else {
+        startTimer(readingDelay);
+      }
+    }
+  }, { passive: true });
+
+  // Iniciar carrusel automático
+  sliderUl.style.transform = 'translateX(0%)';
+  startTimer(defaultDelay);
 }
 
-slidersFrontpage();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', slidersFrontpage);
+} else {
+  slidersFrontpage();
+}
 
 // Search woocommerce products by custom filters
-window.onload = function() {
+function initWooPriceFilter() {
   var maxPriceDesktopRangeInput = document.getElementById('emp-range-price-desktop');
   var maxPriceDesktopSmall = document.getElementById('emp-small-price-desktop');
   var deleteWooProductFiltersBtnDesktop = document.getElementById('emp-delete-woo-product-filter-desktop');
+
+  function formatCurrency(val) {
+    var num = parseFloat(val);
+    if (isNaN(num)) return val;
+    return '$ ' + Math.round(num).toLocaleString('es-AR');
+  }
+
+  function updateProgress(slider) {
+    var min = parseFloat(slider.min) || 0;
+    var max = parseFloat(slider.max) || 100;
+    var val = parseFloat(slider.value) || min;
+    var percent = max > min ? ((val - min) / (max - min)) * 100 : 100;
+    slider.style.setProperty('--progress', percent + '%');
+  }
 
   if (maxPriceDesktopRangeInput){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-
     maxPriceDesktopRangeInput.addEventListener("input", function(e){
-      maxPriceDesktopSmall.innerHTML = this.value;
+      if (maxPriceDesktopSmall) {
+        maxPriceDesktopSmall.innerHTML = formatCurrency(this.value);
+      }
+      updateProgress(this);
       e.preventDefault();
       e.stopPropagation();
-    })
+    });
 
-    if(urlParams.get('max_price')==null){
-      maxPriceDesktopRangeInput.value = 999999;
-    }else{
+    if (urlParams.get('max_price') == null){
+      if (maxPriceDesktopRangeInput.max) {
+        maxPriceDesktopRangeInput.value = maxPriceDesktopRangeInput.max;
+      }
+    } else {
       maxPriceDesktopRangeInput.value = urlParams.get('max_price');
-      maxPriceDesktopSmall.innerHTML = urlParams.get('max_price');
     }
 
-    if(urlParams.get('max_price')||urlParams.get('s')){
-      deleteWooProductFiltersBtnDesktop.classList.add('active');
-    }else{
-      deleteWooProductFiltersBtnDesktop.classList.remove('active');
+    if (maxPriceDesktopSmall) {
+      maxPriceDesktopSmall.innerHTML = formatCurrency(maxPriceDesktopRangeInput.value);
+    }
+    updateProgress(maxPriceDesktopRangeInput);
+
+    if (deleteWooProductFiltersBtnDesktop) {
+      if (urlParams.get('max_price') || urlParams.get('s')){
+        deleteWooProductFiltersBtnDesktop.classList.add('active');
+      } else {
+        deleteWooProductFiltersBtnDesktop.classList.remove('active');
+      }
     }
   }
-
-
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWooPriceFilter);
+} else {
+  initWooPriceFilter();
 }
 function empGetRangeUrl(e){
   let empUrl= window.location.href.split('?')[0];
@@ -467,9 +503,41 @@ function updateTimer() {
       '<div>' + m + '<span>Minutos</span></div>' +
       '<div>' + s + '<span>Segundos</span></div>' ;
 }
-window.onload = function() {
+function initTimer() {
   if(document.getElementById("timer")){
-    setInterval('updateTimer()', 1000 );
+    setInterval(updateTimer, 1000);
   }
 }
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTimer);
+} else {
+  initTimer();
+}
 
+// Quantity Stepper (+ / -)
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.emp-qty-btn');
+  if (!btn) return;
+  var container = btn.closest('.quantity');
+  if (!container) return;
+  var input = container.querySelector('input.qty');
+  if (!input) return;
+
+  var currentVal = parseFloat(input.value) || 1;
+  var step = parseFloat(input.step) || 1;
+  var min = input.min !== '' ? parseFloat(input.min) : 1;
+  var max = input.max !== '' ? parseFloat(input.max) : Infinity;
+
+  if (btn.classList.contains('emp-qty-minus')) {
+    if (currentVal > min) {
+      input.value = Math.max(min, currentVal - step);
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  } else if (btn.classList.contains('emp-qty-plus')) {
+    if (currentVal < max) {
+      input.value = Math.min(max, currentVal + step);
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+  e.preventDefault();
+});

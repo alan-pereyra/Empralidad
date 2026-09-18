@@ -28,7 +28,7 @@ if($has_sliders){ ?>
             <?php if($mobile_url1){ ?>
               <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url1); ?>">
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url1 ? $desktop_url1 : $mobile_url1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+            <img src="<?php echo esc_url($desktop_url1 ? $desktop_url1 : $mobile_url1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
           </picture>
         </li>
       <?php } ?>
@@ -38,7 +38,7 @@ if($has_sliders){ ?>
             <?php if($mobile_url2){ ?>
               <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url2); ?>">
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url2 ? $desktop_url2 : $mobile_url2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+            <img src="<?php echo esc_url($desktop_url2 ? $desktop_url2 : $mobile_url2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
           </picture>
         </li>
       <?php } ?>
@@ -48,7 +48,7 @@ if($has_sliders){ ?>
             <?php if($mobile_url3){ ?>
               <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url3); ?>">
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url3 ? $desktop_url3 : $mobile_url3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+            <img src="<?php echo esc_url($desktop_url3 ? $desktop_url3 : $mobile_url3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
           </picture>
         </li>
       <?php } ?>

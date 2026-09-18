@@ -30,13 +30,19 @@ if ( class_exists( 'WooCommerce' ) ) {
   } ?>
   <div class="sidebar">
     <?php woocommerce_breadcrumb(); ?>
-    <?php woocommerce_catalog_ordering(); ?>
     <button id="emp-button-woo-filters">Filtros</button>
     <div id="emp-woo-filter-area">
       <i id="emp-woo-filter-area-close-btn" class="fa fa-times show-mobile"></i>
-      <div class="">
-        <p class="px-0 pb-0">Filtrar por nombre</p>
-        <form id="emp-woo-search" role="search" method="get" class="woocommerce-product-search mb-3 md-mb-0">
+      <div class="emp-price-filter-card">
+        <!-- 1. Ordenar catalogo -->
+        <p class="emp-filter-section-title">Ordenar por</p>
+        <?php woocommerce_catalog_ordering(); ?>
+
+        <hr class="emp-filter-divider">
+
+        <!-- 2. Filtrar por nombre -->
+        <p class="emp-filter-section-title">Filtrar por nombre</p>
+        <form id="emp-woo-search" role="search" method="get" class="woocommerce-product-search mb-0">
           <label class="screen-reader-text" for="s"><?php _e( 'Buscar por nombre:', 'woocommerce' ); ?></label>
           <input id="emp-woo-search-text" type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Buscar Productos&hellip;', 'placeholder', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s" title="<?php echo esc_attr_x( 'Buscar por nombre:', 'label', 'woocommerce' ); ?>" />
           <button class="color-personalized bg-personalized" type="submit">
@@ -44,10 +50,24 @@ if ( class_exists( 'WooCommerce' ) ) {
           </button>
           <input type="hidden" name="post_type" value="product" />
         </form>
-        <p class="px-0 pb-0">Precio máximo</p>
-        <small id="emp-small-price-desktop"><?php echo $highest_price; ?></small>
-        <input id="emp-range-price-desktop" class="emp-range-price mb-3" type="range" min="<?php echo $lowest_price; ?>" max="<?php echo $highest_price; ?>" step="1" onchange="empGetRangeUrl(this.value)">
-        <button id="emp-delete-woo-product-filter-desktop" class="btn w-100"  onclick="empDeleteFilters()">
+
+        <hr class="emp-filter-divider">
+
+        <!-- 3. Filtrar por precio -->
+        <div class="emp-price-filter-section">
+          <div class="emp-price-filter-header">
+            <span class="emp-price-filter-title">Precio máximo</span>
+            <span id="emp-small-price-desktop" class="emp-price-badge">$ <?php echo number_format($highest_price, 0, ',', '.'); ?></span>
+          </div>
+          <input id="emp-range-price-desktop" class="emp-range-price" type="range" min="<?php echo $lowest_price; ?>" max="<?php echo $highest_price; ?>" step="1" onchange="empGetRangeUrl(this.value)">
+          <div class="emp-price-slider-limits">
+            <span>$ <?php echo number_format($lowest_price, 0, ',', '.'); ?></span>
+            <span>$ <?php echo number_format($highest_price, 0, ',', '.'); ?></span>
+          </div>
+        </div>
+
+        <!-- 4. Boton Borrar Filtros -->
+        <button id="emp-delete-woo-product-filter-desktop" class="btn w-100" onclick="empDeleteFilters()">
           Borrar Filtros
         </button>
       </div>
