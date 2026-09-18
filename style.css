@@ -720,7 +720,7 @@ i.fa.emp-trust-badge-icon {
 	text-shadow: 0 0 12px var(--emp-btn-bg);
 }
 .emp-trust-badge-text {
-	color: var(--emp-content-color, #ffffff);
+	color: var(--emp-content-bg, #ffffff);
 	display: block;
 	font-size: 11px;
 	font-weight: 600;
@@ -778,7 +778,7 @@ i.fa.emp-trust-badge-icon {
 		margin: 0;
 	}
 	.emp-trust-badge-text {
-		color: #ffffff;
+		color: var(--emp-content-bg);
 		font-size: 13px;
 		font-weight: 600;
 		letter-spacing: -0.2px;

@@ -107,5 +107,10 @@ Para garantizar la coherencia visual, la personalización dinámica desde el Cus
 - **Uso estricto de variables del tema:** Siempre utilizar las variables CSS existentes (`var(--emp-woocommerce-bg)`, `var(--emp-woocommerce-color)`, `var(--emp-btn-bg)`, `var(--emp-btn-color)`, `var(--emp-content-bg)`, etc.) para colores de texto, fondos y botones.
 - **Evitar `rgba()` hardcodeado:** Nunca utilizar colores en formato `rgba()` salvo que sea estrictamente indispensable (por ejemplo, efectos de fondo semitransparentes o sombras sutiles). Para regular la intensidad o jerarquía de un texto, utilizar la propiedad `opacity` sobre la variable correspondiente.
 - **Eliminar estilos redundantes:** No declarar colores directos que el elemento ya herede limpiamente del contenedor padre o de las reglas globales del tema.
+- **Patrón de Secciones Invertidas (Inversión de Colores):**
+  - En secciones, tarjetas o componentes con fondo invertido respecto a la base de la página (por ejemplo tarjetas elevadas, barras de filtros, badges de confianza o bloques contrastados):
+    - La propiedad `color` (texto) utiliza `var(--emp-content-bg)`.
+    - La propiedad `background` utiliza `var(--emp-content-color)` (o transparencias/derivados de él).
+  - **Regla mnemotécnica:** Cuando en una regla CSS el `color` dice `bg` (`color: var(--emp-content-bg);`) y el `background` dice `color` (`background: var(--emp-content-color);`), significa expresamente que **esa sección está invertida** para garantizar el contraste automático ante cualquier esquema de color definido por el usuario.
 
 
