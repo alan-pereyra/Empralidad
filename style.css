@@ -804,7 +804,7 @@ section .btn-outline-light {
 i.fas.emp-trust-badge-icon,
 i.fab.emp-trust-badge-icon,
 i.fa.emp-trust-badge-icon {
-	color: var(--emp-btn-bg) !important;
+	color: var(--emp-nav-color) !important;
 	display: inline-block;
 	font-size: 22px;
 	line-height: 1;
@@ -819,7 +819,7 @@ i.fa.emp-trust-badge-icon {
 	text-shadow: 0 0 12px var(--emp-btn-bg);
 }
 .emp-trust-badge-text {
-	color: var(--emp-btn-bg) !important;
+	color: var(--emp-nav-color) !important;
 	display: block;
 	font-size: 11px;
 	font-weight: 600;
