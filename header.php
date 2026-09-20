@@ -72,11 +72,11 @@
               $home_url = home_url();
             }
             ?>
-            <a class="navbar-brand mx-auto" href="<?php echo esc_url( $home_url ); ?>">
+            <a class="navbar-brand <?php if (!$has_product_search) { ?>mx-auto<?php } ?>" href="<?php echo esc_url( $home_url ); ?>">
             	<img src="<?php echo esc_url( wp_get_attachment_url(get_theme_mod('emp_components_nav_logo')) ); ?>" class="navbar-img" alt="NavbarBrand">
             </a>
           <?php } else { ?>
-            <a class=" mx-auto" href="<?php echo esc_url( home_url() ); ?>">
+            <a class="<?php if (!$has_product_search) { ?>mx-auto<?php } ?>" href="<?php echo esc_url( home_url() ); ?>">
               <h2 class="p-3 color-personalized"><?php bloginfo(); ?></h2>
             </a>
           <?php } ?>
