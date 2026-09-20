@@ -2812,38 +2812,40 @@ li.product-category.product:hover,
 }
 
 .emp-product-action-right {
-	width: 36px;
-	display: flex;
 	align-items: center;
+	display: flex;
+	flex: 0 0 36px;
 	justify-content: center;
-	position: absolute;
-	right: 5%;
-	bottom: auto;
+	position: relative;
+	width: 36px;
+	z-index: 10;
 }
 
 .emp-loop-btn-circle,
 .woocommerce ul.products li.product a.button.emp-loop-btn-circle,
 .woocommerce-page ul.products li.product a.button.emp-loop-btn-circle {
-	width: 36px !important;
-	height: 36px !important;
-	min-width: 36px !important;
-	max-width: 36px !important;
-	border-radius: 50% !important;
-	background: var(--emp-btn-bg) !important;
-	color: var(--emp-btn-color) !important;
-	display: inline-flex !important;
 	align-items: center !important;
-	justify-content: center !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	font-size: 15px !important;
-	line-height: 1 !important;
+	background: var(--emp-btn-bg) !important;
 	border: none !important;
+	border-radius: 50% !important;
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16) !important;
-	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+	color: var(--emp-btn-color) !important;
 	cursor: pointer;
-	position: static !important;
-	left: auto !important;
+	display: inline-flex !important;
+	font-size: 15px !important;
+	height: 36px !important;
+	justify-content: center !important;
+	line-height: 1 !important;
+	margin: 0 !important;
+	max-width: 36px !important;
+	min-width: 36px !important;
+	padding: 0 !important;
+	pointer-events: auto !important;
+	position: relative !important;
+	touch-action: manipulation !important;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+	width: 36px !important;
+	z-index: 11 !important;
 }
 
 .emp-loop-btn-circle:hover,
@@ -2857,6 +2859,7 @@ li.product-category.product:hover,
 	color: var(--emp-btn-color) !important;
 	font-size: 15px;
 	line-height: 1;
+	pointer-events: none !important;
 }
 
 .emp-loop-btn-circle.loading::after {
@@ -2880,30 +2883,43 @@ li.product-category.product:hover,
 
 @media (max-width: 575px) {
 	.emp-product-bottom-row {
-		padding: 4px 6px 8px !important;
 		gap: 3px !important;
 		min-height: 40px !important;
+		padding: 4px 6px 8px !important;
 	}
 	.emp-product-bottom-spacer {
-		display: none !important;
-		width: 0 !important;
-		flex: 0 0 0 !important;
+		display: block !important;
+		flex: 0 0 30px !important;
+		height: 1px !important;
+		pointer-events: none !important;
+		visibility: hidden !important;
+		width: 30px !important;
 	}
 	.emp-product-action-right {
+		align-items: center !important;
+		display: flex !important;
 		flex: 0 0 30px !important;
+		justify-content: center !important;
+		position: relative !important;
 		width: 30px !important;
+		z-index: 10 !important;
 	}
 	.emp-loop-btn-circle,
 	.woocommerce ul.products li.product a.button.emp-loop-btn-circle,
 	.woocommerce-page ul.products li.product a.button.emp-loop-btn-circle {
-		width: 30px !important;
-		height: 30px !important;
-		min-width: 30px !important;
-		max-width: 30px !important;
 		font-size: 13px !important;
+		height: 30px !important;
+		max-width: 30px !important;
+		min-width: 30px !important;
+		pointer-events: auto !important;
+		position: relative !important;
+		touch-action: manipulation !important;
+		width: 30px !important;
+		z-index: 11 !important;
 	}
 	.emp-loop-btn-circle i.fa {
 		font-size: 13px !important;
+		pointer-events: none !important;
 	}
 	.woocommerce ul.products li.product .price,
 	.woocommerce-page ul.products li.product .price {
