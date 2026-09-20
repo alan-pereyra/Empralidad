@@ -4589,8 +4589,26 @@ hr.emp-filter-divider {
 #coming-soon-footer-banner{
 	display: none;
 }
-.wp-block-woocommerce-checkout.alignwide.wc-block-checkout{
+.wp-block-woocommerce-checkout.alignwide.wc-block-checkout {
 	padding: 5%;
+}
+.wc-block-components-order-summary-item .wc-block-cart-item__prices,
+.wc-block-components-order-summary-item__description .wc-block-cart-item__prices,
+.wc-block-components-order-summary-item__description .wc-block-components-order-summary-item__individual-prices {
+	display: none !important;
+}
+.wc-block-components-order-summary-item .wc-block-components-sale-badge {
+	background: #dcfce7 !important;
+	border-radius: 6px !important;
+	color: #15803d !important;
+	display: inline-block !important;
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	line-height: 1 !important;
+	margin: 0 !important;
+	padding: 2px 6px !important;
+	text-align: center !important;
+	white-space: nowrap !important;
 }
 span.mp-terms-and-conditions-text{
 	color: var(--emp-woocommerce-color)!important;
