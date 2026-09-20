@@ -2489,10 +2489,6 @@ ul.products.columns-3{
 	background: var(--emp-content-bg);
 	margin: auto;
 }
-section.related.products {
-	background: var(--emp-content-color)!important;
-	color: var(--emp-content-bg)!important;
-}
 .woocommerce div.product .woocommerce-tabs .panel{
 	margin: 20px 0 0 0;
 	overflow-x: auto;
