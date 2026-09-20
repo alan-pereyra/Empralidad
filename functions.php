@@ -280,11 +280,9 @@ if (class_exists('WooCommerce')){
 
 
   function wc_refresh_mini_cart_count($fragments){
-    ob_start(); ?>
-    <div id="mini-cart-count">
-      <?php echo WC()->cart->get_cart_contents_count(); ?>
-    </div>
-    <?php  $fragments['#mini-cart-count'] = ob_get_clean();
+    $count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+    $fragments['#mini-cart-count'] = '<div id="mini-cart-count" class="emp-mini-cart-count">' . $count . '</div>';
+    $fragments['#mini-cart-count-footer'] = '<div id="mini-cart-count-footer" class="emp-mini-cart-count icon-color">' . $count . '</div>';
     return $fragments;
   }
   add_filter( 'woocommerce_add_to_cart_fragments', 'wc_refresh_mini_cart_count');

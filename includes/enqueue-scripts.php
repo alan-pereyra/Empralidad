@@ -12,7 +12,7 @@ add_action('wp_enqueue_scripts', 'emp_styles');
 function emp_scripts(){
   $js_file = get_template_directory() . '/includes/js/complements.js';
   $theme_version = file_exists($js_file) ? filemtime($js_file) : wp_get_theme()->get('Version');
-  wp_enqueue_script ('emp_complements', get_template_directory_uri() . '/includes/js/complements.js', array(), $theme_version, true);
+  wp_enqueue_script ('emp_complements', get_template_directory_uri() . '/includes/js/complements.js', array('jquery'), $theme_version, true);
 }
 add_action('wp_enqueue_scripts', 'emp_scripts');
 

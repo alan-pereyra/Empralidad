@@ -3413,22 +3413,100 @@ span.woocommerce-input-wrapper {
 span.woocommerce-Price-amount.amount{
 	padding: 0!important;
 }
+#btn-woocommerce-cart {
+	position: relative;
+}
 .woo-counter-cart-number,
 .woo-counter-cart-number-desktop {
-	position: absolute;
-	top: 0;
-	font-family: sans-serif;
+	align-items: center;
+	background-color: var(--emp-btn-bg, #22c55e);
+	border-radius: 999px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+	color: #ffffff !important;
+	display: inline-flex;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	height: 18px;
+	justify-content: center;
+	line-height: 1;
 	min-width: 18px;
-	padding: 2px
+	padding: 0 5px;
+	position: absolute;
+	text-align: center;
+	transition: all 0.25s ease-in-out;
+	user-select: none;
+	z-index: 10;
 }
 .woo-counter-cart-number {
-	margin-left: 15px
+	left: 50%;
+	margin-left: 4px;
+	top: 2px;
 }
 .woo-counter-cart-number-desktop {
-	right: -25px;
-	top: -5px;
-	color: #262626;
-	min-width: 25px
+	right: -12px;
+	top: -6px;
+}
+.emp-mini-cart-count {
+	color: #ffffff !important;
+	display: inline;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+}
+@keyframes empCartGlowPulse {
+	0% {
+		filter: drop-shadow(0 0 0 transparent);
+		transform: scale(1);
+	}
+	15% {
+		filter: drop-shadow(0 0 10px var(--emp-btn-bg, #22c55e)) brightness(1.35);
+		transform: scale(1.22);
+	}
+	30% {
+		filter: drop-shadow(0 0 4px var(--emp-btn-bg, #22c55e)) brightness(1.15);
+		transform: scale(1.05);
+	}
+	45% {
+		filter: drop-shadow(0 0 8px var(--emp-btn-bg, #22c55e)) brightness(1.25);
+		transform: scale(1.16);
+	}
+	60% {
+		filter: drop-shadow(0 0 0 transparent);
+		transform: scale(1);
+	}
+	100% {
+		filter: drop-shadow(0 0 0 transparent);
+		transform: scale(1);
+	}
+}
+@keyframes empCartPop {
+	0% {
+		filter: drop-shadow(0 0 0 transparent);
+		transform: scale(1);
+	}
+	35% {
+		filter: drop-shadow(0 0 16px var(--emp-btn-bg, #22c55e)) brightness(1.5);
+		transform: scale(1.35);
+	}
+	65% {
+		filter: drop-shadow(0 0 8px var(--emp-btn-bg, #22c55e)) brightness(1.2);
+		transform: scale(1.1);
+	}
+	100% {
+		filter: drop-shadow(0 0 0 transparent);
+		transform: scale(1);
+	}
+}
+#btn-woocommerce-cart.has-items:not(.fa-times),
+a.fa-shopping-cart.show-desktop.has-items {
+	animation: empCartGlowPulse 2s ease-in-out infinite;
+	transform-origin: center center;
+}
+#btn-woocommerce-cart.emp-cart-pop,
+a.fa-shopping-cart.show-desktop.emp-cart-pop {
+	animation: empCartPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+	transform-origin: center center;
 }
 .fa-shopping-cart.fixed-bottom {
 	transition: padding 1s;

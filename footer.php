@@ -111,11 +111,13 @@
       <?php } ?>
       <!-- Cart -->
       <?php $cart_link = get_theme_mod('emp_components_nav_cart');
-      if (class_exists('WooCommerce') && $cart_link){ ?>
-        <a id="btn-woocommerce-cart" onclick="showWoocommerceCart();" class="fa-dark fa fa-shopping-cart mx-auto <?php if ((WC()->cart->get_cart_contents_count()) > 0) { ?> fadein <?php } ?>" >
+      if (class_exists('WooCommerce') && $cart_link){ 
+        $cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+      ?>
+        <a id="btn-woocommerce-cart" onclick="showWoocommerceCart();" class="fa-dark fa fa-shopping-cart mx-auto <?php if ($cart_count > 0) { ?> fadein has-items <?php } ?>" >
           <span id="span-woocommerce-cart" class="fa-text">Carrito</span>
-          <small id="span-woocommerce-counter" class="woo-counter-cart-number added_to_cart wc-forward">
-            <div id="mini-cart-count" class="icon-color"></div>
+          <small id="span-woocommerce-counter" class="woo-counter-cart-number <?php if ($cart_count <= 0) { ?> d-none <?php } ?>">
+            <div id="mini-cart-count-footer" class="emp-mini-cart-count icon-color"><?php echo $cart_count; ?></div>
           </small>
         </a>
       <?php } ?>
