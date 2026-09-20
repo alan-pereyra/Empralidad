@@ -55,10 +55,12 @@
     <?php
     $nav_has_neon = get_theme_mod('emp_components_nav_neon', true);
     $nav_neon_class = (!empty($nav_has_neon) && $nav_has_neon !== '0' && $nav_has_neon !== 0) ? 'has-neon' : '';
+    $cart_link = get_theme_mod('emp_components_nav_cart');
+    $has_product_search = (class_exists('WooCommerce') && $cart_link);
     ?>
     <!-- navbar -->
       <div id="navbar-background" class="sticky-top empFadeInBottom <?php echo esc_attr($nav_neon_class); ?> <?php if( is_admin_bar_showing() ){ ?> admin-fixed-top <?php } ?> <?php if (get_theme_mod('emp_slider_image1')||get_theme_mod('emp_slider_image2')||get_theme_mod('emp_slider_image3')||get_theme_mod('emp_slider_desktop_image1')||get_theme_mod('emp_slider_desktop_image2')||get_theme_mod('emp_slider_desktop_image3')) { ?>hover<?php }?>" style="z-index:1032;">
-        <nav class="navbar navbar-expand-lg py-0 mw-1200px">
+        <nav class="navbar navbar-expand-lg py-0 mw-1200px <?php if ($has_product_search) { ?>has-mobile-search<?php } ?>">
           <div class="bg-navbar-top <?php if( is_admin_bar_showing() ){ ?> admin-bar-show <?php } ?>">
               <i id="btn-menu-nav" class="fa fa-bars text-dark <?php if( is_admin_bar_showing() ){ ?> admin-bar-show <?php } ?>" onclick="openMobileMenu()"></i>
           </div>
@@ -79,6 +81,12 @@
             </a>
           <?php } ?>
 	        <!-- end if logo -->
+          <?php if ($has_product_search) { ?>
+            <form role="search" method="get" class="emp-header-search-form" action="<?php echo esc_url(home_url('/')); ?>">
+              <input type="search" class="emp-header-search-input" name="s" placeholder="<?php esc_attr_e('Buscar Productos...', 'empralidad'); ?>" value="<?php echo get_search_query(); ?>" autocomplete="off" />
+              <input type="hidden" name="post_type" value="product" />
+            </form>
+          <?php } ?>
           <?php $search_link = get_theme_mod('emp_components_nav_search');
           $search_icon = '';
           if ($search_link){
