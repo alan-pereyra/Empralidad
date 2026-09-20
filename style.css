@@ -3764,8 +3764,22 @@ a.button.add_to_cart_button.added::after {
 	top: 5px;
 	visibility: visible;
 }
-a.added_to_cart.wc-forward {
-	display: none;
+.added_to_cart,
+a.added_to_cart,
+a.added_to_cart.wc-forward,
+.emp-product-action-right a.added_to_cart,
+.emp-product-bottom-row a.added_to_cart,
+.woocommerce ul.products li.product .added_to_cart,
+.woocommerce-page ul.products li.product .added_to_cart {
+	display: none !important;
+	height: 0 !important;
+	margin: 0 !important;
+	opacity: 0 !important;
+	padding: 0 !important;
+	pointer-events: none !important;
+	position: absolute !important;
+	visibility: hidden !important;
+	width: 0 !important;
 }
 p.stock.available-on-backorder {
 	font-size: 48px !important
