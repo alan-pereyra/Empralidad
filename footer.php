@@ -90,7 +90,11 @@
     </div>
     <!-- Buttons mobile -->
     <div class="mx-auto container-fluid fixed-bottom bg-personalized" id="bg-searchform-mobile"></div>
-    <div class="buttons-mobile empFadeInTop show-sm text-center d-flex justify-content-between align-items-center fixed-bottom p-2">
+    <?php
+    $nav_has_neon = get_theme_mod('emp_components_nav_neon', true);
+    $nav_neon_class = (!empty($nav_has_neon) && $nav_has_neon !== '0' && $nav_has_neon !== 0) ? 'has-neon' : '';
+    ?>
+    <div class="buttons-mobile empFadeInTop show-sm text-center d-flex justify-content-between align-items-center fixed-bottom p-2 <?php echo esc_attr($nav_neon_class); ?>">
       <!-- Home-->
       <?php $home_url =  get_theme_mod('emp_components_nav_home');
       if ($home_url == ''){

@@ -40,6 +40,18 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_co
   'section' => 'emp_section_components_nav',
   'settings'=> 'emp_components_nav_icon_color'
 )));
+// Neon effect on icons
+$wp_customize->add_setting('emp_components_nav_neon', array(
+  'default'           => true,
+  'transport'         => 'refresh',
+  'sanitize_callback' => 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_components_nav_neon_control', array(
+  'label'       => __('Activar efecto neón en iconos', 'empralidad'),
+  'section'     => 'emp_section_components_nav',
+  'settings'    => 'emp_components_nav_neon',
+  'type'        => 'checkbox'
+)));
 // Background color
 $wp_customize->add_setting('emp_components_nav_background', array(
   'default'           => '#000000',

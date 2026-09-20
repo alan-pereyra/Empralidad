@@ -52,8 +52,12 @@
       <?php }
     }?>
 
+    <?php
+    $nav_has_neon = get_theme_mod('emp_components_nav_neon', true);
+    $nav_neon_class = (!empty($nav_has_neon) && $nav_has_neon !== '0' && $nav_has_neon !== 0) ? 'has-neon' : '';
+    ?>
     <!-- navbar -->
-      <div id="navbar-background" class="sticky-top empFadeInBottom <?php if( is_admin_bar_showing() ){ ?> admin-fixed-top <?php } ?> <?php if (get_theme_mod('emp_slider_image1')||get_theme_mod('emp_slider_image2')||get_theme_mod('emp_slider_image3')||get_theme_mod('emp_slider_desktop_image1')||get_theme_mod('emp_slider_desktop_image2')||get_theme_mod('emp_slider_desktop_image3')) { ?>hover<?php }?>" style="z-index:1032;">
+      <div id="navbar-background" class="sticky-top empFadeInBottom <?php echo esc_attr($nav_neon_class); ?> <?php if( is_admin_bar_showing() ){ ?> admin-fixed-top <?php } ?> <?php if (get_theme_mod('emp_slider_image1')||get_theme_mod('emp_slider_image2')||get_theme_mod('emp_slider_image3')||get_theme_mod('emp_slider_desktop_image1')||get_theme_mod('emp_slider_desktop_image2')||get_theme_mod('emp_slider_desktop_image3')) { ?>hover<?php }?>" style="z-index:1032;">
         <nav class="navbar navbar-expand-lg py-0 mw-1200px">
           <div class="bg-navbar-top <?php if( is_admin_bar_showing() ){ ?> admin-bar-show <?php } ?>">
               <i id="btn-menu-nav" class="fa fa-bars text-dark <?php if( is_admin_bar_showing() ){ ?> admin-bar-show <?php } ?>" onclick="openMobileMenu()"></i>

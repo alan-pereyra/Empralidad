@@ -719,7 +719,7 @@ i.fa.emp-trust-badge-icon {
 	text-shadow: 0 0 12px var(--emp-btn-bg);
 }
 .emp-trust-badge-text {
-	color: var(--emp-content-bg, #ffffff);
+	color: var(--emp-btn-bg) !important;
 	display: block;
 	font-size: 11px;
 	font-weight: 600;
@@ -777,7 +777,7 @@ i.fa.emp-trust-badge-icon {
 		margin: 0;
 	}
 	.emp-trust-badge-text {
-		color: var(--emp-content-bg);
+		color: var(--emp-btn-bg) !important;
 		font-size: 13px;
 		font-weight: 600;
 		letter-spacing: -0.2px;
@@ -1169,6 +1169,17 @@ a.fa-whatsapp-size{
 	font-size: 19px;
 	width: 65px;
 }
+#navbar-background.has-neon .fa,
+#navbar-background.has-neon .fab,
+#navbar-background.has-neon .fas,
+#navbar-background.has-neon .icon-color,
+.buttons-mobile.has-neon a.fa,
+.buttons-mobile.has-neon a.fab,
+.buttons-mobile.has-neon a.fas,
+.buttons-mobile.has-neon .icon-color {
+	filter: drop-shadow(0 0 6px var(--emp-nav-icon-color));
+	text-shadow: 0 0 8px var(--emp-nav-icon-color);
+}
 #btn-search-desktop div{
 	height: 59px;
 }
@@ -1353,6 +1364,9 @@ label.screen-reader-text{
 .color-personalized .fab, .tutor-dashboard-header-ratings,
 a.fa.fa-shopping-cart.mr-4.fadein.show-desktop, #btn-search-desktop{
 	color: var(--emp-head-title-color)!important;
+}
+a.fa.fa-shopping-cart.mr-4.fadein.show-desktop.position-relative{
+	font-size: 20px;
 }
 .color-content{
 	color: var(--emp-content-color)!important;
