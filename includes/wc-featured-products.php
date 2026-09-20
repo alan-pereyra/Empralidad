@@ -4,7 +4,7 @@
 <?php if($featured_products && class_exists('WooCommerce')) { ?>
   <div class="pb-5 <?php if($featured_products_margin_negative){ ?> mt-250-n <?php } ?>">
     <?php if($featured_products_h2){ ?>
-      <div class="<?php if($featured_products_margin_negative){ ?> title-color <?php } ?>">
+      <div class="">
         <h2 class="featured-title featured-title-invert"><?php echo get_theme_mod('emp_woocommerce_featured_title'); ?></h2>
         <p class="py-2 mt-n5 text-center"><small><?php echo get_theme_mod('emp_woocommerce_featured_text'); ?></small></p>
       </div>

@@ -54,5 +54,22 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
         'class'    => 'd-inline-block'
       )
   )));
+  // Mobile rows
+  $wp_customize->add_setting('emp_woocommerce_categories_mobile_rows', array(
+    'default'           => '2',
+    'trasnport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_string'
+  ));
+  $wp_customize->add_control('emp_woocommerce_categories_mobile_rows_control', array(
+    'label'       => __( 'Filas en celular', 'empralidad' ),
+    'section'     => 'emp_section_woocommerce_categories',
+    'settings'    => 'emp_woocommerce_categories_mobile_rows',
+    'description' => __( 'Selecciona si se muestra 1 fila (3 por vista) o 2 filas (6 por vista) en dispositivos móviles.', 'empralidad' ),
+    'type'        => 'select',
+    'choices'     => array(
+      '1' => __( '1 Fila', 'empralidad' ),
+      '2' => __( '2 Filas', 'empralidad' ),
+    )
+  ));
 }
 ?>

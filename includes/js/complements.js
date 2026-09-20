@@ -326,6 +326,163 @@ if (document.readyState === 'loading') {
   slidersFrontpage();
 }
 
+// Categories carousel front page
+function categoriesCarousel() {
+  var carousel = document.getElementById('emp-categories-carousel');
+  if (!carousel) return;
+
+  var track = carousel.querySelector('.emp-categories-track');
+  var viewport = carousel.querySelector('.emp-categories-viewport');
+  if (!track || !viewport) return;
+
+  var prevBtn = document.getElementById('emp-categories-prev');
+  var nextBtn = document.getElementById('emp-categories-next');
+
+  var autoTimer = null;
+  var defaultDelay = 4500;
+  var readingDelay = 8000;
+  var actualIndex = 0;
+
+  function stopTimer() {
+    if (autoTimer) {
+      clearTimeout(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  function startTimer(delay) {
+    stopTimer();
+    autoTimer = setTimeout(function() {
+      nextStep(false);
+    }, delay || defaultDelay);
+  }
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function getMaxIndex() {
+    if (isMobile()) {
+      var slides = track.querySelectorAll('.emp-categories-slide');
+      return Math.max(0, slides.length - 1);
+    } else {
+      var items = track.querySelectorAll('.emp-category-item');
+      if (items.length === 0) return 0;
+      var itemWidth = items[0].getBoundingClientRect().width;
+      var vpWidth = viewport.getBoundingClientRect().width;
+      var visibleItems = Math.max(1, Math.round(vpWidth / itemWidth));
+      return Math.max(0, items.length - visibleItems);
+    }
+  }
+
+  function goToIndex(index, isUserAction) {
+    var maxIndex = getMaxIndex();
+    if (maxIndex <= 0) {
+      track.style.transform = 'translateX(0px)';
+      stopTimer();
+      if (prevBtn) prevBtn.style.visibility = 'hidden';
+      if (nextBtn) nextBtn.style.visibility = 'hidden';
+      return;
+    } else {
+      if (!isMobile()) {
+        if (prevBtn) prevBtn.style.visibility = 'visible';
+        if (nextBtn) nextBtn.style.visibility = 'visible';
+      }
+    }
+
+    if (index < 0) {
+      index = maxIndex;
+    } else if (index > maxIndex) {
+      index = 0;
+    }
+    actualIndex = index;
+    stopTimer();
+
+    if (isMobile()) {
+      track.style.transform = 'translateX(-' + (actualIndex * 100) + '%)';
+    } else {
+      var items = track.querySelectorAll('.emp-category-item');
+      if (items[actualIndex]) {
+        var offset = actualIndex * items[0].getBoundingClientRect().width;
+        track.style.transform = 'translateX(-' + offset + 'px)';
+      }
+    }
+
+    startTimer(isUserAction ? readingDelay : defaultDelay);
+  }
+
+  function nextStep(isUserAction) {
+    goToIndex(actualIndex + 1, isUserAction);
+  }
+
+  function prevStep(isUserAction) {
+    goToIndex(actualIndex - 1, isUserAction);
+  }
+
+  if (prevBtn) {
+    prevBtn.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      prevStep(true);
+    };
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      nextStep(true);
+    };
+  }
+
+  // Pausa en PC al pasar el mouse por encima
+  carousel.addEventListener('mouseenter', stopTimer, false);
+  carousel.addEventListener('mouseleave', function() {
+    startTimer(defaultDelay);
+  }, false);
+
+  // Soporte tactil para movil (Touch swipe)
+  var touchStartX = 0;
+  var touchEndX = 0;
+
+  carousel.addEventListener('touchstart', function(e) {
+    stopTimer();
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', function(e) {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          nextStep(true);
+        } else {
+          prevStep(true);
+        }
+      } else {
+        startTimer(readingDelay);
+      }
+    }
+  }, { passive: true });
+
+  // Reset al redimensionar ventana
+  window.addEventListener('resize', function() {
+    goToIndex(0, false);
+  });
+
+  // Iniciar carrusel
+  goToIndex(0, false);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', categoriesCarousel);
+} else {
+  categoriesCarousel();
+}
+
 // Search woocommerce products by custom filters
 function initWooPriceFilter() {
   var maxPriceDesktopRangeInput = document.getElementById('emp-range-price-desktop');

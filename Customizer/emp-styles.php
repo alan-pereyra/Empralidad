@@ -257,6 +257,13 @@ a.button.product_type_variable, a.button.product_type_simple.add_to_cart_button,
 .woocommerce ul.products li.product-category{
   width: <?php echo get_theme_mod('emp_woocommerce_category_size');?>%!important;
 }
+@media (min-width: 769px) {
+  .emp-category-item {
+    flex: 0 0 <?php echo get_theme_mod('emp_woocommerce_category_size', 30);?>%!important;
+    max-width: <?php echo get_theme_mod('emp_woocommerce_category_size', 30);?>%!important;
+    width: <?php echo get_theme_mod('emp_woocommerce_category_size', 30);?>%!important;
+  }
+}
 <?php if(!get_theme_mod('emp_woocommerce_categories_label_show')){ ?>
   h2.woocommerce-loop-category__title {
     display: none;
