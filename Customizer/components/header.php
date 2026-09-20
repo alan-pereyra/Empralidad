@@ -145,7 +145,8 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_componen
     'the secret'	 => __('The Secret', 'empralidad'),
     'flanella'	   => __('Flanella', 'empralidad'),
     'DancingScript'=> __('Dancing Script', 'empralidad'),
-    'open dyslexic'=> __('Open dyslexic', 'empralidad')
+    'open dyslexic'=> __('Open dyslexic', 'empralidad'),
+    'Cormorant Garamond' => __('Cormorant Garamond', 'empralidad')
   )
 )));
 // Text font size
@@ -192,7 +193,8 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_componen
     'rozha one'	   => __('Rozha One', 'empralidad'),
     'the secret'	 => __('The Secret', 'empralidad'),
     'flanella'	   => __('Flanella', 'empralidad'),
-    'open dyslexic'=> __('Open dyslexic', 'empralidad')
+    'open dyslexic'=> __('Open dyslexic', 'empralidad'),
+    'Cormorant Garamond' => __('Cormorant Garamond', 'empralidad')
   )
 )));
 // Opacity

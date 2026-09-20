@@ -303,6 +303,7 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
   }
 <?php } ?>
 /* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 @font-face {
   font-family: "the secret";
   src: url("<?php echo get_template_directory_uri(). '/includes/fonts/the-secret/TheSecret-Regular'?>.eot");

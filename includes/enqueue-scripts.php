@@ -4,6 +4,7 @@ function emp_styles(){
   $css_file = get_stylesheet_directory() . '/style.css';
   $theme_version = file_exists($css_file) ? filemtime($css_file) : wp_get_theme()->get('Version');
   wp_enqueue_style ('emp_styles', get_stylesheet_uri(), array(), $theme_version);
+  wp_enqueue_style ('cormorant_garamond', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap', array(), null);
   wp_enqueue_style ('font_awesome', get_template_directory_uri() . '/includes/fonts/fa/css/all.min.css', array(), '6.3.0');
 }
 add_action('wp_enqueue_scripts', 'emp_styles');

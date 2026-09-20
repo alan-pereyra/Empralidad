@@ -54,7 +54,8 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_styles_t
     'cmr10'	       => __('cmr10', 'empralidad'),
     'nunito'			 => __('Nunito', 'empralidad'),
     'bad script'	 => __('Bad Script', 'empralidad'),
-    'open dyslexic'=> __('Open dyslexic', 'empralidad')
+    'open dyslexic'=> __('Open dyslexic', 'empralidad'),
+    'Cormorant Garamond' => __('Cormorant Garamond', 'empralidad')
   )
 )));
 // color
