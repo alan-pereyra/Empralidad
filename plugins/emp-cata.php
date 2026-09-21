@@ -351,6 +351,16 @@ if (!function_exists('batllie_cata_shortcode')) {
                     font-size: 0.9rem;
                     font-weight: 600;
                     letter-spacing: 1.5px;
+                    margin: 0 0 4px 0;
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-order-title {
+                    color: #ffffff;
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    letter-spacing: 1.5px;
                     margin: 0 0 16px 0;
                     text-align: center;
                     text-transform: uppercase;
@@ -510,7 +520,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     margin-bottom: 0;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-alfajor-name {
-                    color: #ffffff;
+                    color: #ffffff !important;
                     font-family: 'Cormorant Garamond', Georgia, serif;
                     font-size: 1.35rem;
                     font-weight: 700;
@@ -818,9 +828,10 @@ if (!function_exists('batllie_cata_shortcode')) {
                     <div class="batllie-cata-chapter-container">
                         <h2 class="batllie-cata-section-title">Capítulo I: La chispa viva</h2>
                         <div class="batllie-cata-section-subtitle">Los cítricos y ligeros</div>
+                        <div class="batllie-cata-order-title">Orden correcto:</div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">LIMÓN: UNA RUPTURA SENSORIAL</div>
+                            <div class="batllie-cata-alfajor-name">1- LIMÓN: UNA RUPTURA SENSORIAL</div>
                             <p class="batllie-cata-alfajor-text">MASA SABLEÉ DE QUIEBRE PERFECTO CON NOTAS DE CÍTRICOS VIVOS, ABRAZANDO UN CURD ARTESANAL DE ACIDEZ PRECISA Y UNA COBERTURA DE CHOCOLATE SEMI AMARGO QUE DESAFÍA EL PALADAR.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/limon-1790013939.jpg'); ?>" alt="Alfajor Limón" class="batllie-cata-alfajor-img" />
@@ -828,7 +839,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">BATLLIÉ BLANCO: UNA OBRA DE LUZ</div>
+                            <div class="batllie-cata-alfajor-name">2- BATLLIÉ BLANCO: UNA OBRA DE LUZ</div>
                             <p class="batllie-cata-alfajor-text">NUESTRA ESTRUCTURA CLÁSICA DE CACAO SE ENCIENDE AQUÍ CON UN DESTELLO FRESCO DE RALLADURA DE NARANJA NATURAL, FUNDIÉNDOSE CON EL DULCE DE LECHE Y LA CARICIA ETÉREA DE UN MERENGUE SUIZO SOMETIDO A UN REPOSO PACIENTE DE 24 A 48 HORAS PARA LOGRAR SU PUNTO ÓPTIMO DE SECADO.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-blanco-1790013939.jpg'); ?>" alt="Alfajor Batllié Blanco" class="batllie-cata-alfajor-img" />
@@ -842,9 +853,10 @@ if (!function_exists('batllie_cata_shortcode')) {
                     <div class="batllie-cata-chapter-container">
                         <h2 class="batllie-cata-section-title">Capítulo II: El equilibrio clásico</h2>
                         <div class="batllie-cata-section-subtitle">Las raices de la casa</div>
+                        <div class="batllie-cata-order-title">Orden correcto:</div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">BATLLIÉ NEGRO: EL LATIDO ORIGINAL DE LA CASA</div>
+                            <div class="batllie-cata-alfajor-name">1- BATLLIÉ NEGRO: EL LATIDO ORIGINAL DE LA CASA</div>
                             <p class="batllie-cata-alfajor-text">NUESTRA FÓRMULA MADRE DE CACAO PROFUNDO CON MATICES DE COÑAC ABRAZA EL DULCE DE LECHE TRADICIONAL BAJO UNA COBERTURA ENVOLVENTE DE CHOCOLATE CON LECHE.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-negro-1790013939.jpg'); ?>" alt="Alfajor Batllié Negro" class="batllie-cata-alfajor-img" />
@@ -852,7 +864,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">CHOCOLATE BLANCO: EL CONTRASTE DEFINITIVO</div>
+                            <div class="batllie-cata-alfajor-name">2- CHOCOLATE BLANCO: EL CONTRASTE DEFINITIVO</div>
                             <p class="batllie-cata-alfajor-text">EL CUERPO EMBLEMÁTICO DE CACAO Y COÑAC SE UNE AL DULCE DE LECHE, ENCONTRANDO SU CONTRAPARTE PERFECTA EN UNA NOBLE CAPA DE CHOCOLATE BLANCO DE PUREZA ABSOLUTA.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/chocolate-blanco-1790013939.jpg'); ?>" alt="Alfajor Chocolate Blanco" class="batllie-cata-alfajor-img" />
@@ -860,7 +872,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">CAFÉ SUIZO: UN HOMENAJE AL TIEMPO</div>
+                            <div class="batllie-cata-alfajor-name">3- CAFÉ SUIZO: UN HOMENAJE AL TIEMPO</div>
                             <p class="batllie-cata-alfajor-text">UN PERFIL DONDE EL PROTAGONISMO SE DESPLAZA HACIA NOTAS ACENTUADAS DE CAFÉ DE AUTOR EN LAS TAPAS, UN NÚCLEO CREMOSO DE DULCE DE LECHE Y LA DENSIDAD CELESTIAL DE UN MERENGUE SUIZO ESTACIONADO DURANTE 48 HORAS PARA ALCANZAR SU TEXTURA IDEAL.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/cafe-suizo-1790013939.jpg'); ?>" alt="Alfajor Café Suizo" class="batllie-cata-alfajor-img" />
@@ -874,9 +886,10 @@ if (!function_exists('batllie_cata_shortcode')) {
                     <div class="batllie-cata-chapter-container">
                         <h2 class="batllie-cata-section-title">Capítulo III: Intensidad absoluta</h2>
                         <div class="batllie-cata-section-subtitle">Los de autor y complejos</div>
+                        <div class="batllie-cata-order-title">Orden correcto:</div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">CHOCOLATE INTENSO: LA OSCURIDAD ELEGANTE</div>
+                            <div class="batllie-cata-alfajor-name">1- CHOCOLATE INTENSO: LA OSCURIDAD ELEGANTE</div>
                             <p class="batllie-cata-alfajor-text">LA MÁXIMA EXPRESIÓN DE NUESTRO CUERPO DE CACAO IMPREGNADO EN COÑAC, LLEVADO AL LÍMITE CON UN BAÑO SEMI AMARGO DE CARÁCTER INQUEBRANTABLE QUE PROFUNDIZA EL SABOR.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/chocolate-intenso-1790013939.jpg'); ?>" alt="Alfajor Chocolate Intenso" class="batllie-cata-alfajor-img" />
@@ -884,7 +897,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">NUEZ: LA FUERZA DE LA TIERRA</div>
+                            <div class="batllie-cata-alfajor-name">2- NUEZ: LA FUERZA DE LA TIERRA</div>
                             <p class="batllie-cata-alfajor-text">UNA PIEZA QUE ROMPE ESQUEMAS CON SU MASA RÚSTICA DE ALGARROBA, ABUNDANTES TROZOS DE NUEZ Y UN SUTIL ESPÍRITU DE WHISKY, UNIDA AL DULCE DE LECHE Y PROTEGIDA POR UNA MANTA DE CHOCOLATE BLANCO.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/nuez-1790013939.jpg'); ?>" alt="Alfajor Nuez" class="batllie-cata-alfajor-img" />
@@ -892,7 +905,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-alfajor-card">
-                            <div class="batllie-cata-alfajor-name">MOUSSE NUTELLA: EL EXCESO SOFISTICADO</div>
+                            <div class="batllie-cata-alfajor-name">3- MOUSSE NUTELLA: EL EXCESO SOFISTICADO</div>
                             <p class="batllie-cata-alfajor-text">SOBRE NUESTRA BASE DE CACAO Y COÑAC SE DESPLIEGA UNA MOUSSE DE CHOCOLATE DE TEXTURA IMPOSIBLE, QUE ESCONDE EN SU CENTRO UN CORAZÓN DESBORDANTE DE NUTELLA BAJO UN MANTO SEMI AMARGO.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mousse-nutella-1790013939.jpg'); ?>" alt="Alfajor Mousse Nutella" class="batllie-cata-alfajor-img" />
