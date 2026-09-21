@@ -340,7 +340,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     font-weight: 600;
                     letter-spacing: 1px;
                     line-height: 1.2;
-                    margin: 0 0 6px 0;
+                    margin: 0 0 2px 0;
                     text-align: center;
                     width: 100%;
                 }
@@ -351,19 +351,21 @@ if (!function_exists('batllie_cata_shortcode')) {
                     font-size: 0.9rem;
                     font-weight: 600;
                     letter-spacing: 1.5px;
-                    margin: 0 0 4px 0;
+                    margin: 0 0 2px 0;
                     text-align: center;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-order-title {
                     color: #ffffff;
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.95rem;
+                    font-size: 0.92rem;
                     font-weight: 700;
                     letter-spacing: 1.5px;
-                    margin: 0 0 16px 0;
-                    text-align: center;
+                    margin: 14px 0 10px 0;
+                    padding-left: 4px;
+                    text-align: left;
                     text-transform: uppercase;
+                    width: 100%;
                 }
 
                 /* Slide Mate */
