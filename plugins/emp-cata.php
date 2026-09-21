@@ -425,6 +425,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-boxes-grid {
+                    align-items: stretch;
                     display: grid;
                     gap: 12px;
                     grid-template-columns: repeat(3, 1fr);
@@ -437,17 +438,24 @@ if (!function_exists('batllie_cata_shortcode')) {
                         grid-template-columns: repeat(3, 1fr);
                     }
                     #<?php echo esc_attr($uid); ?> .batllie-cata-box-card {
-                        padding: 8px 4px !important;
+                        padding: 10px 4px !important;
+                    }
+                    #<?php echo esc_attr($uid); ?> .batllie-cata-box-num {
+                        font-size: 1.05rem !important;
+                        margin-bottom: 4px !important;
                     }
                     #<?php echo esc_attr($uid); ?> .batllie-cata-box-img {
                         max-height: 90px !important;
                         margin-bottom: 6px !important;
                     }
                     #<?php echo esc_attr($uid); ?> .batllie-cata-box-name {
-                        font-size: 0.92rem !important;
+                        font-size: 0.85rem !important;
+                        min-height: 2.4em !important;
+                        line-height: 1.2 !important;
                     }
                     #<?php echo esc_attr($uid); ?> .batllie-cata-box-sub {
                         font-size: 0.72rem !important;
+                        min-height: 2.6em !important;
                     }
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-card {
@@ -457,7 +465,19 @@ if (!function_exists('batllie_cata_shortcode')) {
                     border-radius: 12px;
                     display: flex;
                     flex-direction: column;
-                    padding: 12px;
+                    height: 100%;
+                    justify-content: flex-start;
+                    padding: 14px 8px;
+                    text-align: center;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-box-num {
+                    color: #ffffff;
+                    font-family: 'Cormorant Garamond', Georgia, serif;
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                    line-height: 1;
+                    margin-bottom: 8px;
                     text-align: center;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-img {
@@ -471,13 +491,18 @@ if (!function_exists('batllie_cata_shortcode')) {
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-name {
+                    align-items: center;
                     color: #ffffff;
+                    display: flex;
                     font-family: 'Cormorant Garamond', Georgia, serif;
                     font-size: 1.15rem;
                     font-weight: 700;
+                    justify-content: center;
                     letter-spacing: 0.5px;
-                    line-height: 1.2;
+                    line-height: 1.25;
                     margin-bottom: 4px;
+                    min-height: 2.5em;
+                    text-align: center;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-sub {
@@ -486,6 +511,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     font-size: 0.8rem;
                     font-weight: 600;
                     line-height: 1.3;
+                    min-height: 2.6em;
                     opacity: 0.9;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-boxes-desc {
@@ -801,18 +827,21 @@ if (!function_exists('batllie_cata_shortcode')) {
 
                         <div class="batllie-cata-boxes-grid">
                             <div class="batllie-cata-box-card">
+                                <div class="batllie-cata-box-num">I</div>
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box I" class="batllie-cata-box-img" />
-                                <div class="batllie-cata-box-name">I- La chispa viva</div>
+                                <div class="batllie-cata-box-name">La chispa<br>viva</div>
                                 <div class="batllie-cata-box-sub">(los cítricos y ligeros)</div>
                             </div>
                             <div class="batllie-cata-box-card">
+                                <div class="batllie-cata-box-num">II</div>
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box II" class="batllie-cata-box-img" />
-                                <div class="batllie-cata-box-name">II- El equilibrio clásico</div>
+                                <div class="batllie-cata-box-name">El equilibrio<br>clásico</div>
                                 <div class="batllie-cata-box-sub">(las raices de la casa)</div>
                             </div>
                             <div class="batllie-cata-box-card">
+                                <div class="batllie-cata-box-num">III</div>
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box III" class="batllie-cata-box-img" />
-                                <div class="batllie-cata-box-name">III- Intensidad absoluta</div>
+                                <div class="batllie-cata-box-name">Intensidad<br>absoluta</div>
                                 <div class="batllie-cata-box-sub">(los de autor y complejos)</div>
                             </div>
                         </div>
