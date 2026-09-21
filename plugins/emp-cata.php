@@ -388,12 +388,13 @@ if (!function_exists('batllie_cata_shortcode')) {
                     flex: 1;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-mate-step-title {
-                    color: var(--batllie-accent);
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.88rem;
+                    color: #ffffff;
+                    font-family: 'Cormorant Garamond', Georgia, serif;
+                    font-size: 1.4rem;
                     font-weight: 700;
-                    letter-spacing: 1px;
-                    margin-bottom: 4px;
+                    letter-spacing: 1.5px;
+                    line-height: 1.2;
+                    margin-bottom: 6px;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-mate-step-desc {
@@ -446,9 +447,9 @@ if (!function_exists('batllie_cata_shortcode')) {
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-name {
-                    color: var(--batllie-accent);
+                    color: #ffffff;
                     font-family: 'Cormorant Garamond', Georgia, serif;
-                    font-size: 1.05rem;
+                    font-size: 1.25rem;
                     font-weight: 700;
                     letter-spacing: 0.5px;
                     line-height: 1.25;
@@ -492,12 +493,13 @@ if (!function_exists('batllie_cata_shortcode')) {
                     margin-bottom: 0;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-alfajor-name {
-                    color: var(--batllie-accent);
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.88rem;
+                    color: #ffffff;
+                    font-family: 'Cormorant Garamond', Georgia, serif;
+                    font-size: 1.35rem;
                     font-weight: 700;
                     letter-spacing: 1.5px;
-                    margin-bottom: 4px;
+                    line-height: 1.2;
+                    margin-bottom: 6px;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-alfajor-text {
