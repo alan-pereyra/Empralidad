@@ -16,10 +16,14 @@ if (!function_exists('batllie_cata_shortcode')) {
             'audio_title'      => 'Melodía Ambiental — El Ritual',
             'shop_url'         => home_url('/tienda/'),
             'close_url'        => home_url('/'),
+            'logo'             => '',
+            'logo_url'         => '',
             'logo_clean_url'   => 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-logo-clean.png',
             'title'            => 'El Ritual de Cata',
             'subtitle'         => 'ALFAJORERÍA DE AUTOR',
         ), $atts, 'batllie_cata');
+
+        $logo_url = !empty($atts['logo']) ? $atts['logo'] : (!empty($atts['logo_url']) ? $atts['logo_url'] : $atts['logo_clean_url']);
 
         $img_negro  = 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-alfajor-negro-corte.jpg';
         $img_blanco = 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-alfajor-blanco-corte.jpg';
@@ -598,6 +602,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     height: 48px;
                     justify-content: space-between;
                     padding: 0 20px;
+                    position: relative;
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-nav-btn {
@@ -639,6 +644,9 @@ if (!function_exists('batllie_cata_shortcode')) {
                     align-items: center;
                     display: flex;
                     gap: 6px;
+                    left: 50%;
+                    position: absolute;
+                    transform: translateX(-50%);
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-dot {
                     background-color: rgba(253, 255, 221, 0.2);
@@ -685,8 +693,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                     <div class="batllie-cata-slide <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-type="<?php echo esc_attr($s['type']); ?>">
                         <?php if ($s['type'] === 'intro'): ?>
                             <div class="batllie-cata-intro">
-                                <?php if (!empty($atts['logo_clean_url'])): ?>
-                                    <img src="<?php echo esc_url($atts['logo_clean_url']); ?>" alt="Batllié" class="batllie-cata-intro-logo-clean" />
+                                <?php if (!empty($logo_url)): ?>
+                                    <img src="<?php echo esc_url($logo_url); ?>" alt="Batllié" class="batllie-cata-intro-logo-clean" />
                                 <?php endif; ?>
                                 <h3 class="batllie-cata-intro-subtitle"><?php echo esc_html($s['subtitle']); ?></h3>
                                 <p class="batllie-cata-intro-desc"><?php echo esc_html($s['desc']); ?></p>
@@ -820,12 +828,9 @@ if (!function_exists('batllie_cata_shortcode')) {
                     btnPrev.disabled = (currentIndex <= 1);
                 }
                 if (btnNext) {
-                    if (currentIndex === totalSlides - 1) {
-                        btnNext.style.display = 'none';
-                    } else {
-                        btnNext.style.display = 'inline-flex';
-                        btnNext.textContent = (currentIndex === totalSlides - 2) ? 'Finalizar Cata →' : 'Siguiente →';
-                    }
+                    btnNext.disabled = (currentIndex >= totalSlides - 1);
+                    btnNext.style.display = 'inline-flex';
+                    btnNext.textContent = (currentIndex === totalSlides - 2) ? 'Finalizar Cata →' : 'Siguiente →';
                 }
             }
 
