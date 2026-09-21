@@ -476,12 +476,22 @@ if (!function_exists('batllie_cata_shortcode')) {
                     background-color: rgba(253, 255, 221, 0.05);
                     border: 1px solid rgba(253, 255, 221, 0.12);
                     border-radius: 12px;
+                    cursor: pointer;
                     display: flex;
                     flex-direction: column;
                     height: 100%;
                     justify-content: flex-start;
                     padding: 14px 8px;
                     text-align: center;
+                    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-box-card:hover {
+                    background-color: rgba(253, 255, 221, 0.1);
+                    border-color: rgba(253, 255, 221, 0.35);
+                    transform: translateY(-3px);
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-box-card:active {
+                    transform: translateY(-1px);
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-num {
                     color: #ffffff;
@@ -839,19 +849,19 @@ if (!function_exists('batllie_cata_shortcode')) {
                         <div class="batllie-cata-section-subtitle">Nuestra arquitectura de sabores dividida por cajas</div>
 
                         <div class="batllie-cata-boxes-grid">
-                            <div class="batllie-cata-box-card">
+                            <div class="batllie-cata-box-card" data-goto-chapter="chap1">
                                 <div class="batllie-cata-box-num">I</div>
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box I" class="batllie-cata-box-img" />
                                 <div class="batllie-cata-box-name">La chispa<br>viva</div>
                                 <div class="batllie-cata-box-sub">(los cítricos y ligeros)</div>
                             </div>
-                            <div class="batllie-cata-box-card">
+                            <div class="batllie-cata-box-card" data-goto-chapter="chap2">
                                 <div class="batllie-cata-box-num">II</div>
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box II" class="batllie-cata-box-img" />
                                 <div class="batllie-cata-box-name">El equilibrio<br>clásico</div>
                                 <div class="batllie-cata-box-sub">(las raices de la casa)</div>
                             </div>
-                            <div class="batllie-cata-box-card">
+                            <div class="batllie-cata-box-card" data-goto-chapter="chap3">
                                 <div class="batllie-cata-box-num">III</div>
                                 <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box III" class="batllie-cata-box-img" />
                                 <div class="batllie-cata-box-name">Intensidad<br>absoluta</div>
@@ -1090,6 +1100,16 @@ if (!function_exists('batllie_cata_shortcode')) {
                 updateUI();
             }
 
+            function goToSlideById(slideId) {
+                var activeSlides = getActiveSlides();
+                for (var i = 0; i < activeSlides.length; i++) {
+                    if (activeSlides[i].getAttribute('data-slide-id') === slideId) {
+                        goToSlide(i);
+                        return;
+                    }
+                }
+            }
+
             function playAudio() {
                 if (!audio) return;
                 audio.play().then(function() {
@@ -1162,6 +1182,16 @@ if (!function_exists('batllie_cata_shortcode')) {
                     updateUI();
                 });
             }
+
+            var boxCards = root.querySelectorAll('.batllie-cata-box-card[data-goto-chapter]');
+            boxCards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    var targetChapter = card.getAttribute('data-goto-chapter');
+                    if (targetChapter) {
+                        goToSlideById(targetChapter);
+                    }
+                });
+            });
 
             window.addEventListener('keydown', function(e) {
                 var activeSlides = getActiveSlides();
