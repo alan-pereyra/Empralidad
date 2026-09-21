@@ -163,7 +163,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'phase_num'   => 4,
                 'title'       => 'Alfajorería de autor',
                 'desc'        => 'Elaboración artesanal en micro-lotes con manteca 100% y materias primas de primera línea, sin réplica industrial. Edición del día.',
-                'extra_msg'   => 'Cada alfajor de Batllié es fruto del respeto por los tiempos de reposo y la pasión por los detalles. Gracias por acompañarnos en esta experiencia sensorial.'
+                'extra_msg'   => 'Cada alfajor de Batllié es fruto del respeto por los tiempos de reposo y la pasión por los detalles. Nos alegra que seas parte de esta experiencia única.'
             )
         );
 
