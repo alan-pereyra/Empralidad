@@ -161,8 +161,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'type'        => 'closing',
                 'phase'       => 'Conclusión del Ritual',
                 'phase_num'   => 4,
-                'title'       => 'PIEZAS ÚNICAS',
-                'subtitle'    => 'ALFAJORERÍA DE AUTOR',
+                'title'       => 'Alfajorería de autor',
                 'desc'        => 'Elaboración artesanal en micro-lotes con manteca 100% y materias primas de primera línea, sin réplica industrial. Edición del día.',
                 'extra_msg'   => 'Cada alfajor de Batllié es fruto del respeto por los tiempos de reposo y la pasión por los detalles. Gracias por acompañarnos en esta experiencia sensorial.'
             )
@@ -524,15 +523,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                     font-size: 2.2rem;
                     font-weight: 500;
                     letter-spacing: 2px;
-                    line-height: 1.1;
-                    margin: 0 0 6px 0;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-closing h3 {
-                    color: #c4792c;
-                    font-size: 1rem;
-                    font-weight: 600;
-                    letter-spacing: 3px;
-                    margin: 0 0 10px 0;
+                    line-height: 1.15;
+                    margin: 0 0 16px 0;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing p {
@@ -540,28 +532,32 @@ if (!function_exists('batllie_cata_shortcode')) {
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
                     font-size: 0.95rem;
                     line-height: 1.5;
-                    margin: 0 0 8px 0;
+                    margin: 0 0 10px 0;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing-actions {
+                    align-items: center;
                     display: flex;
-                    flex-wrap: wrap;
+                    flex-direction: column;
                     gap: 12px;
                     justify-content: center;
-                    margin-top: 12px;
+                    margin-top: 16px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-shop {
+                    align-items: center;
                     background-color: #c4792c;
                     border: none;
                     border-radius: 30px;
                     box-shadow: 0 6px 20px rgba(196, 121, 44, 0.4);
                     color: #fdffdd;
                     cursor: pointer;
-                    display: inline-block;
+                    display: inline-flex;
                     font-family: 'Cormorant Garamond', Georgia, serif;
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                     font-weight: 700;
-                    letter-spacing: 1.5px;
-                    padding: 9px 28px;
+                    justify-content: center;
+                    letter-spacing: 2px;
+                    min-height: 52px;
+                    padding: 14px 40px;
                     text-decoration: none;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
@@ -573,15 +569,19 @@ if (!function_exists('batllie_cata_shortcode')) {
                     transform: translateY(-2px);
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-restart {
+                    align-items: center;
                     background-color: transparent;
                     border: 1px solid rgba(253, 255, 221, 0.35);
                     border-radius: 30px;
                     color: #fdffdd;
                     cursor: pointer;
+                    display: inline-flex;
                     font-family: 'Cormorant Garamond', Georgia, serif;
                     font-size: 0.95rem;
+                    justify-content: center;
                     letter-spacing: 1.5px;
-                    padding: 9px 22px;
+                    min-height: 38px;
+                    padding: 8px 24px;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
                 }
@@ -723,7 +723,9 @@ if (!function_exists('batllie_cata_shortcode')) {
                         <?php elseif ($s['type'] === 'closing'): ?>
                             <div class="batllie-cata-closing">
                                 <h2><?php echo esc_html($s['title']); ?></h2>
-                                <h3><?php echo esc_html($s['subtitle']); ?></h3>
+                                <?php if (!empty($s['subtitle'])): ?>
+                                    <h3><?php echo esc_html($s['subtitle']); ?></h3>
+                                <?php endif; ?>
                                 <p><?php echo esc_html($s['desc']); ?></p>
                                 <p style="font-style: italic; color: #fdffdd;"><?php echo esc_html($s['extra_msg']); ?></p>
 
