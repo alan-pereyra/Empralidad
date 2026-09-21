@@ -12,22 +12,23 @@ if (!defined('ABSPATH')) {
 if (!function_exists('batllie_cata_shortcode')) {
     function batllie_cata_shortcode($atts = array()) {
         $atts = shortcode_atts(array(
-            'audio_url'   => 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=acoustic-guitar-ambient-relax-112191.mp3',
-            'audio_title' => 'Melodía Ambiental — El Ritual',
-            'shop_url'    => home_url('/tienda/'),
-            'close_url'   => home_url('/'),
-            'logo_url'    => home_url('/wp-content/uploads/2026/09/batllie-logo.png'),
-            'title'       => 'El Ritual de Cata',
-            'subtitle'    => 'ALFAJORERÍA DE AUTOR',
-            'slogan'      => '¿Para qué exagerar?'
+            'audio_url'        => 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=acoustic-guitar-ambient-relax-112191.mp3',
+            'audio_title'      => 'Melodía Ambiental — El Ritual',
+            'shop_url'         => home_url('/tienda/'),
+            'close_url'        => home_url('/'),
+            'logo_clean_url'   => 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-logo-clean.png',
+            'title'            => 'El Ritual de Cata',
+            'subtitle'         => 'ALFAJORERÍA DE AUTOR',
         ), $atts, 'batllie_cata');
+
+        $img_negro  = 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-alfajor-negro-corte.jpg';
+        $img_blanco = 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-alfajor-blanco-corte.jpg';
 
         $steps = array(
             // Step 0: Intro
             array(
                 'type'      => 'intro',
-                'title'     => $atts['slogan'],
-                'subtitle'  => $atts['title'] . ' — ' . $atts['subtitle'],
+                'subtitle'  => 'EL RITUAL DE CATA — ALFAJORERÍA DE AUTOR',
                 'desc'      => 'Te invitamos a detener el tiempo. Un recorrido sensorial en tres fases para descubrir los matices, aromas y contrastes de nuestra repostería artesanal.',
                 'phase'     => 'Introducción',
                 'phase_num' => 0
@@ -41,10 +42,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Limón',
                 'subtitle'    => 'El Despertar del Paladar',
-                'image'       => home_url('/wp-content/uploads/2026/09/producto-alfajor-batllie-negro.jpg'),
+                'image'       => $img_negro,
                 'alt'         => 'Alfajor Batllié de Limón',
-                'tags'        => array('Cítrico Vivo', 'Masa Sableé', 'Curd Artesanal', 'Semiamargo'),
-                'desc'        => 'Masa sableé de manteca 100% que se deshace al tacto, rellena con un curd artesanal de limón de acidez viva, envuelto en chocolate semiamargo equilibrante.',
                 'guide'       => array(
                     'Paso 1: Observación y aroma' => 'Observa el corte dorado del curd y aspira las notas vivas a ralladura fresca de limón.',
                     'Paso 2: El primer bocado'   => 'Muerde despacio. La acidez cítrica despierta las papilas antes de que el chocolate semiamargo temple el final.'
@@ -58,10 +57,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Batllié Blanco',
                 'subtitle'    => 'La Dulzura Cítrica',
-                'image'       => home_url('/wp-content/uploads/2026/09/producto-alfajor-batllie-blanco.jpg'),
+                'image'       => $img_blanco,
                 'alt'         => 'Alfajor Batllié Blanco',
-                'tags'        => array('Ralladura de Naranja', 'Dulce de Leche', 'Merengue Suizo 48h', 'Cacao Noble'),
-                'desc'        => 'Tapas de cacao infusionadas con ralladura de naranja natural, abundante dulce de leche de campo y glaseado de merengue suizo reposado 48 horas.',
                 'guide'       => array(
                     'Paso 1: Textura del merengue' => 'Siente la superficie crocante del merengue suizo que cede suavemente hacia la masa tierna de cacao.',
                     'Paso 2: Notas de naranja'     => 'El dulce de leche se complementa con la fragancia cítrica en un balance dulce pero vivaz.'
@@ -76,10 +73,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Batllié Negro',
                 'subtitle'    => 'El Ícono de la Casa',
-                'image'       => home_url('/wp-content/uploads/2026/09/batllie-alfajor-negro-banner.jpg'),
+                'image'       => $img_negro,
                 'alt'         => 'Alfajor Batllié Negro Clásico',
-                'tags'        => array('Toque de Coñac', 'Dulce de Leche Clásico', 'Chocolate con Leche', 'Masa Tierna'),
-                'desc'        => 'Masa de cacao noble macerada con un sutil toque de coñac, rellena con dulce de leche tradicional y envuelta en chocolate con leche envolvente.',
                 'guide'       => array(
                     'Paso 1: Fragancia tradicional' => 'Inhala la fragancia a repostería artesanal, notas de vainilla y los matices amaderados del coñac.',
                     'Paso 2: Redondez en boca'     => 'El chocolate con leche se funde primero, liberando la cremosidad densa de nuestro dulce de leche insignia.'
@@ -93,10 +88,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Chocolate Blanco',
                 'subtitle'    => 'Sutileza y Pureza',
-                'image'       => home_url('/wp-content/uploads/2026/09/batllie-alfajor-blanco-banner.jpg'),
+                'image'       => $img_blanco,
                 'alt'         => 'Alfajor Batllié Chocolate Blanco',
-                'tags'        => array('Chocolate Blanco Puro', 'Manteca de Cacao', 'Coñac Sutil', 'Dulce de Leche'),
-                'desc'        => 'Cacao y coñac en perfecto equilibrio con el dulce de leche, cubierto por una capa de chocolate blanco puro que aporta una redondez láctea inolvidable.',
                 'guide'       => array(
                     'Paso 1: Aroma lácteo' => 'Percibe la nota de manteca de cacao pura y sutil vainilla de la cobertura blanca.',
                     'Paso 2: Armonía pura' => 'La cobertura blanca suaviza la intensidad del cacao oscuro en un contraste aterciopelado.'
@@ -110,10 +103,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Café Suizo',
                 'subtitle'    => 'El Puente Aromático',
-                'image'       => home_url('/wp-content/uploads/2026/09/producto-alfajor-batllie-blanco.jpg'),
+                'image'       => $img_blanco,
                 'alt'         => 'Alfajor Batllié Café Suizo',
-                'tags'        => array('Café de Especialidad', 'Tostado Suave', 'Merengue Suizo', 'Dulce de Leche'),
-                'desc'        => 'Tapas infusionadas con notas de café tostado de especialidad, corazón de dulce de leche y corona de merengue suizo reposado 48 horas.',
                 'guide'       => array(
                     'Paso 1: Notas tostadas'      => 'El aroma a café tostado recién molido anuncia una transición en el viaje sensorial.',
                     'Paso 2: Limpieza de paladar' => 'El ligero amargor del café corta la dulzura y prepara tus sentidos para la fase de mayor intensidad.'
@@ -128,10 +119,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Chocolate Intenso',
                 'subtitle'    => 'Profundidad de Cacao',
-                'image'       => home_url('/wp-content/uploads/2026/09/producto-alfajor-batllie-negro.jpg'),
+                'image'       => $img_negro,
                 'alt'         => 'Alfajor Batllié Chocolate Intenso',
-                'tags'        => array('Semiamargo 70%', 'Cacao Profundo', 'Coñac Añejo', 'Final Prolongado'),
-                'desc'        => 'Cuerpo de cacao profundo con coñac, bañado en cobertura semiamarga de alta concentración que desafía a los amantes del chocolate genuino.',
                 'guide'       => array(
                     'Paso 1: Aspecto y quiebre'     => 'Observa el brillo satinado y la densidad profunda de la cobertura semiamarga de alta pureza.',
                     'Paso 2: Retrogusto prolongado' => 'Mantén el bocado en el paladar unos segundos para liberar notas tostadas y terrosas de gran persistencia.'
@@ -145,10 +134,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Nuez',
                 'subtitle'    => 'La Tradición Renovada',
-                'image'       => home_url('/wp-content/uploads/2026/09/producto-alfajor-batllie-blanco.jpg'),
+                'image'       => $img_blanco,
                 'alt'         => 'Alfajor Batllié Nuez',
-                'tags'        => array('Nuez Tostada', 'Harina de Algarroba', 'Toque de Whisky', 'Textura Crunch'),
-                'desc'        => 'Masa rústica elaborada con harina de algarroba y trozos seleccionados de nuez tostada, un suspiro de whisky añejado, dulce de leche y cobertura blanca.',
                 'guide'       => array(
                     'Paso 1: Textura crujiente' => 'Siente el contraste crujiente de las nueces tostadas en medio de la masa rústica de algarroba.',
                     'Paso 2: Suspiro de whisky' => 'El whisky añade una nota tibia y aromática que ensalza el perfil silvestre de la nuez.'
@@ -162,10 +149,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                 'total_steps' => 8,
                 'name'        => 'Mousse Nutella',
                 'subtitle'    => 'El Clímax de Autor',
-                'image'       => home_url('/wp-content/uploads/2026/09/producto-alfajor-batllie-negro.jpg'),
+                'image'       => $img_negro,
                 'alt'         => 'Alfajor Batllié Mousse Nutella',
-                'tags'        => array('Corazón Nutella', 'Mousse Artesanal', 'Avellanas Tostadas', 'Semiamargo'),
-                'desc'        => 'Base suave de cacao y coñac, generosa capa de mousse de chocolate artesanal y corazón fundente de Nutella pura, sellado con chocolate semiamargo.',
                 'guide'       => array(
                     'Paso 1: Doble textura'  => 'Observa la arquitectura del relleno: la esponjosidad de la mousse y el núcleo cremoso de avellanas.',
                     'Paso 2: El clímax final'=> 'Cierra los ojos en el primer bocado. Es el desenlace sublime de nuestro ritual.'
@@ -223,29 +208,21 @@ if (!function_exists('batllie_cata_shortcode')) {
                     border-bottom: 1px solid rgba(253, 255, 221, 0.12);
                     display: flex;
                     flex-shrink: 0;
-                    height: 60px;
+                    height: 52px;
                     justify-content: space-between;
-                    padding: 0 24px;
+                    padding: 0 20px;
                     position: relative;
                     width: 100%;
                     z-index: 10;
                 }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-brand {
-                    align-items: center;
-                    display: flex;
-                    gap: 12px;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-logo {
-                    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-                    height: 32px;
-                    object-fit: contain;
-                    width: auto;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-brand-text {
+                #<?php echo esc_attr($uid); ?> .batllie-cata-header-title {
                     color: #fdffdd;
-                    font-size: 1.05rem;
+                    flex: 1;
+                    font-family: 'Cormorant Garamond', Georgia, serif;
+                    font-size: 1.15rem;
                     font-weight: 600;
-                    letter-spacing: 2px;
+                    letter-spacing: 3px;
+                    text-align: left;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-top-actions {
@@ -258,24 +235,24 @@ if (!function_exists('batllie_cata_shortcode')) {
                     align-items: center;
                     background-color: rgba(253, 255, 221, 0.08);
                     border: 1px solid rgba(253, 255, 221, 0.2);
-                    border-radius: 30px;
+                    border-radius: 20px;
                     color: #fdffdd;
                     cursor: pointer;
                     display: inline-flex;
                     font-family: inherit;
-                    font-size: 0.85rem;
-                    gap: 8px;
+                    font-size: 0.82rem;
+                    gap: 6px;
+                    height: 30px;
                     justify-content: center;
                     line-height: 1;
-                    padding: 7px 14px;
+                    padding: 0 12px;
                     text-decoration: none;
                     transition: all 0.25s ease;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-close-btn {
-                    font-size: 1.1rem;
-                    height: 32px;
+                    font-size: 1rem;
                     padding: 0;
-                    width: 32px;
+                    width: 30px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-audio-btn:hover,
                 #<?php echo esc_attr($uid); ?> .batllie-cata-close-btn:hover {
@@ -294,7 +271,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     background-color: #c4792c;
                     border-radius: 2px;
                     height: 100%;
-                    width: 3px;
+                    width: 2px;
                 }
                 #<?php echo esc_attr($uid); ?>.is-playing .batllie-cata-wave-bar:nth-child(1) {
                     animation: batllieWave 0.8s ease-in-out infinite alternate;
@@ -313,7 +290,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     background-color: rgba(253, 255, 221, 0.08);
                     display: flex;
                     flex-shrink: 0;
-                    height: 4px;
+                    height: 3px;
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-progress-fill {
@@ -328,7 +305,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                     flex: 1;
                     justify-content: center;
                     overflow: hidden;
-                    padding: 12px 24px;
+                    padding: 10px 20px;
                     position: relative;
                     width: 100%;
                 }
@@ -338,18 +315,18 @@ if (!function_exists('batllie_cata_shortcode')) {
                     flex-direction: column;
                     justify-content: center;
                     max-height: 100%;
-                    max-width: 1020px;
+                    max-width: 780px;
                     opacity: 0;
-                    transform: translateY(8px);
-                    transition: opacity 0.35s ease, transform 0.35s ease;
+                    transform: translateY(6px);
+                    transition: opacity 0.3s ease, transform 0.3s ease;
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-slide.active {
-                    animation: batllieFadeIn 0.35s forwards;
+                    animation: batllieFadeIn 0.3s forwards;
                     display: flex;
                 }
                 @keyframes batllieFadeIn {
-                    0% { opacity: 0; transform: translateY(8px); }
+                    0% { opacity: 0; transform: translateY(6px); }
                     100% { opacity: 1; transform: translateY(0); }
                 }
                 /* Slide Intro */
@@ -359,58 +336,54 @@ if (!function_exists('batllie_cata_shortcode')) {
                     flex-direction: column;
                     justify-content: center;
                     margin: 0 auto;
-                    max-width: 650px;
+                    max-width: 600px;
                     text-align: center;
                 }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-intro-logo {
-                    height: 60px;
-                    margin-bottom: 16px;
+                #<?php echo esc_attr($uid); ?> .batllie-cata-intro-logo-clean {
+                    background: transparent;
+                    display: block;
+                    height: auto;
+                    margin: 0 auto 16px;
+                    max-height: 80px;
+                    max-width: 260px;
                     object-fit: contain;
                 }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-intro h2 {
-                    color: #fdffdd;
-                    font-size: 2.8rem;
-                    font-style: italic;
-                    font-weight: 500;
-                    line-height: 1.1;
-                    margin: 0 0 8px 0;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-intro h3 {
+                #<?php echo esc_attr($uid); ?> .batllie-cata-intro-subtitle {
                     color: #c4792c;
                     font-size: 1.1rem;
                     font-weight: 600;
                     letter-spacing: 3px;
-                    margin: 0 0 16px 0;
+                    margin: 0 0 14px 0;
                     text-transform: uppercase;
                 }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-intro p {
-                    color: rgba(253, 255, 221, 0.88);
+                #<?php echo esc_attr($uid); ?> .batllie-cata-intro-desc {
+                    color: rgba(253, 255, 221, 0.9);
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.98rem;
+                    font-size: 0.95rem;
                     line-height: 1.6;
-                    margin: 0 0 24px 0;
+                    margin: 0 0 20px 0;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-audio-toggle-box {
                     align-items: center;
                     background-color: rgba(253, 255, 221, 0.05);
                     border: 1px solid rgba(253, 255, 221, 0.15);
-                    border-radius: 40px;
+                    border-radius: 30px;
                     display: flex;
-                    gap: 14px;
-                    margin-bottom: 24px;
-                    padding: 8px 20px;
+                    gap: 12px;
+                    margin-bottom: 22px;
+                    padding: 6px 18px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-toggle-label {
                     color: #fdffdd;
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.9rem;
+                    font-size: 0.88rem;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-switch {
                     cursor: pointer;
                     display: inline-block;
-                    height: 26px;
+                    height: 24px;
                     position: relative;
-                    width: 48px;
+                    width: 44px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-switch input {
                     height: 0;
@@ -419,7 +392,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-slider {
                     background-color: #4a5d52;
-                    border-radius: 26px;
+                    border-radius: 24px;
                     bottom: 0;
                     left: 0;
                     position: absolute;
@@ -432,157 +405,76 @@ if (!function_exists('batllie_cata_shortcode')) {
                     border-radius: 50%;
                     bottom: 3px;
                     content: "";
-                    height: 20px;
+                    height: 18px;
                     left: 3px;
                     position: absolute;
                     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                    width: 20px;
+                    width: 18px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-switch input:checked + .batllie-cata-slider {
                     background-color: #c4792c;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-switch input:checked + .batllie-cata-slider:before {
-                    transform: translateX(22px);
+                    transform: translateX(20px);
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-start {
                     background-color: #fdffdd;
                     border: none;
-                    border-radius: 35px;
-                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+                    border-radius: 30px;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
                     color: #162a1f;
                     cursor: pointer;
                     font-family: 'Cormorant Garamond', Georgia, serif;
-                    font-size: 1.25rem;
+                    font-size: 1.15rem;
                     font-weight: 700;
                     letter-spacing: 1.5px;
-                    padding: 14px 42px;
+                    padding: 12px 36px;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-start:hover {
                     background-color: #ffffff;
-                    box-shadow: 0 12px 30px rgba(196, 121, 44, 0.35);
+                    box-shadow: 0 10px 26px rgba(196, 121, 44, 0.35);
                     transform: translateY(-2px);
                 }
                 /* Slide Step */
-                #<?php echo esc_attr($uid); ?> .batllie-cata-step-grid {
-                    align-items: center;
-                    display: grid;
-                    gap: 28px;
-                    grid-template-columns: 1fr 1.2fr;
+                #<?php echo esc_attr($uid); ?> .batllie-cata-step-container {
+                    display: flex;
+                    flex-direction: column;
                     max-height: 100%;
                     width: 100%;
                 }
-                @media (max-width: 768px) {
-                    #<?php echo esc_attr($uid); ?> .batllie-cata-step-grid {
-                        gap: 12px;
-                        grid-template-columns: 1fr;
-                        max-height: calc(100vh - 140px);
-                        max-height: calc(100dvh - 140px);
-                        overflow-y: auto;
-                    }
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-img-wrap {
-                    align-items: center;
-                    border: 1px solid rgba(253, 255, 221, 0.15);
-                    border-radius: 14px;
-                    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-                    display: flex;
-                    justify-content: center;
-                    overflow: hidden;
-                    position: relative;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-img {
-                    display: block;
-                    height: auto;
-                    max-height: 48vh;
-                    object-fit: cover;
-                    transition: transform 0.6s ease;
-                    width: 100%;
-                }
-                @media (max-width: 768px) {
-                    #<?php echo esc_attr($uid); ?> .batllie-cata-img {
-                        max-height: 25vh;
-                    }
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-img-wrap:hover .batllie-cata-img {
-                    transform: scale(1.04);
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-phase-badge {
-                    background-color: rgba(22, 42, 31, 0.9);
-                    backdrop-filter: blur(8px);
-                    border-bottom-right-radius: 10px;
-                    color: #c4792c;
-                    font-size: 0.82rem;
-                    font-weight: 600;
-                    letter-spacing: 1.5px;
-                    left: 0;
-                    padding: 6px 12px;
-                    position: absolute;
-                    text-transform: uppercase;
-                    top: 0;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-details {
-                    display: flex;
-                    flex-direction: column;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-step-header {
-                    margin-bottom: 10px;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-step-counter {
-                    color: #c4792c;
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.8rem;
-                    font-weight: 600;
-                    letter-spacing: 2px;
-                    margin-bottom: 4px;
-                    text-transform: uppercase;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-step-title {
+                #<?php echo esc_attr($uid); ?> .batllie-cata-step-main-title {
                     color: #fdffdd;
-                    font-size: 2.2rem;
+                    font-size: 1.75rem;
                     font-style: italic;
                     font-weight: 500;
-                    line-height: 1.1;
-                    margin: 0 0 4px 0;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-step-sub {
-                    color: rgba(253, 255, 221, 0.7);
-                    font-size: 1.05rem;
+                    letter-spacing: 1px;
+                    line-height: 1.15;
                     margin: 0 0 10px 0;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 6px;
-                    margin-bottom: 14px;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-tag {
-                    background-color: rgba(196, 121, 44, 0.15);
-                    border: 1px solid rgba(196, 121, 44, 0.35);
-                    border-radius: 20px;
-                    color: #fdffdd;
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.75rem;
-                    padding: 3px 10px;
+                    text-align: center;
+                    width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-vn-card {
                     background-color: rgba(253, 255, 221, 0.06);
                     border: 1px solid rgba(253, 255, 221, 0.12);
                     border-radius: 12px;
-                    padding: 14px 18px;
-                    position: relative;
-                }
-                #<?php echo esc_attr($uid); ?> .batllie-cata-vn-desc {
-                    color: rgba(253, 255, 221, 0.92);
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 0.92rem;
-                    line-height: 1.5;
-                    margin: 0 0 12px 0;
+                    margin: 0 auto;
+                    max-width: 680px;
+                    padding: 12px 18px;
+                    width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-vn-guide-item {
+                    margin-bottom: 8px;
+                    padding-bottom: 8px;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-vn-guide-item:last-child {
+                    border-bottom: none;
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-vn-guide-item + .batllie-cata-vn-guide-item {
                     border-top: 1px solid rgba(253, 255, 221, 0.1);
-                    margin-top: 8px;
                     padding-top: 8px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-vn-guide-label {
@@ -594,10 +486,28 @@ if (!function_exists('batllie_cata_shortcode')) {
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-vn-guide-text {
                     color: #fdffdd;
-                    font-size: 0.96rem;
+                    font-size: 0.95rem;
                     font-style: italic;
                     line-height: 1.35;
                     margin: 0;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-step-img-wrap {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 10px;
+                    overflow: hidden;
+                    width: 100%;
+                }
+                #<?php echo esc_attr($uid); ?> .batllie-cata-step-img {
+                    border-radius: 12px;
+                    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+                    display: block;
+                    height: auto;
+                    margin: 0 auto;
+                    max-height: 32vh;
+                    max-width: 90%;
+                    object-fit: contain;
                 }
                 /* Slide Closing */
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing {
@@ -606,72 +516,72 @@ if (!function_exists('batllie_cata_shortcode')) {
                     flex-direction: column;
                     justify-content: center;
                     margin: 0 auto;
-                    max-width: 650px;
+                    max-width: 600px;
                     text-align: center;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing h2 {
                     color: #fdffdd;
-                    font-size: 3rem;
+                    font-size: 2.2rem;
                     font-weight: 500;
                     letter-spacing: 2px;
                     line-height: 1.1;
-                    margin: 0 0 8px 0;
+                    margin: 0 0 6px 0;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing h3 {
                     color: #c4792c;
-                    font-size: 1.15rem;
+                    font-size: 1rem;
                     font-weight: 600;
                     letter-spacing: 3px;
-                    margin: 0 0 18px 0;
+                    margin: 0 0 10px 0;
                     text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing p {
                     color: rgba(253, 255, 221, 0.88);
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                    font-size: 1rem;
-                    line-height: 1.6;
-                    margin: 0 0 16px 0;
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                    margin: 0 0 8px 0;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-closing-actions {
                     display: flex;
                     flex-wrap: wrap;
-                    gap: 14px;
+                    gap: 12px;
                     justify-content: center;
-                    margin-top: 20px;
+                    margin-top: 12px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-shop {
                     background-color: #c4792c;
                     border: none;
-                    border-radius: 35px;
-                    box-shadow: 0 8px 25px rgba(196, 121, 44, 0.4);
+                    border-radius: 30px;
+                    box-shadow: 0 6px 20px rgba(196, 121, 44, 0.4);
                     color: #fdffdd;
                     cursor: pointer;
                     display: inline-block;
                     font-family: 'Cormorant Garamond', Georgia, serif;
-                    font-size: 1.2rem;
+                    font-size: 1.1rem;
                     font-weight: 700;
                     letter-spacing: 1.5px;
-                    padding: 12px 36px;
+                    padding: 9px 28px;
                     text-decoration: none;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-shop:hover {
                     background-color: #da8934;
-                    box-shadow: 0 12px 30px rgba(196, 121, 44, 0.6);
+                    box-shadow: 0 10px 25px rgba(196, 121, 44, 0.6);
                     color: #ffffff;
                     transform: translateY(-2px);
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-btn-restart {
                     background-color: transparent;
                     border: 1px solid rgba(253, 255, 221, 0.35);
-                    border-radius: 35px;
+                    border-radius: 30px;
                     color: #fdffdd;
                     cursor: pointer;
                     font-family: 'Cormorant Garamond', Georgia, serif;
-                    font-size: 1.1rem;
+                    font-size: 0.95rem;
                     letter-spacing: 1.5px;
-                    padding: 12px 28px;
+                    padding: 9px 22px;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
                 }
@@ -685,23 +595,25 @@ if (!function_exists('batllie_cata_shortcode')) {
                     border-top: 1px solid rgba(253, 255, 221, 0.12);
                     display: flex;
                     flex-shrink: 0;
-                    height: 64px;
+                    height: 48px;
                     justify-content: space-between;
-                    padding: 0 24px;
+                    padding: 0 20px;
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-nav-btn {
                     align-items: center;
                     background-color: rgba(253, 255, 221, 0.08);
                     border: 1px solid rgba(253, 255, 221, 0.2);
-                    border-radius: 30px;
+                    border-radius: 20px;
                     color: #fdffdd;
                     cursor: pointer;
                     display: inline-flex;
                     font-family: inherit;
-                    font-size: 1rem;
-                    gap: 8px;
-                    padding: 8px 20px;
+                    font-size: 0.85rem;
+                    gap: 6px;
+                    height: 30px;
+                    line-height: 1;
+                    padding: 0 14px;
                     transition: all 0.25s ease;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-nav-btn:hover:not(:disabled) {
@@ -721,7 +633,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-nav-btn-next:hover:not(:disabled) {
                     background-color: #ffffff;
-                    box-shadow: 0 4px 15px rgba(253, 255, 221, 0.3);
+                    box-shadow: 0 3px 12px rgba(253, 255, 221, 0.3);
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-dots {
                     align-items: center;
@@ -732,23 +644,20 @@ if (!function_exists('batllie_cata_shortcode')) {
                     background-color: rgba(253, 255, 221, 0.2);
                     border-radius: 50%;
                     cursor: pointer;
-                    height: 7px;
+                    height: 6px;
                     transition: all 0.3s ease;
-                    width: 7px;
+                    width: 6px;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-dot.active {
                     background-color: #c4792c;
-                    transform: scale(1.4);
+                    transform: scale(1.3);
                 }
             </style>
 
             <!-- Header -->
             <div class="batllie-cata-header">
-                <div class="batllie-cata-brand">
-                    <?php if (!empty($atts['logo_url'])): ?>
-                        <img src="<?php echo esc_url($atts['logo_url']); ?>" alt="Batllié" class="batllie-cata-logo" />
-                    <?php endif; ?>
-                    <span class="batllie-cata-brand-text"><?php echo esc_html($atts['title']); ?></span>
+                <div class="batllie-cata-header-title">
+                    <?php echo esc_html($atts['title']); ?>
                 </div>
                 <div class="batllie-cata-top-actions">
                     <button type="button" class="batllie-cata-audio-btn" aria-label="Control de Audio">
@@ -776,12 +685,11 @@ if (!function_exists('batllie_cata_shortcode')) {
                     <div class="batllie-cata-slide <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-type="<?php echo esc_attr($s['type']); ?>">
                         <?php if ($s['type'] === 'intro'): ?>
                             <div class="batllie-cata-intro">
-                                <?php if (!empty($atts['logo_url'])): ?>
-                                    <img src="<?php echo esc_url($atts['logo_url']); ?>" alt="Batllié" class="batllie-cata-intro-logo" />
+                                <?php if (!empty($atts['logo_clean_url'])): ?>
+                                    <img src="<?php echo esc_url($atts['logo_clean_url']); ?>" alt="Batllié" class="batllie-cata-intro-logo-clean" />
                                 <?php endif; ?>
-                                <h2><?php echo esc_html($s['title']); ?></h2>
-                                <h3><?php echo esc_html($s['subtitle']); ?></h3>
-                                <p><?php echo esc_html($s['desc']); ?></p>
+                                <h3 class="batllie-cata-intro-subtitle"><?php echo esc_html($s['subtitle']); ?></h3>
+                                <p class="batllie-cata-intro-desc"><?php echo esc_html($s['desc']); ?></p>
 
                                 <div class="batllie-cata-audio-toggle-box">
                                     <span class="batllie-cata-toggle-label">Música ambiental durante la cata:</span>
@@ -794,37 +702,22 @@ if (!function_exists('batllie_cata_shortcode')) {
                                 <button type="button" class="batllie-cata-btn-start">Iniciar Experiencia</button>
                             </div>
                         <?php elseif ($s['type'] === 'step'): ?>
-                            <div class="batllie-cata-step-grid">
-                                <div class="batllie-cata-img-wrap">
-                                    <span class="batllie-cata-phase-badge"><?php echo esc_html($s['phase']); ?></span>
-                                    <img src="<?php echo esc_url($s['image']); ?>" alt="<?php echo esc_attr($s['alt']); ?>" class="batllie-cata-img" />
-                                </div>
-                                <div class="batllie-cata-details">
-                                    <div class="batllie-cata-step-header">
-                                        <div class="batllie-cata-step-counter">Paso <?php echo $s['step_num']; ?> de <?php echo $s['total_steps']; ?></div>
-                                        <h3 class="batllie-cata-step-title"><?php echo esc_html($s['name']); ?></h3>
-                                        <div class="batllie-cata-step-sub"><?php echo esc_html($s['subtitle']); ?></div>
-                                    </div>
+                            <div class="batllie-cata-step-container">
+                                <h2 class="batllie-cata-step-main-title">Paso <?php echo $s['step_num']; ?>: <?php echo esc_html($s['name']); ?> — <?php echo esc_html($s['subtitle']); ?></h2>
 
-                                    <?php if (!empty($s['tags'])): ?>
-                                        <div class="batllie-cata-tags">
-                                            <?php foreach ($s['tags'] as $tag): ?>
-                                                <span class="batllie-cata-tag"><?php echo esc_html($tag); ?></span>
-                                            <?php endforeach; ?>
-                                        </div>
+                                <div class="batllie-cata-vn-card">
+                                    <?php if (!empty($s['guide'])): ?>
+                                        <?php foreach ($s['guide'] as $label => $instruction): ?>
+                                            <div class="batllie-cata-vn-guide-item">
+                                                <div class="batllie-cata-vn-guide-label"><?php echo esc_html($label); ?></div>
+                                                <p class="batllie-cata-vn-guide-text"><?php echo esc_html($instruction); ?></p>
+                                            </div>
+                                        <?php endforeach; ?>
                                     <?php endif; ?>
+                                </div>
 
-                                    <div class="batllie-cata-vn-card">
-                                        <p class="batllie-cata-vn-desc"><?php echo esc_html($s['desc']); ?></p>
-                                        <?php if (!empty($s['guide'])): ?>
-                                            <?php foreach ($s['guide'] as $label => $instruction): ?>
-                                                <div class="batllie-cata-vn-guide-item">
-                                                    <div class="batllie-cata-vn-guide-label"><?php echo esc_html($label); ?></div>
-                                                    <p class="batllie-cata-vn-guide-text"><?php echo esc_html($instruction); ?></p>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                    </div>
+                                <div class="batllie-cata-step-img-wrap">
+                                    <img src="<?php echo esc_url($s['image']); ?>" alt="<?php echo esc_attr($s['alt']); ?>" class="batllie-cata-step-img" />
                                 </div>
                             </div>
                         <?php elseif ($s['type'] === 'closing'): ?>
