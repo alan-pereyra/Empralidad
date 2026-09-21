@@ -810,7 +810,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-1-cream-1790013939.png'); ?>" alt="I. El Lecho" class="batllie-cata-mate-img" />
                             <div class="batllie-cata-mate-text">
                                 <div class="batllie-cata-mate-step-title">I. EL LECHO</div>
-                                <p class="batllie-cata-mate-step-desc">Llenar tres cuartas partes del recipiente con yerba. Cubrir la boca con la palma de la mano, agitar suavemente y volver a inclinar a 45° para lograr la armonía perfecta.</p>
+                                <p class="batllie-cata-mate-step-desc">Llenar tres cuartas partes del recipiente con yerba Batllié orgánica. Cubrir la boca con la palma de la mano, agitar suavemente y volver a inclinar a 45° para lograr la armonía perfecta.</p>
                             </div>
                         </div>
 
