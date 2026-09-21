@@ -711,7 +711,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             </div>
                         <?php elseif ($s['type'] === 'step'): ?>
                             <div class="batllie-cata-step-container">
-                                <h2 class="batllie-cata-step-main-title">Paso <?php echo $s['step_num']; ?>: <?php echo esc_html($s['name']); ?> — <?php echo esc_html($s['subtitle']); ?></h2>
+                                <h2 class="batllie-cata-step-main-title"><?php echo esc_html($s['name']); ?> — <?php echo esc_html($s['subtitle']); ?></h2>
 
                                 <div class="batllie-cata-vn-card">
                                     <?php if (!empty($s['guide'])): ?>
