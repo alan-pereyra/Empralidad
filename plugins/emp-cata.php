@@ -13,7 +13,7 @@ if (!function_exists('batllie_cata_shortcode')) {
         $atts = shortcode_atts(array(
             'audio_url'        => 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=acoustic-guitar-ambient-relax-112191.mp3',
             'audio_title'      => 'Melodía Ambiental — El Ritual',
-            'shop_url'         => home_url('/tienda/'),
+            'shop_url'         => '',
             'close_url'        => home_url('/'),
             'logo'             => '',
             'logo_url'         => '',
@@ -23,6 +23,15 @@ if (!function_exists('batllie_cata_shortcode')) {
             'color_acento'     => '',
             'color'            => '',
         ), $atts, 'batllie_cata');
+
+        if (empty($atts['shop_url'])) {
+            $tag = get_term_by('slug', 'cata', 'product_tag');
+            if ($tag && !is_wp_error($tag)) {
+                $atts['shop_url'] = get_term_link($tag);
+            } else {
+                $atts['shop_url'] = home_url('/etiqueta-producto/cata/');
+            }
+        }
 
         $custom_accent = '';
         if (!empty($atts['accent_color'])) {
