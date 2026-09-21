@@ -9,4 +9,5 @@ include get_template_directory().'/Customizer/components/header.php';
 include get_template_directory().'/Customizer/components/content.php';
 include get_template_directory().'/Customizer/components/buttons.php';
 include get_template_directory().'/Customizer/components/footer.php';
+include get_template_directory().'/Customizer/components/cata.php';
 ?>
