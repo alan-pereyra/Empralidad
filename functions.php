@@ -18,6 +18,7 @@
 // 0) Includes
 get_template_part( 'Customizer/emp-customizer' );
 get_template_part( 'plugins/emp-shortcodes' );
+get_template_part( 'plugins/emp-cata' );
 get_template_part( 'plugins/emp-carousel' );
 get_template_part('includes/enqueue-scripts');
 // get_template_part('includes/PWA/manifest');
