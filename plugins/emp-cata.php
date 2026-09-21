@@ -345,7 +345,8 @@ if (!function_exists('batllie_cata_shortcode')) {
                     width: 100%;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-section-subtitle {
-                    color: var(--batllie-accent);
+                    color: #fdffdd;
+                    opacity: 0.95;
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
                     font-size: 0.9rem;
                     font-weight: 600;
@@ -415,15 +416,28 @@ if (!function_exists('batllie_cata_shortcode')) {
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-boxes-grid {
                     display: grid;
-                    gap: 14px;
+                    gap: 12px;
                     grid-template-columns: repeat(3, 1fr);
                     margin: 8px 0 16px 0;
                     width: 100%;
                 }
                 @media (max-width: 680px) {
                     #<?php echo esc_attr($uid); ?> .batllie-cata-boxes-grid {
-                        gap: 10px;
-                        grid-template-columns: 1fr;
+                        gap: 8px;
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                    #<?php echo esc_attr($uid); ?> .batllie-cata-box-card {
+                        padding: 8px 4px !important;
+                    }
+                    #<?php echo esc_attr($uid); ?> .batllie-cata-box-img {
+                        max-height: 90px !important;
+                        margin-bottom: 6px !important;
+                    }
+                    #<?php echo esc_attr($uid); ?> .batllie-cata-box-name {
+                        font-size: 0.92rem !important;
+                    }
+                    #<?php echo esc_attr($uid); ?> .batllie-cata-box-sub {
+                        font-size: 0.72rem !important;
                     }
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-card {
@@ -449,17 +463,20 @@ if (!function_exists('batllie_cata_shortcode')) {
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-name {
                     color: #ffffff;
                     font-family: 'Cormorant Garamond', Georgia, serif;
-                    font-size: 1.25rem;
+                    font-size: 1.15rem;
                     font-weight: 700;
                     letter-spacing: 0.5px;
-                    line-height: 1.25;
+                    line-height: 1.2;
                     margin-bottom: 4px;
+                    text-transform: uppercase;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-box-sub {
-                    color: rgba(253, 255, 221, 0.78);
+                    color: #fdffdd;
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
                     font-size: 0.8rem;
+                    font-weight: 600;
                     line-height: 1.3;
+                    opacity: 0.9;
                 }
                 #<?php echo esc_attr($uid); ?> .batllie-cata-boxes-desc {
                     color: rgba(253, 255, 221, 0.92);
