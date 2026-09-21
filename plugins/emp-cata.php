@@ -18,7 +18,7 @@ if (!function_exists('batllie_cata_shortcode')) {
             'close_url'        => home_url('/'),
             'logo'             => '',
             'logo_url'         => '',
-            'logo_clean_url'   => 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-logo-clean.png',
+            'logo_clean_url'   => 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-logo-transparent.png',
             'title'            => 'El Ritual de Cata',
             'subtitle'         => 'ALFAJORERÍA DE AUTOR',
         ), $atts, 'batllie_cata');
