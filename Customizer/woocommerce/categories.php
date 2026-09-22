@@ -61,14 +61,31 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
     'sanitize_callback' => 'sanitize_string'
   ));
   $wp_customize->add_control('emp_woocommerce_categories_mobile_rows_control', array(
-    'label'       => __( 'Filas en celular', 'empralidad' ),
+    'label'       => __( 'Filas en celular (Estilo 1)', 'empralidad' ),
     'section'     => 'emp_section_woocommerce_categories',
     'settings'    => 'emp_woocommerce_categories_mobile_rows',
-    'description' => __( 'Selecciona si se muestra 1 fila (3 por vista) o 2 filas (6 por vista) en dispositivos móviles.', 'empralidad' ),
+    'description' => __( 'Selecciona si se muestra 1 fila (3 por vista) o 2 filas (6 por vista) en dispositivos móviles para el Estilo 1.', 'empralidad' ),
     'type'        => 'select',
     'choices'     => array(
       '1' => __( '1 Fila', 'empralidad' ),
       '2' => __( '2 Filas', 'empralidad' ),
+    )
+  ));
+  // Categories style
+  $wp_customize->add_setting('emp_woocommerce_categories_style', array(
+    'default'           => '1',
+    'trasnport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_string'
+  ));
+  $wp_customize->add_control('emp_woocommerce_categories_style_control', array(
+    'label'       => __( 'Estilo de categorias destacadas', 'empralidad' ),
+    'section'     => 'emp_section_woocommerce_categories',
+    'settings'    => 'emp_woocommerce_categories_style',
+    'description' => __( 'Elige entre el Estilo 1 (carrusel tradicional) o Estilo 2 (fila única con scroll libre e imágenes circulares).', 'empralidad' ),
+    'type'        => 'select',
+    'choices'     => array(
+      '1' => __( 'Estilo 1', 'empralidad' ),
+      '2' => __( 'Estilo 2', 'empralidad' ),
     )
   ));
 }

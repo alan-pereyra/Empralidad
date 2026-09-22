@@ -477,10 +477,69 @@ function categoriesCarousel() {
   goToIndex(0, false);
 }
 
+function initCategoriesStyle2() {
+  var container = document.getElementById('emp-categories-style-2');
+  if (!container) return;
+
+  var isDown = false;
+  var startX = 0;
+  var scrollLeft = 0;
+  var hasDragged = false;
+
+  container.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return;
+    isDown = true;
+    hasDragged = false;
+    container.classList.add('is-dragging');
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', function() {
+    if (isDown) {
+      isDown = false;
+      container.classList.remove('is-dragging');
+    }
+  });
+
+  container.addEventListener('mouseleave', function() {
+    if (isDown) {
+      isDown = false;
+      container.classList.remove('is-dragging');
+    }
+  });
+
+  container.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - container.offsetLeft;
+    var walk = (x - startX) * 1.4;
+    if (Math.abs(x - startX) > 4) {
+      hasDragged = true;
+    }
+    container.scrollLeft = scrollLeft - walk;
+  });
+
+  var links = container.querySelectorAll('a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function(e) {
+      if (hasDragged) {
+        e.preventDefault();
+        e.stopPropagation();
+        hasDragged = false;
+      }
+    });
+  }
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', categoriesCarousel);
+  document.addEventListener('DOMContentLoaded', function() {
+    categoriesCarousel();
+    initCategoriesStyle2();
+  });
 } else {
   categoriesCarousel();
+  initCategoriesStyle2();
 }
 
 // Search woocommerce products by custom filters
