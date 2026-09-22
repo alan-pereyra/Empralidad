@@ -495,7 +495,7 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
 .emp-price-from {
   color: inherit !important;
   display: inline-block !important;
-  font-size: clamp(11px, 0.65em, 15px) !important;
+  font-size: clamp(13px, 0.48em, 16px) !important;
   font-weight: 600 !important;
   letter-spacing: 0.3px !important;
   line-height: 1 !important;
@@ -503,23 +503,27 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
   text-transform: capitalize !important;
 }
 
-.woocommerce div.product p.price .emp-price-range-from,
-.summary.entry-summary p.price .emp-price-range-from {
+.emp-product-card .price .emp-price-range-from,
+.emp-product-price-centered .emp-price-range-from,
+ul.products li.product .price .emp-price-range-from {
   align-items: center !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 2px !important;
+  gap: 1px !important;
   justify-content: center !important;
   text-align: center !important;
 }
 
-.woocommerce div.product p.price .emp-price-from,
-.summary.entry-summary p.price .emp-price-from {
-  font-size: 14px !important;
+.emp-product-card .price .emp-price-from,
+.emp-product-price-centered .emp-price-from,
+ul.products li.product .price .emp-price-from {
+  font-size: 11px !important;
   font-weight: 500 !important;
-  line-height: 1.2 !important;
+  letter-spacing: 0.2px !important;
+  line-height: 1.1 !important;
   margin: 0 auto !important;
-  opacity: 0.6 !important;
+  opacity: 0.55 !important;
+  text-transform: capitalize !important;
 }
 
 .woocommerce div.product .woocommerce-product-details__short-description,
