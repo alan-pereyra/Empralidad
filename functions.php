@@ -531,4 +531,31 @@ add_filter( 'wp_insert_post_data', function( $data, $postarr ) {
 	}
 	return $data;
 	}, 99, 2 );
+
+// Variable product price range: show only min price with "Desde" prefix
+add_filter( 'woocommerce_variable_price_html', 'emp_variable_product_price_from', 10, 2 );
+function emp_variable_product_price_from( $price, $product ) {
+	if ( ! $product || ! $product->is_type( 'variable' ) ) {
+		return $price;
+	}
+
+	$prices = $product->get_variation_prices( true );
+	if ( empty( $prices['price'] ) ) {
+		return $price;
+	}
+
+	$min_price = current( $prices['price'] );
+	$max_price = end( $prices['price'] );
+
+	if ( $min_price !== $max_price ) {
+		$price = sprintf(
+			'<span class="emp-price-range-from"><span class="emp-price-from">%s</span> %s</span>',
+			esc_html__( 'Desde', 'empralidad' ),
+			wc_price( $min_price )
+		);
+		$price .= $product->get_price_suffix();
+	}
+
+	return $price;
+}
 ?>

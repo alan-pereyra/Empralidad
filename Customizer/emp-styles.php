@@ -485,6 +485,24 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
   font-size: clamp(calc(var(--emp-woocommerce-product-price-size) * 0.72), 5vw, var(--emp-woocommerce-product-price-size)) !important;
 }
 
+.emp-price-range-from {
+  align-items: baseline !important;
+  display: inline-flex !important;
+  gap: 6px !important;
+  justify-content: center !important;
+}
+
+.emp-price-from {
+  color: inherit !important;
+  display: inline-block !important;
+  font-size: clamp(11px, 0.65em, 15px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1 !important;
+  opacity: 0.75 !important;
+  text-transform: capitalize !important;
+}
+
 .woocommerce div.product .woocommerce-product-details__short-description,
 .woocommerce div.product .woocommerce-product-details__short-description p {
   font-size: clamp(calc(var(--emp-woocommerce-product-desc-size) * 0.85), 3.2vw, var(--emp-woocommerce-product-desc-size)) !important;

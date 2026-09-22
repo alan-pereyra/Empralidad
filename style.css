@@ -4135,6 +4135,22 @@ a.button.wc-forward {
 	text-align: center !important;
 	width: fit-content !important;
 }
+.emp-price-range-from {
+	align-items: baseline !important;
+	display: inline-flex !important;
+	gap: 6px !important;
+	justify-content: center !important;
+}
+.emp-price-from {
+	color: inherit !important;
+	display: inline-block !important;
+	font-size: clamp(11px, 0.65em, 15px) !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.3px !important;
+	line-height: 1 !important;
+	opacity: 0.75 !important;
+	text-transform: capitalize !important;
+}
 a.faded.shipping-calculator-button {
 	color: #515151 !important;
 	background-color: #ebe9eb;
