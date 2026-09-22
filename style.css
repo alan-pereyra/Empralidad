@@ -1092,8 +1092,12 @@ img, .wp-caption {
 	text-align: center;
 }
 .featured-title-invert{
-	color: var(--emp-content-color)!important;
 	background: var(--emp-content-background)!important;
+	color: var(--emp-content-color)!important;
+	padding-bottom: 12px !important;
+}
+#woo_featured_products {
+	padding-top: 0 !important;
 }
 @media (max-width: 991px) {
   .featured-title{
