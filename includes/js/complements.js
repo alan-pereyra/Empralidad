@@ -481,6 +481,20 @@ function initCategoriesStyle2() {
   var container = document.getElementById('emp-categories-style-2');
   if (!container) return;
 
+  var track = container.querySelector('.emp-categories-style-2-track');
+
+  function checkCenter() {
+    if (!track) return;
+    if (track.scrollWidth <= container.clientWidth) {
+      track.classList.add('is-centered');
+    } else {
+      track.classList.remove('is-centered');
+    }
+  }
+
+  checkCenter();
+  window.addEventListener('resize', checkCenter);
+
   var isDown = false;
   var startX = 0;
   var scrollLeft = 0;

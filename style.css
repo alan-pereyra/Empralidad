@@ -3515,10 +3515,15 @@ h2.woocommerce-loop-product__title {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	gap: 14px;
+	justify-content: safe center;
 	list-style: none;
-	margin: 0;
+	margin: 0 auto;
+	min-width: 100%;
 	padding: 8px 12px;
 	width: max-content;
+}
+.emp-categories-style-2-track.is-centered {
+	justify-content: center;
 }
 .emp-category-style-2-item {
 	box-sizing: border-box;
