@@ -10,9 +10,11 @@
     <footer class="container-fluid pb-5 px-0 footer no-shadow">
       <!-- Social buttons -->
       <div id="emp-social-buttons">
-        <?php $social_nick = get_theme_mod('emp_components_footer_social_nickname'); ?>
-          <span>@<?php echo $social_nick  ?></span>
-          <div class="p-3 fa-2x">
+        <?php $social_nick = get_theme_mod('emp_components_footer_social_nickname');
+        if (!empty($social_nick)) { ?>
+          <span>@<?php echo esc_html($social_nick); ?></span>
+        <?php } ?>
+        <div class="p-3 fa-2x emp-social-icons">
             <!-- Instagram -->
             <?php $instagram_link = get_theme_mod('emp_components_footer_insta');
             if ($instagram_link){ ?>
