@@ -131,7 +131,18 @@ add_action(  'wp_enqueue_scripts', 'emp_enqueue_comments_reply' );
 
 			$item_output = $args->before;
 			$item_output .= '<a' . $attributes . '>';
-			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+
+			if ( $item->object === 'product_cat' ) {
+				$thumbnail_id = get_term_meta( $item->object_id, 'thumbnail_id', true );
+				$image_url    = $thumbnail_id ? wp_get_attachment_image_url( $thumbnail_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+				if ( $image_url ) {
+					$item_output .= '<span class="emp-menu-cat-img-wrap"><img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $item->title ) . '" class="emp-menu-cat-img" loading="lazy"></span>';
+				}
+				$item_output .= '<span class="emp-menu-cat-title">' . $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after . '</span>';
+			} else {
+				$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+			}
+
 			$item_output .= ( $depth == 0 && $args->walker->has_children ) ? ' <b class="caret"></b></a>' : '</a>';
 			$item_output .= $args->after;
 
