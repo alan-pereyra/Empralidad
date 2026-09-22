@@ -55,6 +55,35 @@ if (!function_exists('batllie_cata_shortcode')) {
             $assets_url = plugins_url('../assets/images/', __FILE__);
         }
 
+                $asset = function($filename, $remote_url = '') use ($assets_url) {
+            if (function_exists('get_template_directory') && file_exists(get_template_directory() . '/img/cata/' . $filename)) {
+                return get_template_directory_uri() . '/img/cata/' . $filename;
+            }
+            if (file_exists(plugin_dir_path(__FILE__) . '../assets/images/' . $filename)) {
+                return plugins_url('../assets/images/' . $filename, __FILE__);
+            }
+            if (file_exists(plugin_dir_path(__FILE__) . 'assets/images/' . $filename)) {
+                return plugins_url('assets/images/' . $filename, __FILE__);
+            }
+            if (defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/batllie-cata/assets/images/' . $filename)) {
+                return plugins_url('batllie-cata/assets/images/' . $filename);
+            }
+            return $remote_url;
+        };
+
+        // Check local logo
+        $logo_clean_local = '';
+        if (function_exists('get_template_directory') && file_exists(get_template_directory() . '/img/cata/batllie-logo-transparent.png')) {
+            $logo_clean_local = get_template_directory_uri() . '/img/cata/batllie-logo-transparent.png';
+        } elseif (file_exists(plugin_dir_path(__FILE__) . '../batllie-logo-transparent.png')) {
+            $logo_clean_local = plugins_url('../batllie-logo-transparent.png', __FILE__);
+        } elseif (defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/batllie-cata/batllie-logo-transparent.png')) {
+            $logo_clean_local = plugins_url('batllie-cata/batllie-logo-transparent.png');
+        } else {
+            $logo_clean_local = $atts['logo_clean_url'];
+        }
+        $logo_url = !empty($atts['logo']) ? $atts['logo'] : (!empty($atts['logo_url']) ? $atts['logo_url'] : $logo_clean_local);
+
         $uid = 'batllie_cata_' . wp_rand(1000, 9999);
 
         ob_start();
@@ -826,7 +855,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         <div class="batllie-cata-section-subtitle">Una pausa consciente para disfrutar de nuestros blends.</div>
 
                         <div class="batllie-cata-mate-item">
-                            <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-1-cream-1790013939.png'); ?>" alt="I. El Lecho" class="batllie-cata-mate-img" />
+                            <img src="<?php echo esc_url($asset('mate-1-cream.png', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-1-cream-1790013939.png')); ?>" alt="I. El Lecho" class="batllie-cata-mate-img" />
                             <div class="batllie-cata-mate-text">
                                 <div class="batllie-cata-mate-step-title">I. EL LECHO</div>
                                 <p class="batllie-cata-mate-step-desc">Llenar tres cuartas partes del recipiente con yerba Batllié orgánica. Cubrir la boca con la palma de la mano, agitar suavemente y volver a inclinar a 45° para lograr la armonía perfecta.</p>
@@ -834,7 +863,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-mate-item">
-                            <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-2-cream-1790013939.png'); ?>" alt="II. La Base" class="batllie-cata-mate-img" />
+                            <img src="<?php echo esc_url($asset('mate-2-cream.png', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-2-cream-1790013939.png')); ?>" alt="II. La Base" class="batllie-cata-mate-img" />
                             <div class="batllie-cata-mate-text">
                                 <div class="batllie-cata-mate-step-title">II. LA BASE</div>
                                 <p class="batllie-cata-mate-step-desc">Humedecer suavemente la parte baja con agua tibia e introducir la bombilla en ese mismo sector con firmeza.</p>
@@ -842,7 +871,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                         </div>
 
                         <div class="batllie-cata-mate-item">
-                            <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-3-cream-1790013939.png'); ?>" alt="III. El Disfrute" class="batllie-cata-mate-img" />
+                            <img src="<?php echo esc_url($asset('mate-3-cream.png', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mate-3-cream-1790013939.png')); ?>" alt="III. El Disfrute" class="batllie-cata-mate-img" />
                             <div class="batllie-cata-mate-text">
                                 <div class="batllie-cata-mate-step-title">III. EL DISFRUTE</div>
                                 <p class="batllie-cata-mate-step-desc">Cebar con agua a una temperatura sugerida de 75°C, evitando el hervor para preservar las notas y matices únicos de la yerba.</p>
@@ -860,19 +889,19 @@ if (!function_exists('batllie_cata_shortcode')) {
                         <div class="batllie-cata-boxes-grid">
                             <div class="batllie-cata-box-card" data-goto-chapter="chap1">
                                 <div class="batllie-cata-box-num">I</div>
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box I" class="batllie-cata-box-img" />
+                                <img src="<?php echo esc_url($asset('box.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg')); ?>" alt="Box I" class="batllie-cata-box-img" />
                                 <div class="batllie-cata-box-name">La chispa<br>viva</div>
                                 <div class="batllie-cata-box-sub">(los cítricos y ligeros)</div>
                             </div>
                             <div class="batllie-cata-box-card" data-goto-chapter="chap2">
                                 <div class="batllie-cata-box-num">II</div>
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box II" class="batllie-cata-box-img" />
+                                <img src="<?php echo esc_url($asset('box.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg')); ?>" alt="Box II" class="batllie-cata-box-img" />
                                 <div class="batllie-cata-box-name">El equilibrio<br>clásico</div>
                                 <div class="batllie-cata-box-sub">(las raices de la casa)</div>
                             </div>
                             <div class="batllie-cata-box-card" data-goto-chapter="chap3">
                                 <div class="batllie-cata-box-num">III</div>
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg'); ?>" alt="Box III" class="batllie-cata-box-img" />
+                                <img src="<?php echo esc_url($asset('box.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/box-1790013939.jpg')); ?>" alt="Box III" class="batllie-cata-box-img" />
                                 <div class="batllie-cata-box-name">Intensidad<br>absoluta</div>
                                 <div class="batllie-cata-box-sub">(los de autor y complejos)</div>
                             </div>
@@ -894,7 +923,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">1- LIMÓN: UNA RUPTURA SENSORIAL</div>
                             <p class="batllie-cata-alfajor-text">MASA SABLEÉ DE QUIEBRE PERFECTO CON NOTAS DE CÍTRICOS VIVOS, ABRAZANDO UN CURD ARTESANAL DE ACIDEZ PRECISA Y UNA COBERTURA DE CHOCOLATE SEMI AMARGO QUE DESAFÍA EL PALADAR.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/limon-1790013939.jpg'); ?>" alt="Alfajor Limón" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('limon.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/limon-1790013939.jpg')); ?>" alt="Alfajor Limón" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
 
@@ -902,7 +931,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">2- BATLLIÉ BLANCO: UNA OBRA DE LUZ</div>
                             <p class="batllie-cata-alfajor-text">NUESTRA ESTRUCTURA CLÁSICA DE CACAO SE ENCIENDE AQUÍ CON UN DESTELLO FRESCO DE RALLADURA DE NARANJA NATURAL, FUNDIÉNDOSE CON EL DULCE DE LECHE Y LA CARICIA ETÉREA DE UN MERENGUE SUIZO SOMETIDO A UN REPOSO PACIENTE DE 24 A 48 HORAS PARA LOGRAR SU PUNTO ÓPTIMO DE SECADO.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-blanco-1790013939.jpg'); ?>" alt="Alfajor Batllié Blanco" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('batllie-blanco.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-blanco-1790013939.jpg')); ?>" alt="Alfajor Batllié Blanco" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
                     </div>
@@ -918,7 +947,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">1- BATLLIÉ NEGRO: EL LATIDO ORIGINAL DE LA CASA</div>
                             <p class="batllie-cata-alfajor-text">NUESTRA FÓRMULA MADRE DE CACAO PROFUNDO CON MATICES DE COÑAC ABRAZA EL DULCE DE LECHE TRADICIONAL BAJO UNA COBERTURA ENVOLVENTE DE CHOCOLATE CON LECHE.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-negro-1790013939.jpg'); ?>" alt="Alfajor Batllié Negro" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('batllie-negro.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/batllie-negro-1790013939.jpg')); ?>" alt="Alfajor Batllié Negro" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
 
@@ -926,7 +955,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">2- CHOCOLATE BLANCO: EL CONTRASTE DEFINITIVO</div>
                             <p class="batllie-cata-alfajor-text">EL CUERPO EMBLEMÁTICO DE CACAO Y COÑAC SE UNE AL DULCE DE LECHE, ENCONTRANDO SU CONTRAPARTE PERFECTA EN UNA NOBLE CAPA DE CHOCOLATE BLANCO DE PUREZA ABSOLUTA.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/chocolate-blanco-1790013939.jpg'); ?>" alt="Alfajor Chocolate Blanco" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('chocolate-blanco.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/chocolate-blanco-1790013939.jpg')); ?>" alt="Alfajor Chocolate Blanco" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
 
@@ -934,7 +963,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">3- CAFÉ SUIZO: UN HOMENAJE AL TIEMPO</div>
                             <p class="batllie-cata-alfajor-text">UN PERFIL DONDE EL PROTAGONISMO SE DESPLAZA HACIA NOTAS ACENTUADAS DE CAFÉ DE AUTOR EN LAS TAPAS, UN NÚCLEO CREMOSO DE DULCE DE LECHE Y LA DENSIDAD CELESTIAL DE UN MERENGUE SUIZO ESTACIONADO DURANTE 48 HORAS PARA ALCANZAR SU TEXTURA IDEAL.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/cafe-suizo-1790013939.jpg'); ?>" alt="Alfajor Café Suizo" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('cafe-suizo.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/cafe-suizo-1790013939.jpg')); ?>" alt="Alfajor Café Suizo" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
                     </div>
@@ -950,7 +979,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">1- CHOCOLATE INTENSO: LA OSCURIDAD ELEGANTE</div>
                             <p class="batllie-cata-alfajor-text">LA MÁXIMA EXPRESIÓN DE NUESTRO CUERPO DE CACAO IMPREGNADO EN COÑAC, LLEVADO AL LÍMITE CON UN BAÑO SEMI AMARGO DE CARÁCTER INQUEBRANTABLE QUE PROFUNDIZA EL SABOR.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/chocolate-intenso-1790013939.jpg'); ?>" alt="Alfajor Chocolate Intenso" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('chocolate-intenso.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/chocolate-intenso-1790013939.jpg')); ?>" alt="Alfajor Chocolate Intenso" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
 
@@ -958,7 +987,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">2- NUEZ: LA FUERZA DE LA TIERRA</div>
                             <p class="batllie-cata-alfajor-text">UNA PIEZA QUE ROMPE ESQUEMAS CON SU MASA RÚSTICA DE ALGARROBA, ABUNDANTES TROZOS DE NUEZ Y UN SUTIL ESPÍRITU DE WHISKY, UNIDA AL DULCE DE LECHE Y PROTEGIDA POR UNA MANTA DE CHOCOLATE BLANCO.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/nuez-1790013939.jpg'); ?>" alt="Alfajor Nuez" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('nuez.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/nuez-1790013939.jpg')); ?>" alt="Alfajor Nuez" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
 
@@ -966,7 +995,7 @@ if (!function_exists('batllie_cata_shortcode')) {
                             <div class="batllie-cata-alfajor-name">3- MOUSSE NUTELLA: EL EXCESO SOFISTICADO</div>
                             <p class="batllie-cata-alfajor-text">SOBRE NUESTRA BASE DE CACAO Y COÑAC SE DESPLIEGA UNA MOUSSE DE CHOCOLATE DE TEXTURA IMPOSIBLE, QUE ESCONDE EN SU CENTRO UN CORAZÓN DESBORDANTE DE NUTELLA BAJO UN MANTO SEMI AMARGO.</p>
                             <div class="batllie-cata-alfajor-img-wrap">
-                                <img src="<?php echo esc_url('https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mousse-nutella-1790013939.jpg'); ?>" alt="Alfajor Mousse Nutella" class="batllie-cata-alfajor-img" />
+                                <img src="<?php echo esc_url($asset('mousse-nutella.jpg', 'https://empralidad.com.ar/batllie/wp-content/uploads/2026/09/mousse-nutella-1790013939.jpg')); ?>" alt="Alfajor Mousse Nutella" class="batllie-cata-alfajor-img" />
                             </div>
                         </div>
                     </div>
