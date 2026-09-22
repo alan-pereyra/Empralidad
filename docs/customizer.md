@@ -17,6 +17,7 @@ Configura la apariencia visual transversal a todo el sitio:
 | `emp_components_notice_text` | Texto/HTML | Contenido del aviso superior (promociones, envíos, etc.). |
 | `emp_components_notice_background` | Color | Color de fondo de la barra de anuncio. |
 | `emp_components_notice_color` | Color | Color del texto de la barra de anuncio. |
+| `emp_components_notice_icon_color` | Color | Color de los iconos de la barra de anuncio superior. |
 | `emp_components_nav_logo` | Imagen | Logotipo principal mostrado en la barra de navegación. |
 | `emp_components_nav_home` | URL | URL personalizada para el clic en el logotipo (por defecto `home_url()`). |
 | `emp_components_nav_search` | Booleano | Activa el botón de búsqueda en la barra superior y móvil. |

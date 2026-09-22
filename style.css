@@ -155,7 +155,7 @@ label {
 }
 .emp-top-notice-icon,
 #top-notice i.emp-top-notice-icon{
-	color: var(--emp-nav-color-accent, var(--emp-btn-bg)) !important;
+	color: var(--emp-notice-icon-color, var(--emp-nav-color-accent, var(--emp-btn-bg))) !important;
 	display: inline-block;
 	font-size: 13px;
 	line-height: 1;
@@ -163,8 +163,8 @@ label {
 }
 #top-notice.has-neon .emp-top-notice-icon,
 #top-notice.has-neon i.emp-top-notice-icon{
-	filter: drop-shadow(0 0 6px var(--emp-nav-color-accent, var(--emp-btn-bg)));
-	text-shadow: 0 0 8px var(--emp-nav-color-accent, var(--emp-btn-bg));
+	filter: drop-shadow(0 0 6px var(--emp-notice-icon-color, var(--emp-nav-color-accent, var(--emp-btn-bg))));
+	text-shadow: 0 0 8px var(--emp-notice-icon-color, var(--emp-nav-color-accent, var(--emp-btn-bg)));
 }
 .emp-top-notice-text{
 	color: var(--emp-notice-color);

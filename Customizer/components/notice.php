@@ -192,4 +192,17 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_co
   'settings'=> 'emp_components_notice_color'
 
 )));
+// Icon color
+$wp_customize->add_setting('emp_components_notice_icon_color', array(
+  'default'           => '',
+  'trasnport'         => 'refresh',
+  'sanitize_callback' => 'sanitize_string'
+));
+
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_components_notice_icon_color_control', array(
+  'label'   => __('Color de íconos', 'empralidad'),
+  'section' => 'emp_section_components_notice',
+  'settings'=> 'emp_components_notice_icon_color'
+
+)));
 ?>

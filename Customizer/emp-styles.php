@@ -3,6 +3,7 @@
   /* Notice */
   --emp-notice-bg : <?php echo get_theme_mod('emp_components_notice_background'); ?>;
   --emp-notice-color: <?php echo get_theme_mod('emp_components_notice_color'); ?>;
+  --emp-notice-icon-color: <?php echo get_theme_mod('emp_components_notice_icon_color') ? get_theme_mod('emp_components_notice_icon_color') : 'var(--emp-nav-color-accent, var(--emp-btn-bg))'; ?>;
   /* Nav */
   --emp-nav-bg: <?php echo get_theme_mod('emp_components_nav_background'); ?>;
   --emp-nav-bg-mobile: <?php echo get_theme_mod('emp_components_nav_background_mobile'); ?>;
