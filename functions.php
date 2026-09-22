@@ -558,4 +558,3 @@ function emp_variable_product_price_from( $price, $product ) {
 
 	return $price;
 }
-?>
