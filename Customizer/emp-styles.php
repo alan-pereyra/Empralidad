@@ -489,6 +489,7 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
 /* WooCommerce Single Product Tabs & Additional Info Custom Colors */
 .woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel {
   background: var(--emp-woocommerce-tabs-bg) !important;
+  box-shadow: none !important;
   color: var(--emp-woocommerce-tabs-color) !important;
 }
 
@@ -504,13 +505,33 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
 .woocommerce-Tabs-panel--additional_information h2,
 .woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel h2,
 .woocommerce-Reviews-title,
-.woocommerce-tabs .comment-reply-title {
+.woocommerce-tabs .comment-reply-title,
+.woocommerce-tabs .woocommerce-noreviews,
+.woocommerce-tabs .comment-form-rating label,
+.woocommerce-tabs .comment-form-comment label,
+.woocommerce-tabs .comment-form-author label,
+.woocommerce-tabs .comment-form-email label,
+.woocommerce-tabs .comment-notes,
+.woocommerce-tabs label,
+.woocommerce-tabs p,
+.woocommerce-tabs span:not(.onsale),
+.woocommerce-tabs p.stars a,
+.woocommerce-tabs p.stars a::before,
+.woocommerce-tabs ol.commentlist li.review .meta,
+.woocommerce-tabs ol.commentlist li.review .meta strong,
+.woocommerce-tabs ol.commentlist li.review .description {
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce-tabs p.stars a:hover ~ a::before,
+.woocommerce-tabs p.stars.selected a.active ~ a::before {
   color: var(--emp-woocommerce-tabs-color) !important;
 }
 
 .woocommerce table.shop_attributes,
 table.woocommerce-product-attributes.shop_attributes {
   border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: none !important;
 }
 
 .woocommerce table.shop_attributes th {
