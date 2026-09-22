@@ -1736,6 +1736,9 @@ section .card-block p {
 .mw-600-px{
 	max-width: 600px;
 }
+.mw-1200-px{
+	max-width: 1200px;
+}
 .mb-180px{
 	margin-bottom: 180px
 }
@@ -1791,6 +1794,7 @@ section .card-block p {
 	}
 }
 @media (min-width: 992px){
+	.mw-1200-px,
 	.mw-1200px{
 		margin-left: auto;
 		margin-right: auto;
@@ -5828,5 +5832,18 @@ li .cfvsw_variations_form {
 	}
 }
 
-
-
+/* WooCommerce Cart Page Container & Spacing */
+.woocommerce-cart article,
+.woocommerce-cart article > div.container-fluid,
+.woocommerce-cart .entry-content,
+.woocommerce-cart .wc-block-cart,
+.woocommerce-cart .wp-block-woocommerce-cart {
+	margin-bottom: 0 !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	max-width: 1200px !important;
+}
+.woocommerce-cart .btn.container-fluid.invisible {
+	display: none !important;
+	margin: 0 !important;
+}

@@ -22,13 +22,15 @@
   </div>
 </header>
 <div id="first-content-page" class="admin-bar-show categories-active"></div>
-<article class="color-content bg-content p-md-0 rounded-0">
-  <div class="container-fluid p-0 overflow-hidden">
+<article class="color-content bg-content p-md-0 rounded-0<?php if ( function_exists('is_cart') && is_cart() ) { echo ' mw-1200-px mb-0'; } ?>"<?php if ( function_exists('is_cart') && is_cart() ) { echo ' style="margin-bottom: 0 !important;"'; } ?>>
+  <div class="container-fluid p-0 overflow-hidden<?php if ( function_exists('is_cart') && is_cart() ) { echo ' mw-1200-px mb-0'; } ?>"<?php if ( function_exists('is_cart') && is_cart() ) { echo ' style="margin-bottom: 0 !important;"'; } ?>>
     <?php
     if ( have_posts() ) {
       while ( have_posts() ) {
         the_post(); the_content(); ?>
-        <span class="btn container-fluid invisible"></span>
+        <?php if ( !(function_exists('is_cart') && is_cart()) ) { ?>
+          <span class="btn container-fluid invisible"></span>
+        <?php } ?>
       <?php }
     }
     if ( comments_open() || get_comments_number() ) {

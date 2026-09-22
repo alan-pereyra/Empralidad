@@ -140,7 +140,7 @@
           if(class_exists('WooCommerce') && $cart_link){ 
             $cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
           ?>
-            <a onclick="showWoocommerceCart();" class="fa fa-shopping-cart mr-4 fadein show-desktop position-relative <?php if ($cart_count > 0) { ?> has-items <?php } ?>">
+            <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="fa fa-shopping-cart mr-4 fadein show-desktop position-relative <?php if ($cart_count > 0) { ?> has-items <?php } ?>">
               <small class="woo-counter-cart-number-desktop icon-color <?php if ($cart_count <= 0) { ?> d-none <?php } ?>">
                 <div id="mini-cart-count" class="emp-mini-cart-count"><?php echo $cart_count; ?></div>
               </small>
