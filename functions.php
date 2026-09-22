@@ -303,6 +303,14 @@ if (class_exists('WooCommerce')){
     );
   }
   add_filter( 'woocommerce_loop_add_to_cart_link', 'emp_loop_add_to_cart_button', 10, 3 );
+
+  // Toggle sale badge based on Customizer setting
+  add_filter( 'woocommerce_sale_flash', function( $html ) {
+    if ( ! get_theme_mod( 'emp_woocommerce_show_sale_badge', true ) ) {
+      return '';
+    }
+    return $html;
+  } );
 }
 
 // Add custom field on woocommerce page

@@ -36,6 +36,12 @@
   /* Woocommerce color */
   --emp-woocommerce-color: <?php echo get_theme_mod('emp_woocommerce_color'); ?>;
   --emp-woocommerce-bg: <?php echo get_theme_mod('emp_woocommerce_bg'); ?>;
+  --emp-woocommerce-product-price-size: <?php echo get_theme_mod('emp_woocommerce_product_price_size', 36); ?>px;
+  --emp-woocommerce-product-desc-size: <?php echo get_theme_mod('emp_woocommerce_product_desc_size', 15); ?>px;
+  --emp-woocommerce-tabs-bg: <?php echo get_theme_mod('emp_woocommerce_tabs_bg', '#000000'); ?>;
+  --emp-woocommerce-tabs-color: <?php echo get_theme_mod('emp_woocommerce_tabs_color', '#ffffff'); ?>;
+  --emp-slider-badges-icon-color: <?php echo get_theme_mod('emp_slider_badges_icon_color') ? get_theme_mod('emp_slider_badges_icon_color') : 'var(--emp-nav-color)'; ?>;
+  --emp-slider-badges-text-color: <?php echo get_theme_mod('emp_slider_badges_text_color') ? get_theme_mod('emp_slider_badges_text_color') : 'var(--emp-nav-color)'; ?>;
 }
 
 /* backgrounds */
@@ -461,6 +467,82 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
        url('<?php echo get_template_directory_uri(). '/includes/fonts/quarca/Quarca-ExtLig'?>.woff') format('woff'),
        url('<?php echo get_template_directory_uri(). '/includes/fonts/quarca/Quarca-ExtLig'?>.ttf') format('truetype'),
        url('<?php echo get_template_directory_uri(). '/includes/fonts/quarca/Quarca-ExtLig'?>.svg#open-sans') format('svg');
+}
+
+/* WooCommerce Single Product Adaptable Price & Description */
+.woocommerce div.product p.price,
+.summary.entry-summary p.price,
+.woocommerce div.product p.price ins,
+.summary.entry-summary p.price ins,
+.woocommerce div.product p.price ins bdi,
+.summary.entry-summary p.price ins bdi,
+.woocommerce div.product p.price > span.amount,
+.woocommerce div.product p.price > span.amount bdi {
+  font-size: clamp(calc(var(--emp-woocommerce-product-price-size) * 0.72), 5vw, var(--emp-woocommerce-product-price-size)) !important;
+}
+
+.woocommerce div.product .woocommerce-product-details__short-description,
+.woocommerce div.product .woocommerce-product-details__short-description p {
+  font-size: clamp(calc(var(--emp-woocommerce-product-desc-size) * 0.85), 3.2vw, var(--emp-woocommerce-product-desc-size)) !important;
+}
+
+/* WooCommerce Single Product Tabs & Additional Info Custom Colors */
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel {
+  background: var(--emp-woocommerce-tabs-bg) !important;
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+  background: var(--emp-woocommerce-tabs-bg) !important;
+  border-color: var(--emp-woocommerce-tabs-bg) !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce-Tabs-panel--additional_information h2,
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel h2,
+.woocommerce-Reviews-title,
+.woocommerce-tabs .comment-reply-title {
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce table.shop_attributes,
+table.woocommerce-product-attributes.shop_attributes {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.woocommerce table.shop_attributes th {
+  color: var(--emp-woocommerce-tabs-color) !important;
+  opacity: 0.85 !important;
+}
+
+.woocommerce table.shop_attributes td,
+.woocommerce table.shop_attributes td p {
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+/* WooCommerce Sale Badge Visibility */
+<?php if (!get_theme_mod('emp_woocommerce_show_sale_badge', true)) { ?>
+.woocommerce span.onsale,
+.woocommerce-page ul.products li.product .onsale,
+.product span.onsale,
+.single-product div.product .onsale {
+  display: none !important;
+}
+<?php } ?>
+
+/* Slider Trust Badges Custom Colors */
+.emp-trust-badge-icon,
+i.fas.emp-trust-badge-icon,
+i.fab.emp-trust-badge-icon,
+i.fa.emp-trust-badge-icon {
+  color: var(--emp-slider-badges-icon-color) !important;
+}
+
+.emp-trust-badge-text {
+  color: var(--emp-slider-badges-text-color) !important;
 }
 
 </style>

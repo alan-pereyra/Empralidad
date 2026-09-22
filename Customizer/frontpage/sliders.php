@@ -36,6 +36,30 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_slider_b
   'type'        => 'checkbox'
 )));
 
+// Color de los iconos bajo el slider
+$wp_customize->add_setting('emp_slider_badges_icon_color', array(
+  'default'           => '',
+  'transport'         => 'refresh',
+  'sanitize_callback' => 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_slider_badges_icon_color_control', array(
+  'label'    => __('Color de los iconos bajo el slider', 'empralidad'),
+  'section'  => 'emp_section_slider',
+  'settings' => 'emp_slider_badges_icon_color'
+)));
+
+// Color del texto bajo el slider
+$wp_customize->add_setting('emp_slider_badges_text_color', array(
+  'default'           => '',
+  'transport'         => 'refresh',
+  'sanitize_callback' => 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_slider_badges_text_color_control', array(
+  'label'    => __('Color del texto bajo el slider', 'empralidad'),
+  'section'  => 'emp_section_slider',
+  'settings' => 'emp_slider_badges_text_color'
+)));
+
 $emp_badge_icon_choices = array(
   ''                      => __('---- Ninguno ----', 'empralidad'),
   'fas fa-truck'          => __('Camión de envío (fa-truck)', 'empralidad'),
