@@ -5102,14 +5102,13 @@ li .cfvsw_variations_form {
 .woocommerce-tabs .comment-form input[type="text"],
 .woocommerce-tabs .comment-form input[type="email"],
 .woocommerce-tabs .comment-form textarea {
-	background: var(--emp-woocommerce-color) !important;
-	border: 1px solid var(--emp-woocommerce-bg) !important;
+	background: var(--emp-woocommerce-tabs-bg) !important;
+	border: 1px solid var(--emp-woocommerce-tabs-color) !important;
 	border-radius: 12px !important;
 	box-sizing: border-box !important;
-	color: var(--emp-woocommerce-bg) !important;
+	color: var(--emp-woocommerce-tabs-color) !important;
 	font-size: 14px !important;
 	line-height: 1.5 !important;
-	opacity: 0.9 !important;
 	outline: none !important;
 	padding: 12px 14px !important;
 	transition: border-color 0.2s ease, opacity 0.2s ease !important;
@@ -5120,6 +5119,11 @@ li .cfvsw_variations_form {
 .woocommerce-tabs .comment-form textarea:focus {
 	border-color: var(--emp-btn-bg) !important;
 	opacity: 1 !important;
+}
+.woocommerce-tabs .comment-form input::placeholder,
+.woocommerce-tabs .comment-form textarea::placeholder {
+	color: var(--emp-woocommerce-tabs-color) !important;
+	opacity: 0.6 !important;
 }
 .woocommerce-tabs .comment-form textarea {
 	min-height: 120px !important;
@@ -5155,14 +5159,16 @@ li .cfvsw_variations_form {
 	padding: 0 !important;
 }
 .woocommerce-tabs ol.commentlist li.review {
-	background: var(--emp-woocommerce-color) !important;
+	background: var(--emp-woocommerce-tabs-bg) !important;
+	border: 1px solid var(--emp-woocommerce-tabs-color) !important;
 	border-radius: 14px !important;
 	box-sizing: border-box !important;
+	color: var(--emp-woocommerce-tabs-color) !important;
 	margin-bottom: 16px !important;
-	opacity: 0.95 !important;
 	padding: 16px 18px !important;
 }
 .woocommerce-tabs ol.commentlist li.review .avatar {
+	border: 1px solid var(--emp-woocommerce-tabs-color) !important;
 	border-radius: 50% !important;
 	margin-right: 12px !important;
 }

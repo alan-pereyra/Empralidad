@@ -532,6 +532,30 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
   color: var(--emp-woocommerce-tabs-color) !important;
 }
 
+.woocommerce-tabs ol.commentlist li.review,
+.woocommerce #reviews #comments ol.commentlist li {
+  background: var(--emp-woocommerce-tabs-bg) !important;
+  border: 1px solid var(--emp-woocommerce-tabs-color) !important;
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce-tabs ol.commentlist li.review .avatar {
+  border: 1px solid var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce-tabs .comment-form input[type="text"],
+.woocommerce-tabs .comment-form input[type="email"],
+.woocommerce-tabs .comment-form textarea {
+  background: var(--emp-woocommerce-tabs-bg) !important;
+  border: 1px solid var(--emp-woocommerce-tabs-color) !important;
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
+.woocommerce-tabs .comment-form input::placeholder,
+.woocommerce-tabs .comment-form textarea::placeholder {
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
 .woocommerce table.shop_attributes,
 table.woocommerce-product-attributes.shop_attributes {
   border-color: rgba(255, 255, 255, 0.15) !important;
