@@ -3816,6 +3816,24 @@ figcaption::-webkit-scrollbar {
 	margin: 0 auto 16px auto !important;
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
+@media (max-width: 991px) {
+	.woocommerce-variation-add-to-cart {
+		align-items: center !important;
+		display: flex !important;
+		flex-direction: column !important;
+		justify-content: center !important;
+		margin: 0 auto 24px auto !important;
+		text-align: center !important;
+		width: 100% !important;
+	}
+	.woocommerce-variation-add-to-cart .quantity.emp-quantity-stepper {
+		display: inline-flex !important;
+		margin: 0 auto 16px auto !important;
+	}
+	.woocommerce-variation-add-to-cart .single_add_to_cart_button {
+		width: 100% !important;
+	}
+}
 .emp-quantity-stepper .emp-qty-btn {
 	display: flex !important;
 	align-items: center !important;
@@ -4010,8 +4028,88 @@ a.button.wc-forward {
 	width: 100%
 }
 .woocommerce-variation.single_variation {
-	text-align: center;
-	font-size: 40px
+	align-items: center !important;
+	display: flex !important;
+	flex-direction: column !important;
+	font-size: inherit !important;
+	justify-content: center !important;
+	margin: 0 auto 16px auto !important;
+	text-align: center !important;
+	width: 100% !important;
+}
+.woocommerce-variation-price {
+	align-items: center !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	margin: 0 auto !important;
+	text-align: center !important;
+	width: 100% !important;
+}
+.woocommerce-variation-price .price {
+	align-items: center !important;
+	color: var(--emp-woocommerce-color, #111111) !important;
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 2px !important;
+	justify-content: center !important;
+	line-height: 1.2 !important;
+	text-align: center !important;
+}
+.woocommerce-variation-price del {
+	color: #888888 !important;
+	display: inline-block !important;
+	font-size: 15px !important;
+	font-weight: 500 !important;
+	line-height: 1.2 !important;
+	margin: 0 auto !important;
+	opacity: 0.75 !important;
+	text-decoration: line-through !important;
+}
+.woocommerce-variation-price del bdi,
+.woocommerce-variation-price del .amount {
+	color: #888888 !important;
+	font-size: 15px !important;
+	font-weight: 500 !important;
+	text-decoration: line-through !important;
+}
+.woocommerce-variation-price del bdi::before {
+	content: none !important;
+}
+.woocommerce-variation-price ins {
+	color: var(--emp-woocommerce-color, #111111) !important;
+	display: inline-block !important;
+	font-size: 28px !important;
+	font-weight: 800 !important;
+	line-height: 1.15 !important;
+	margin: 0 auto !important;
+	text-decoration: none !important;
+}
+.woocommerce-variation-price ins bdi,
+.woocommerce-variation-price ins .amount,
+.woocommerce-variation-price > span.price > span.amount,
+.woocommerce-variation-price > span.price > span.amount bdi {
+	color: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	text-decoration: none !important;
+}
+.emp-variation-save-badge {
+	align-items: center !important;
+	background: #daf5e6 !important;
+	border-radius: 999px !important;
+	box-sizing: border-box !important;
+	color: #187a41 !important;
+	display: inline-flex !important;
+	font-size: 14px !important;
+	font-weight: 700 !important;
+	gap: 4px !important;
+	justify-content: center !important;
+	line-height: 1 !important;
+	margin: 6px auto 0 auto !important;
+	padding: 4px 12px !important;
+	text-align: center !important;
+	width: fit-content !important;
 }
 a.faded.shipping-calculator-button {
 	color: #515151 !important;

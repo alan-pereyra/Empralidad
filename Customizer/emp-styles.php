@@ -477,7 +477,11 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
 .woocommerce div.product p.price ins bdi,
 .summary.entry-summary p.price ins bdi,
 .woocommerce div.product p.price > span.amount,
-.woocommerce div.product p.price > span.amount bdi {
+.woocommerce div.product p.price > span.amount bdi,
+.woocommerce-variation-price ins,
+.woocommerce-variation-price ins bdi,
+.woocommerce-variation-price > span.price > span.amount,
+.woocommerce-variation-price > span.price > span.amount bdi {
   font-size: clamp(calc(var(--emp-woocommerce-product-price-size) * 0.72), 5vw, var(--emp-woocommerce-product-price-size)) !important;
 }
 

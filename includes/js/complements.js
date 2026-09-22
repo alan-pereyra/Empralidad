@@ -546,14 +546,51 @@ function initCategoriesStyle2() {
   }
 }
 
+// Variable product dynamic savings badge ("Ahorra $ X")
+function initVariationPriceSavings() {
+  if (typeof jQuery === 'undefined') return;
+
+  jQuery(document).on('found_variation', 'form.variations_form', function(event, variation) {
+    var $form = jQuery(this);
+    var $price = $form.find('.woocommerce-variation-price');
+    $price.find('.emp-variation-save-badge').remove();
+
+    if (variation && variation.display_regular_price && variation.display_price) {
+      var regularPrice = parseFloat(variation.display_regular_price);
+      var salePrice = parseFloat(variation.display_price);
+      var diff = regularPrice - salePrice;
+
+      if (diff > 0) {
+        var symbol = '$';
+        var $curr = $price.find('.woocommerce-Price-currencySymbol').first();
+        if ($curr.length && $curr.text().trim()) {
+          symbol = $curr.text().trim();
+        }
+        var formatted = diff.toLocaleString('es-AR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        var badge = jQuery('<span class="emp-variation-save-badge">Ahorra ' + symbol + ' ' + formatted + '</span>');
+        $price.append(badge);
+      }
+    }
+  });
+
+  jQuery(document).on('reset_data', 'form.variations_form', function() {
+    jQuery(this).find('.emp-variation-save-badge').remove();
+  });
+}
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     categoriesCarousel();
     initCategoriesStyle2();
+    initVariationPriceSavings();
   });
 } else {
   categoriesCarousel();
   initCategoriesStyle2();
+  initVariationPriceSavings();
 }
 
 // Search woocommerce products by custom filters
