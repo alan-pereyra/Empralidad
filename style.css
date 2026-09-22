@@ -2324,10 +2324,21 @@ div#first-content-home.categories-active{
 }
 
 /* -----------------------------------------16)Social-------------------------------------- */
+.fab.fa-tiktok::before,
+.fa-tiktok::before {
+	background-color: currentColor !important;
+	content: "" !important;
+	display: inline-block !important;
+	height: 1em !important;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='currentColor' d='M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z'/%3E%3C/svg%3E") no-repeat center / contain !important;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='currentColor' d='M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z'/%3E%3C/svg%3E") no-repeat center / contain !important;
+	vertical-align: -0.125em !important;
+	width: 1em !important;
+}
 #emp-social-buttons{
 	align-items: center;
 	background: var(--emp-btn-bg);
-	color: var(--emp-btn-color);
+	color: var(--emp-footer-color);
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -2338,6 +2349,7 @@ div#first-content-home.categories-active{
 	text-align: center;
 }
 #emp-social-buttons span{
+	color: var(--emp-footer-color) !important;
 	font-size: clamp(18px, 2.5vw, 24px);
 	font-weight: 600;
 	line-height: 1.2;
@@ -2356,6 +2368,7 @@ div#first-content-home.categories-active{
 }
 #emp-social-buttons a.fa, #emp-social-buttons a.fab{
 	align-items: center;
+	color: var(--emp-footer-color) !important;
 	display: inline-flex;
 	font-size: clamp(20px, 2.5vw, 26px);
 	height: auto;
