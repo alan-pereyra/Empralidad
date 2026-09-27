@@ -55,8 +55,8 @@
     <?php
     $nav_has_neon = get_theme_mod('emp_components_nav_neon', true);
     $nav_neon_class = (!empty($nav_has_neon) && $nav_has_neon !== '0' && $nav_has_neon !== 0) ? 'has-neon' : '';
-    $cart_link = get_theme_mod('emp_components_nav_cart');
-    $has_product_search = (class_exists('WooCommerce') && $cart_link);
+    $search_link = get_theme_mod('emp_components_nav_search');
+    $has_product_search = !empty($search_link);
     ?>
     <!-- navbar -->
       <div id="navbar-background" class="sticky-top empFadeInBottom <?php echo esc_attr($nav_neon_class); ?> <?php if( is_admin_bar_showing() ){ ?> admin-fixed-top <?php } ?> <?php if (get_theme_mod('emp_slider_image1')||get_theme_mod('emp_slider_image2')||get_theme_mod('emp_slider_image3')||get_theme_mod('emp_slider_desktop_image1')||get_theme_mod('emp_slider_desktop_image2')||get_theme_mod('emp_slider_desktop_image3')) { ?>hover<?php }?>" style="z-index:1032;">
@@ -83,11 +83,13 @@
 	        <!-- end if logo -->
           <?php if ($has_product_search) { ?>
             <form role="search" method="get" class="emp-header-search-form" action="<?php echo esc_url(home_url('/')); ?>">
-              <input type="search" class="emp-header-search-input" name="s" placeholder="<?php esc_attr_e('Buscar Productos...', 'empralidad'); ?>" value="<?php echo get_search_query(); ?>" autocomplete="off" />
-              <input type="hidden" name="post_type" value="product" />
+              <input type="search" class="emp-header-search-input" name="s" placeholder="<?php echo class_exists('WooCommerce') ? esc_attr__('Buscar Productos...', 'empralidad') : esc_attr__('Buscar...', 'empralidad'); ?>" value="<?php echo get_search_query(); ?>" autocomplete="off" />
+              <?php if (class_exists('WooCommerce')) { ?>
+                <input type="hidden" name="post_type" value="product" />
+              <?php } ?>
             </form>
           <?php } ?>
-          <?php $search_link = get_theme_mod('emp_components_nav_search');
+          <?php
           $search_icon = '';
           if ($search_link){
              $search_icon = '<div class="collapse d-inline ml-auto show-from-md" id="btn-search-desktop">
