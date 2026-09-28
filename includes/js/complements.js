@@ -379,11 +379,13 @@ function categoriesCarousel() {
     var maxIndex = getMaxIndex();
     if (maxIndex <= 0) {
       track.style.transform = 'translateX(0px)';
+      track.classList.add('is-centered');
       stopTimer();
       if (prevBtn) prevBtn.style.visibility = 'hidden';
       if (nextBtn) nextBtn.style.visibility = 'hidden';
       return;
     } else {
+      track.classList.remove('is-centered');
       if (!isMobile()) {
         if (prevBtn) prevBtn.style.visibility = 'visible';
         if (nextBtn) nextBtn.style.visibility = 'visible';

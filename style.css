@@ -3746,11 +3746,15 @@ h2.woocommerce-loop-product__title {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	justify-content: safe center;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	transition: transform 0.45s ease-in-out;
 	width: 100%;
+}
+.emp-categories-track.is-centered {
+	justify-content: center;
 }
 .emp-categories-slide {
 	box-sizing: border-box;
