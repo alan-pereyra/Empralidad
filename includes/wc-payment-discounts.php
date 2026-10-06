@@ -244,3 +244,52 @@ function emp_checkout_review_discount_note() {
         echo '<tr class="emp-checkout-discount-notice"><td colspan="2"><span class="emp-discount-applied-val">✓ ' . sprintf( __( '¡Ahorrás %s abonando con este medio de pago!', 'empralidad' ), wc_price( $discount ) ) . '</span></td></tr>';
     }
 }
+
+/**
+ * Append "(precio de lista)" to cart and checkout item prices
+ */
+add_filter( 'woocommerce_cart_item_subtotal', 'emp_filter_cart_item_subtotal_list_label', 25, 3 );
+function emp_filter_cart_item_subtotal_list_label( $subtotal_html, $cart_item, $cart_item_key ) {
+    if ( is_admin() && ! wp_doing_ajax() ) {
+        return $subtotal_html;
+    }
+    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
+        return $subtotal_html;
+    }
+    if ( strpos( $subtotal_html, 'precio de lista' ) !== false ) {
+        return $subtotal_html;
+    }
+
+    $badge = ' <span class="emp-cart-item-list-price">(' . esc_html__( 'precio de lista', 'empralidad' ) . ')</span>';
+    return $subtotal_html . $badge;
+}
+
+add_filter( 'woocommerce_cart_item_price', 'emp_filter_cart_item_price_list_label', 25, 3 );
+function emp_filter_cart_item_price_list_label( $price_html, $cart_item, $cart_item_key ) {
+    if ( is_admin() && ! wp_doing_ajax() ) {
+        return $price_html;
+    }
+    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
+        return $price_html;
+    }
+    if ( strpos( $price_html, 'precio de lista' ) !== false ) {
+        return $price_html;
+    }
+
+    $badge = ' <span class="emp-cart-item-list-price">(' . esc_html__( 'precio de lista', 'empralidad' ) . ')</span>';
+    return $price_html . $badge;
+}
+
+add_filter( 'woocommerce_order_formatted_line_subtotal', 'emp_filter_order_line_subtotal_list_label', 25, 3 );
+function emp_filter_order_line_subtotal_list_label( $subtotal, $item, $order ) {
+    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
+        return $subtotal;
+    }
+    if ( strpos( $subtotal, 'precio de lista' ) !== false ) {
+        return $subtotal;
+    }
+
+    $badge = ' <span class="emp-cart-item-list-price">(' . esc_html__( 'precio de lista', 'empralidad' ) . ')</span>';
+    return $subtotal . $badge;
+}
+
