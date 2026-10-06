@@ -3,12 +3,13 @@
  * WooCommerce Payment Methods List Price & Discount Display Component
  *
  * Implements:
- * - Dynamic list price calculation (base price + X%)
- * - Payment method title badge in checkout:
+ * - Cart product prices reflect list price (base price + X%)
+ * - Qualifying discount gateways receive a discount deduction: "Descuento abonando al contado (X%)"
+ * - Non-discount gateways pay list price directly with no surcharge fee added ("sin descuento")
+ * - Gateway title badges on checkout:
  *   - Discount gateways: "X% de descuento (ya aplicado)"
- *   - Non-discount gateways: "$11.500 (precio de lista sin descuento)"
- * - Cart fee for non-discount payment methods
- * - Order Received (Thank you) & Email summary with list price and discount details
+ *   - Non-discount gateways: "$ [Precio de lista] (sin descuento abonando al contado)"
+ * - Dynamic update on checkout gateway change
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -51,15 +52,130 @@ function emp_get_list_price_discount_percent() {
 }
 
 /**
- * Get base cart total (subtotal + shipping - discounts, without list price fee)
+ * Get the un-augmented pristine base price for a product
  */
-function emp_get_cart_base_total() {
-    if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
-        return 0;
+function emp_get_product_base_price( $product, $cart_item = array() ) {
+    if ( ! $product ) {
+        return 0.0;
     }
-    $cart = WC()->cart;
-    $base = (float) $cart->get_subtotal() + (float) $cart->get_shipping_total() - (float) $cart->get_discount_total();
-    return ( $base > 0 ) ? $base : 0;
+
+    // If cached in cart item, return it
+    if ( ! empty( $cart_item['emp_base_price'] ) && is_numeric( $cart_item['emp_base_price'] ) ) {
+        return (float) $cart_item['emp_base_price'];
+    }
+
+    $product_id = $product->get_id();
+    $price_meta = get_post_meta( $product_id, '_price', true );
+    if ( $price_meta !== '' && is_numeric( $price_meta ) && (float) $price_meta > 0 ) {
+        return (float) $price_meta;
+    }
+
+    $regular_meta = get_post_meta( $product_id, '_regular_price', true );
+    if ( $regular_meta !== '' && is_numeric( $regular_meta ) && (float) $regular_meta > 0 ) {
+        return (float) $regular_meta;
+    }
+
+    return (float) $product->get_price();
+}
+
+/**
+ * Apply list price (base + X%) to cart items
+ */
+add_action( 'woocommerce_before_calculate_totals', 'emp_apply_cart_list_prices', 20, 1 );
+function emp_apply_cart_list_prices( $cart ) {
+    if ( is_admin() && ! wp_doing_ajax() ) {
+        return;
+    }
+    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
+        return;
+    }
+
+    $percent = emp_get_list_price_discount_percent();
+    if ( $percent <= 0 ) {
+        return;
+    }
+
+    foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+        $product = $cart_item['data'];
+        $base_price = emp_get_product_base_price( $product, $cart_item );
+
+        if ( ! isset( $cart->cart_contents[ $cart_item_key ]['emp_base_price'] ) ) {
+            $cart->cart_contents[ $cart_item_key ]['emp_base_price'] = $base_price;
+        }
+
+        if ( $base_price > 0 ) {
+            $list_price = round( $base_price * ( 1 + ( $percent / 100 ) ), 2 );
+            $product->set_price( $list_price );
+        }
+    }
+}
+
+/**
+ * Calculate the total discount amount for cart items
+ */
+function emp_get_cart_discount_amount( $cart ) {
+    if ( ! $cart ) {
+        return 0.0;
+    }
+    $percent = emp_get_list_price_discount_percent();
+    if ( $percent <= 0 ) {
+        return 0.0;
+    }
+
+    $discount_total = 0.0;
+    foreach ( $cart->get_cart() as $cart_item ) {
+        $product = $cart_item['data'];
+        $base_price = emp_get_product_base_price( $product, $cart_item );
+        $quantity = ! empty( $cart_item['quantity'] ) ? (int) $cart_item['quantity'] : 1;
+
+        if ( $base_price > 0 ) {
+            $list_price = round( $base_price * ( 1 + ( $percent / 100 ) ), 2 );
+            $discount_total += ( $list_price - $base_price ) * $quantity;
+        }
+    }
+
+    return round( $discount_total, 2 );
+}
+
+/**
+ * Apply discount fee when a qualifying payment method is selected
+ * Non-qualifying methods do NOT get any fee; they pay the list price without discount ("sin descuento").
+ */
+add_action( 'woocommerce_cart_calculate_fees', 'emp_calculate_payment_discount_fee', 25, 1 );
+function emp_calculate_payment_discount_fee( $cart ) {
+    if ( is_admin() && ! wp_doing_ajax() ) {
+        return;
+    }
+    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
+        return;
+    }
+
+    $percent = emp_get_list_price_discount_percent();
+    if ( $percent <= 0 ) {
+        return;
+    }
+
+    // Determine chosen payment gateway
+    $chosen_gateway = WC()->session->get( 'chosen_payment_method' );
+    if ( empty( $chosen_gateway ) && ! empty( $_POST['payment_method'] ) ) {
+        $chosen_gateway = wc_clean( wp_unslash( $_POST['payment_method'] ) );
+    }
+    if ( empty( $chosen_gateway ) ) {
+        $available = WC()->payment_gateways()->get_available_payment_gateways();
+        if ( ! empty( $available ) ) {
+            $chosen_gateway = current( array_keys( $available ) );
+        }
+    }
+
+    // Apply discount fee only if chosen gateway qualifies
+    if ( $chosen_gateway && emp_is_discount_gateway( $chosen_gateway ) ) {
+        $discount = emp_get_cart_discount_amount( $cart );
+        if ( $discount > 0 ) {
+            $label = sprintf( __( 'Descuento abonando al contado (%s%%)', 'empralidad' ), $percent );
+            $cart->add_fee( $label, -$discount, false );
+        }
+    }
+    // Non-qualifying gateways have no fee added (they pay list price without discount).
 }
 
 /**
@@ -81,7 +197,6 @@ function emp_filter_gateway_title_discount_badge( $title, $gateway_id ) {
     }
 
     $percent = emp_get_list_price_discount_percent();
-    $base_total = emp_get_cart_base_total();
 
     if ( emp_is_discount_gateway( $gateway_id ) ) {
         $badge = sprintf(
@@ -90,55 +205,13 @@ function emp_filter_gateway_title_discount_badge( $title, $gateway_id ) {
         );
         return $title . $badge;
     } else {
-        $increase = round( $base_total * ( $percent / 100 ), 2 );
-        $list_price = $base_total + $increase;
+        $list_total = (float) WC()->cart->get_subtotal() + (float) WC()->cart->get_shipping_total();
         $badge = sprintf(
             ' <span class="emp-gateway-badge emp-gateway-list-badge">%s %s</span>',
-            wc_price( $list_price ),
+            wc_price( $list_total ),
             esc_html__( '(sin descuento abonando al contado)', 'empralidad' )
         );
         return $title . $badge;
-    }
-}
-
-/**
- * Apply list price fee if a non-discount payment gateway is selected
- */
-add_action( 'woocommerce_cart_calculate_fees', 'emp_calculate_list_price_fee', 25, 1 );
-function emp_calculate_list_price_fee( $cart ) {
-    if ( is_admin() && ! wp_doing_ajax() ) {
-        return;
-    }
-    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
-        return;
-    }
-
-    $percent = emp_get_list_price_discount_percent();
-    if ( $percent <= 0 ) {
-        return;
-    }
-
-    // Determine chosen payment method
-    $chosen_gateway = WC()->session->get( 'chosen_payment_method' );
-    if ( empty( $chosen_gateway ) && ! empty( $_POST['payment_method'] ) ) {
-        $chosen_gateway = wc_clean( wp_unslash( $_POST['payment_method'] ) );
-    }
-    if ( empty( $chosen_gateway ) ) {
-        $available = WC()->payment_gateways()->get_available_payment_gateways();
-        if ( ! empty( $available ) ) {
-            $chosen_gateway = current( array_keys( $available ) );
-        }
-    }
-
-    // If chosen gateway does NOT qualify for discount, apply list price fee
-    if ( $chosen_gateway && ! emp_is_discount_gateway( $chosen_gateway ) ) {
-        $base_total = (float) $cart->get_subtotal() + (float) $cart->get_shipping_total() - (float) $cart->get_discount_total();
-        if ( $base_total > 0 ) {
-            $increase = round( $base_total * ( $percent / 100 ), 2 );
-            if ( $increase > 0 ) {
-                $cart->add_fee( __( 'Precio de lista (sin descuento abonando al contado)', 'empralidad' ), $increase, false );
-            }
-        }
     }
 }
 
@@ -150,6 +223,10 @@ function emp_checkout_review_discount_note() {
     if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
         return;
     }
+    if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+        return;
+    }
+
     $chosen_gateway = WC()->session->get( 'chosen_payment_method' );
     if ( empty( $chosen_gateway ) && ! empty( $_POST['payment_method'] ) ) {
         $chosen_gateway = wc_clean( wp_unslash( $_POST['payment_method'] ) );
@@ -160,50 +237,10 @@ function emp_checkout_review_discount_note() {
             $chosen_gateway = current( array_keys( $available ) );
         }
     }
-    $percent = emp_get_list_price_discount_percent();
-    $base_total = emp_get_cart_base_total();
-    $increase = round( $base_total * ( $percent / 100 ), 2 );
-    $list_price = $base_total + $increase;
 
-    if ( emp_is_discount_gateway( $chosen_gateway ) ) {
-        echo '<tr class="emp-checkout-discount-notice"><td colspan="2"><span class="emp-discount-applied-val">✓ ' . sprintf( __( 'Precio de lista: %s. ¡Ahorrás %s (%s%% OFF) abonando con este medio de pago!', 'empralidad' ), wc_price( $list_price ), wc_price( $increase ), esc_html( $percent ) ) . '</span></td></tr>';
+    $discount = emp_get_cart_discount_amount( WC()->cart );
+
+    if ( emp_is_discount_gateway( $chosen_gateway ) && $discount > 0 ) {
+        echo '<tr class="emp-checkout-discount-notice"><td colspan="2"><span class="emp-discount-applied-val">✓ ' . sprintf( __( '¡Ahorrás %s abonando con este medio de pago!', 'empralidad' ), wc_price( $discount ) ) . '</span></td></tr>';
     }
-}
-
-/**
- * Display list price and discount on Order Received (Thank You) page & emails
- */
-add_filter( 'woocommerce_get_order_item_totals', 'emp_filter_order_item_totals_list_price', 25, 3 );
-function emp_filter_order_item_totals_list_price( $total_rows, $order, $tax_display ) {
-    if ( ! get_theme_mod( 'emp_wc_list_price_discount_enable', false ) ) {
-        return $total_rows;
-    }
-
-    $payment_method = $order->get_payment_method();
-    $percent = emp_get_list_price_discount_percent();
-
-    if ( emp_is_discount_gateway( $payment_method ) ) {
-        $order_total = (float) $order->get_total();
-        $increase = round( $order_total * ( $percent / 100 ), 2 );
-        $list_price = $order_total + $increase;
-
-        $new_rows = array();
-        foreach ( $total_rows as $key => $row ) {
-            if ( $key === 'order_total' ) {
-                $new_rows['emp_list_price'] = array(
-                    'label' => __( 'Precio de lista real:', 'empralidad' ),
-                    'value' => '<del class="emp-list-price-del">' . wc_price( $list_price ) . '</del>'
-                );
-                $new_rows['emp_discount_applied'] = array(
-                    'label' => sprintf( __( 'Descuento (%s%%):', 'empralidad' ), $percent ),
-                    'value' => '<span class="emp-discount-applied-val">-' . wc_price( $increase ) . ' ' . __( '(ya aplicado)', 'empralidad' ) . '</span>'
-                );
-                $row['label'] = __( 'Total abonado:', 'empralidad' );
-            }
-            $new_rows[ $key ] = $row;
-        }
-        return $new_rows;
-    }
-
-    return $total_rows;
 }
