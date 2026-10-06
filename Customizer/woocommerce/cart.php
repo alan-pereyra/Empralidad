@@ -62,11 +62,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
     'label'       => __( 'Filtrar productos por', 'empralidad' ),
     'section'     => 'emp_section_woocommerce_cart',
     'settings'    => 'emp_woocommerce_cart_empty_filter_type',
-    'description' => __( 'Selecciona si deseas mostrar productos por Categoría, Etiqueta o los Más recientes.', 'empralidad' ),
+    'description' => __( 'Selecciona si deseas mostrar productos por Categoría, Etiqueta, Destacados o los Más recientes.', 'empralidad' ),
     'type'        => 'select',
     'choices'     => array(
       'category' => __( 'Categoría', 'empralidad' ),
       'tag'      => __( 'Etiqueta', 'empralidad' ),
+      'featured' => __( 'Productos destacados', 'empralidad' ),
       'recent'   => __( 'Más recientes', 'empralidad' ),
     )
   ));

@@ -4726,6 +4726,17 @@ section.woocommerce-bacs-bank-details {
 	background: var(--emp-woocommerce-color)!important;
 	color: var(--emp-woocommerce-bg)!important;
 }
+.emp-arial-sans,
+section.woocommerce-bacs-bank-details ul.wc-bacs-bank-details li.account_number strong,
+section.woocommerce-bacs-bank-details ul.wc-bacs-bank-details li.account_number span,
+section.woocommerce-bacs-bank-details li.account_number strong,
+section.woocommerce-bacs-bank-details li.account_number span,
+.woocommerce-bacs-bank-details li.account_number strong,
+.woocommerce-bacs-bank-details li.account_number span,
+.wc-bacs-bank-details li.account_number strong,
+.wc-bacs-bank-details li.account_number span {
+	font-family: Arial, Helvetica, sans-serif !important;
+}
 li.woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--edit-address {
 	display: none;
 }

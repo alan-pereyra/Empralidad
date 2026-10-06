@@ -34,6 +34,8 @@ function emp_get_cart_empty_html() {
     $section_heading = '';
     if ( ! empty( $products_title ) ) {
         $section_heading = $products_title;
+    } elseif ( $filter_type === 'featured' ) {
+        $section_heading = __( 'Productos destacados', 'empralidad' );
     } elseif ( $filter_type === 'tag' && ! empty( $tag_slug ) ) {
         $term = get_term_by( 'slug', $tag_slug, 'product_tag' );
         $section_heading = ( $term && ! is_wp_error( $term ) ) ? $term->name : __( 'Productos recomendados', 'empralidad' );
@@ -47,7 +49,9 @@ function emp_get_cart_empty_html() {
     // Generate products HTML
     $products_html = '';
     if ( $show_products && class_exists( 'WooCommerce' ) ) {
-        if ( $filter_type === 'tag' && ! empty( $tag_slug ) ) {
+        if ( $filter_type === 'featured' ) {
+            $products_html = do_shortcode( sprintf( '[products visibility="featured" limit="%d" columns="4"]', $limit ) );
+        } elseif ( $filter_type === 'tag' && ! empty( $tag_slug ) ) {
             $products_html = do_shortcode( sprintf( '[products tag="%s" limit="%d" columns="4"]', esc_attr( $tag_slug ), $limit ) );
         } elseif ( $filter_type === 'category' && ! empty( $category_slug ) ) {
             $products_html = do_shortcode( sprintf( '[products category="%s" limit="%d" columns="4"]', esc_attr( $category_slug ), $limit ) );

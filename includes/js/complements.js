@@ -749,6 +749,17 @@ if (wooBankDetails) {
   wooBankDetailItems.parentNode.insertBefore(p, wooBankDetailItems.nextSibling);
 }
 
+// Apply generic Arial sans-serif class to BACS account number
+function empInitBacsAccountNumberTypography() {
+  let accountNumbers = document.querySelectorAll('.woocommerce-bacs-bank-details li.account_number strong, .woocommerce-bacs-bank-details li.account_number span, .wc-bacs-bank-details li.account_number strong, .wc-bacs-bank-details li.account_number span, li.account_number strong');
+  accountNumbers.forEach(function(el) {
+    el.classList.add('emp-arial-sans');
+  });
+}
+empInitBacsAccountNumberTypography();
+document.addEventListener('DOMContentLoaded', empInitBacsAccountNumberTypography);
+
+
 // Countdown
 function updateTimer() {
   var timer = document.getElementById("timer");

@@ -570,3 +570,14 @@ function emp_variable_product_price_from( $price, $product ) {
 
 	return $price;
 }
+
+/**
+ * Add generic Arial sans-serif class to BACS account number
+ */
+add_filter( 'woocommerce_bacs_account_fields', 'emp_bacs_account_fields_arial', 20, 2 );
+function emp_bacs_account_fields_arial( $fields, $order_id = 0 ) {
+	if ( isset( $fields['account_number'] ) && ! empty( $fields['account_number']['value'] ) ) {
+		$fields['account_number']['value'] = '<span class="emp-arial-sans">' . esc_html( $fields['account_number']['value'] ) . '</span>';
+	}
+	return $fields;
+}
