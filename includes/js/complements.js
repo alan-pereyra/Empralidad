@@ -759,6 +759,15 @@ function empInitBacsAccountNumberTypography() {
 empInitBacsAccountNumberTypography();
 document.addEventListener('DOMContentLoaded', empInitBacsAccountNumberTypography);
 
+// Trigger checkout update when payment method changes to recalculate list price or discount
+if (typeof jQuery !== 'undefined') {
+  jQuery(function($) {
+    $(document.body).on('change', 'input[name="payment_method"]', function() {
+      $('body').trigger('update_checkout');
+    });
+  });
+}
+
 
 // Countdown
 function updateTimer() {

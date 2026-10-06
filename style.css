@@ -4737,6 +4737,37 @@ section.woocommerce-bacs-bank-details li.account_number span,
 .wc-bacs-bank-details li.account_number span {
 	font-family: Arial, Helvetica, sans-serif !important;
 }
+.emp-checkout-discount-notice td {
+	background-color: rgba(46, 125, 50, 0.08);
+	border-radius: 4px;
+	padding: 8px 12px !important;
+	text-align: right;
+}
+.emp-discount-applied-val {
+	color: #2e7d32;
+	font-weight: 600;
+}
+.emp-gateway-badge {
+	border-radius: 4px;
+	display: inline-block;
+	font-size: 0.85em;
+	font-weight: 600;
+	margin-left: 6px;
+	padding: 2px 7px;
+	vertical-align: middle;
+}
+.emp-gateway-discount-badge {
+	background-color: rgba(46, 125, 50, 0.12);
+	color: #2e7d32;
+}
+.emp-gateway-list-badge {
+	background-color: rgba(0, 0, 0, 0.06);
+	color: #444444;
+}
+.emp-list-price-del {
+	color: #888888;
+	text-decoration: line-through;
+}
 li.woocommerce-MyAccount-navigation-link.woocommerce-MyAccount-navigation-link--edit-address {
 	display: none;
 }

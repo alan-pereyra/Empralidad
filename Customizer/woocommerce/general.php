@@ -98,4 +98,85 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocomme
   'settings'=> 'emp_woocommerce_show_sale_badge',
   'type'    => 'checkbox'
 )));
+
+// 1. Activar desglose de precio de lista y descuento por medio de pago
+$wp_customize->add_setting('emp_wc_list_price_discount_enable', array(
+  'default'          => false,
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_wc_list_price_discount_enable_control', array(
+  'label'       => __('Activar desglose de precio de lista y descuento', 'empralidad'),
+  'description' => __('En finalizar compra muestra el precio de lista o el porcentaje de descuento según el medio de pago.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_wc_list_price_discount_enable',
+  'type'        => 'checkbox'
+)));
+
+// 2. Porcentaje de aumento y descuento
+$wp_customize->add_setting('emp_wc_list_price_discount_percent', array(
+  'default'          => 15,
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'absint'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_wc_list_price_discount_percent_control', array(
+  'label'       => __('Porcentaje de lista y descuento (%)', 'empralidad'),
+  'description' => __('Porcentaje de aumento para precio de lista y de descuento para los medios de pago seleccionados (ej: 15).', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_wc_list_price_discount_percent',
+  'type'        => 'number',
+  'input_attrs' => array(
+    'min'  => 1,
+    'max'  => 100,
+    'step' => 1
+  )
+)));
+
+// 3. Aplicar descuento a todos los medios de pago
+$wp_customize->add_setting('emp_wc_discount_all_gateways', array(
+  'default'          => false,
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_wc_discount_all_gateways_control', array(
+  'label'       => __('Aplicar descuento a TODOS los medios de pago', 'empralidad'),
+  'description' => __('Si está marcado, todos los medios de pago tendrán el descuento. Si no, seleccioná abajo cuáles aplican.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_wc_discount_all_gateways',
+  'type'        => 'checkbox'
+)));
+
+// 4. Medios de pago individuales
+$gateways_list = array();
+if ( class_exists( 'WooCommerce' ) && WC()->payment_gateways() ) {
+  $gateways_list = WC()->payment_gateways()->payment_gateways();
+}
+if ( empty( $gateways_list ) ) {
+  $gateways_list = array(
+    'bacs'                   => (object) array( 'id' => 'bacs', 'title' => __( 'Transferencia bancaria directa', 'woocommerce' ) ),
+    'cod'                    => (object) array( 'id' => 'cod',  'title' => __( 'Pago contra entrega (Efectivo)', 'woocommerce' ) ),
+    'cheque'                 => (object) array( 'id' => 'cheque', 'title' => __( 'Pagos por cheque', 'woocommerce' ) ),
+    'woo-mercado-pago-basic' => (object) array( 'id' => 'woo-mercado-pago-basic', 'title' => 'Mercado Pago (Checkout Básico)' ),
+    'woo-mercado-pago-custom'=> (object) array( 'id' => 'woo-mercado-pago-custom', 'title' => 'Mercado Pago (Checkout Personalizado)' ),
+  );
+}
+
+foreach ( $gateways_list as $g_id => $g_obj ) {
+  $g_title = is_object( $g_obj ) && method_exists( $g_obj, 'get_title' ) ? $g_obj->get_title() : ( isset( $g_obj->title ) ? $g_obj->title : $g_id );
+  if ( empty( $g_title ) ) {
+    $g_title = $g_id;
+  }
+  $wp_customize->add_setting( 'emp_wc_discount_gateway_' . $g_id, array(
+    'default'           => ( $g_id === 'bacs' ) ? true : false,
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_string'
+  ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'emp_wc_discount_gateway_' . $g_id . '_control', array(
+    'label'       => sprintf( __( 'Descuento con: %s', 'empralidad' ), $g_title ),
+    'description' => sprintf( __( 'Marcar si aplica descuento con %s (%s).', 'empralidad' ), $g_title, $g_id ),
+    'section'     => 'emp_woocommerce_general',
+    'settings'    => 'emp_wc_discount_gateway_' . $g_id,
+    'type'        => 'checkbox'
+  ) ) );
+}
 ?>
