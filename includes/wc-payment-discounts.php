@@ -95,7 +95,7 @@ function emp_filter_gateway_title_discount_badge( $title, $gateway_id ) {
         $badge = sprintf(
             ' <span class="emp-gateway-badge emp-gateway-list-badge">%s %s</span>',
             wc_price( $list_price ),
-            esc_html__( '(precio de lista sin descuento)', 'empralidad' )
+            esc_html__( '(sin descuento abonando al contado)', 'empralidad' )
         );
         return $title . $badge;
     }
@@ -136,7 +136,7 @@ function emp_calculate_list_price_fee( $cart ) {
         if ( $base_total > 0 ) {
             $increase = round( $base_total * ( $percent / 100 ), 2 );
             if ( $increase > 0 ) {
-                $cart->add_fee( __( 'Precio de lista (sin descuento)', 'empralidad' ), $increase, false );
+                $cart->add_fee( __( 'Precio de lista (sin descuento abonando al contado)', 'empralidad' ), $increase, false );
             }
         }
     }
