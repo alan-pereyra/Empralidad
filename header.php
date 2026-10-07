@@ -10,6 +10,80 @@
     <link rel="apple-touch-icon" href="<?php echo esc_url( get_site_icon_url() ); ?>">
 
     <?php
+    $emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
+    $emp_skeleton_active = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
+
+    if ((is_front_page() || is_home()) && $emp_skeleton_active) {
+      $emp_preload_m_id = get_theme_mod('emp_slider_image1');
+      $emp_preload_d_id = get_theme_mod('emp_slider_desktop_image1');
+      $emp_preload_mobile  = $emp_preload_m_id ? (is_numeric($emp_preload_m_id) ? wp_get_attachment_url($emp_preload_m_id) : $emp_preload_m_id) : '';
+      $emp_preload_desktop = $emp_preload_d_id ? (is_numeric($emp_preload_d_id) ? wp_get_attachment_url($emp_preload_d_id) : $emp_preload_d_id) : '';
+
+      if ($emp_preload_mobile && $emp_preload_desktop) { ?>
+        <link rel="preload" as="image" href="<?php echo esc_url($emp_preload_mobile); ?>" media="(max-width: 768px)" fetchpriority="high">
+        <link rel="preload" as="image" href="<?php echo esc_url($emp_preload_desktop); ?>" media="(min-width: 768.1px)" fetchpriority="high">
+      <?php } elseif ($emp_preload_mobile) { ?>
+        <link rel="preload" as="image" href="<?php echo esc_url($emp_preload_mobile); ?>" fetchpriority="high">
+      <?php } elseif ($emp_preload_desktop) { ?>
+        <link rel="preload" as="image" href="<?php echo esc_url($emp_preload_desktop); ?>" fetchpriority="high">
+      <?php } ?>
+      <style id="emp-skeleton-critical-css">
+        @keyframes empShimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .emp-skeleton-overlay {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+          position: absolute;
+          transition: opacity 0.35s ease, visibility 0.35s ease;
+          width: 100%;
+          z-index: 6;
+        }
+        .emp-skeleton-overlay.emp-skeleton-fade-out {
+          opacity: 0;
+          visibility: hidden;
+        }
+        .emp-skeleton-shimmer {
+          animation: empShimmer 1.6s ease-in-out infinite;
+          background: linear-gradient(90deg, rgba(200, 200, 200, 0.16) 25%, rgba(240, 240, 240, 0.36) 50%, rgba(200, 200, 200, 0.16) 75%);
+          background-size: 200% 100%;
+        }
+        .emp-skeleton-hero {
+          border-radius: 6px;
+          flex: 1;
+          height: 100%;
+          position: relative;
+          width: 100%;
+        }
+        .emp-skeleton-center-icon {
+          align-items: center;
+          color: rgba(140, 140, 140, 0.28);
+          display: flex;
+          font-size: 38px;
+          height: 100%;
+          justify-content: center;
+          pointer-events: none;
+          width: 100%;
+        }
+        #emp-sliders.has-skeleton:not(.is-loaded) {
+          aspect-ratio: 16 / 9;
+          min-height: 380px;
+        }
+        @media (max-width: 768px) {
+          #emp-sliders.has-skeleton:not(.is-loaded) {
+            aspect-ratio: 1 / 1;
+            min-height: 280px;
+          }
+        }
+      </style>
+    <?php }
+
     wp_head();
     echo get_theme_mod('emp_analytics_facebook_script');
     echo get_theme_mod('emp_analytics_google_script');

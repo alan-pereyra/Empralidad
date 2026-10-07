@@ -7,6 +7,22 @@ $wp_customize->add_section('emp_section_slider', array(
 ));
 
 // =============================================
+// ESQUELETO PRELOAD & OPTIMIZACIÓN LCP
+// =============================================
+$wp_customize->add_setting('emp_slider_skeleton_preload', array(
+  'default'           => true,
+  'transport'         => 'refresh',
+  'sanitize_callback' => 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_slider_skeleton_preload_control', array(
+  'label'       => __('Esqueleto Preload y Prioridad LCP', 'empralidad'),
+  'description' => __('Muestra un esqueleto elegante (shimmer) mientras carga la portada y pre-carga la primera imagen para acelerar la velocidad en PageSpeed/LCP.', 'empralidad'),
+  'section'     => 'emp_section_slider',
+  'settings'    => 'emp_slider_skeleton_preload',
+  'type'        => 'checkbox'
+)));
+
+// =============================================
 // BADGES / BENEFICIOS DESTACADOS
 // =============================================
 

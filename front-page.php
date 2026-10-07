@@ -8,19 +8,22 @@ $emp_slider_desktop1 = get_theme_mod('emp_slider_desktop_image1');
 $emp_slider_desktop2 = get_theme_mod('emp_slider_desktop_image2');
 $emp_slider_desktop3 = get_theme_mod('emp_slider_desktop_image3');
 
-$mobile_url1  = $emp_slider1 ? wp_get_attachment_url($emp_slider1) : '';
-$desktop_url1 = $emp_slider_desktop1 ? wp_get_attachment_url($emp_slider_desktop1) : '';
+$mobile_url1  = $emp_slider1 ? (is_numeric($emp_slider1) ? wp_get_attachment_url($emp_slider1) : $emp_slider1) : '';
+$desktop_url1 = $emp_slider_desktop1 ? (is_numeric($emp_slider_desktop1) ? wp_get_attachment_url($emp_slider_desktop1) : $emp_slider_desktop1) : '';
 
-$mobile_url2  = $emp_slider2 ? wp_get_attachment_url($emp_slider2) : '';
-$desktop_url2 = $emp_slider_desktop2 ? wp_get_attachment_url($emp_slider_desktop2) : '';
+$mobile_url2  = $emp_slider2 ? (is_numeric($emp_slider2) ? wp_get_attachment_url($emp_slider2) : $emp_slider2) : '';
+$desktop_url2 = $emp_slider_desktop2 ? (is_numeric($emp_slider_desktop2) ? wp_get_attachment_url($emp_slider_desktop2) : $emp_slider_desktop2) : '';
 
-$mobile_url3  = $emp_slider3 ? wp_get_attachment_url($emp_slider3) : '';
-$desktop_url3 = $emp_slider_desktop3 ? wp_get_attachment_url($emp_slider_desktop3) : '';
+$mobile_url3  = $emp_slider3 ? (is_numeric($emp_slider3) ? wp_get_attachment_url($emp_slider3) : $emp_slider3) : '';
+$desktop_url3 = $emp_slider_desktop3 ? (is_numeric($emp_slider_desktop3) ? wp_get_attachment_url($emp_slider_desktop3) : $emp_slider_desktop3) : '';
 
 $has_sliders = $mobile_url1 || $desktop_url1 || $mobile_url2 || $desktop_url2 || $mobile_url3 || $desktop_url3;
+$emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
+$skeleton_enabled = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
 
 if($has_sliders){ ?>
-  <div id="emp-sliders">
+  <div id="emp-sliders" class="<?php echo $skeleton_enabled ? 'has-skeleton' : ''; ?>">
+    <?php if($skeleton_enabled){ get_template_part('includes/skeleton-preload'); } ?>
     <ul>
       <?php if($desktop_url1 || $mobile_url1){ ?>
         <li>
@@ -28,7 +31,7 @@ if($has_sliders){ ?>
             <?php if($mobile_url1){ ?>
               <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url1); ?>">
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url1 ? $desktop_url1 : $mobile_url1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
+            <img src="<?php echo esc_url($desktop_url1 ? $desktop_url1 : $mobile_url1); ?>" class="emp-slider emp-hero-lcp" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager" fetchpriority="high" decoding="async">
           </picture>
         </li>
       <?php } ?>
@@ -38,7 +41,7 @@ if($has_sliders){ ?>
             <?php if($mobile_url2){ ?>
               <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url2); ?>">
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url2 ? $desktop_url2 : $mobile_url2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
+            <img src="<?php echo esc_url($desktop_url2 ? $desktop_url2 : $mobile_url2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy" decoding="async">
           </picture>
         </li>
       <?php } ?>
@@ -48,7 +51,7 @@ if($has_sliders){ ?>
             <?php if($mobile_url3){ ?>
               <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url3); ?>">
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url3 ? $desktop_url3 : $mobile_url3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
+            <img src="<?php echo esc_url($desktop_url3 ? $desktop_url3 : $mobile_url3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy" decoding="async">
           </picture>
         </li>
       <?php } ?>
