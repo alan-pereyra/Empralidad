@@ -102,6 +102,131 @@
           display: block;
           width: 100% !important;
         }
+        @keyframes empShellPulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.55;
+          }
+        }
+        #emp-app-shell-preloader {
+          background-color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          inset: 0;
+          overflow: hidden;
+          position: fixed;
+          transition: opacity 0.35s ease, visibility 0.35s ease;
+          width: 100vw;
+          z-index: 9999999;
+        }
+        #emp-app-shell-preloader.emp-shell-dismissed {
+          opacity: 0;
+          pointer-events: none;
+          visibility: hidden;
+        }
+        .emp-shell-header {
+          align-items: center;
+          background-color: var(--emp-nav-bg, #22372b);
+          box-sizing: border-box;
+          display: flex;
+          height: 54px;
+          justify-content: space-between;
+          padding: 0 16px;
+          width: 100%;
+        }
+        .emp-shell-btn,
+        .emp-shell-cart {
+          background-color: rgba(255, 255, 255, 0.25);
+          border-radius: 4px;
+          height: 22px;
+          width: 26px;
+        }
+        .emp-shell-brand {
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: 6px;
+          height: 28px;
+          width: 110px;
+        }
+        .emp-shell-body {
+          box-sizing: border-box;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          overflow: hidden;
+          padding: 8px 12px;
+          width: 100%;
+        }
+        .emp-shell-slider {
+          animation: empShellPulse 1.5s ease-in-out infinite;
+          aspect-ratio: 1 / 1;
+          background-color: #e5e7eb;
+          border-radius: 8px;
+          max-height: 340px;
+          width: 100%;
+        }
+        .emp-shell-badges {
+          display: flex;
+          gap: 8px;
+          margin: 10px 0 8px 0;
+          width: 100%;
+        }
+        .emp-shell-badge {
+          animation: empShellPulse 1.5s ease-in-out infinite;
+          background-color: #f1f5f9;
+          border-radius: 20px;
+          flex: 1;
+          height: 34px;
+        }
+        .emp-shell-grid {
+          display: flex;
+          gap: 10px;
+          margin-top: 6px;
+          width: 100%;
+        }
+        .emp-shell-card {
+          background-color: #f8fafc;
+          border-radius: 12px;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          overflow: hidden;
+          padding: 6px;
+        }
+        .emp-shell-card-img {
+          animation: empShellPulse 1.5s ease-in-out infinite;
+          aspect-ratio: 1 / 1;
+          background-color: #e5e7eb;
+          border-radius: 8px;
+          width: 100%;
+        }
+        .emp-shell-card-text {
+          background-color: #e2e8f0;
+          border-radius: 4px;
+          height: 12px;
+          margin: 8px auto 2px auto;
+          width: 75%;
+        }
+        .emp-shell-bottom-bar {
+          align-items: center;
+          background-color: var(--emp-nav-bg, #22372b);
+          border-radius: 24px 24px 0 0;
+          box-sizing: border-box;
+          display: flex;
+          height: 52px;
+          justify-content: space-around;
+          margin-top: auto;
+          padding: 0 16px;
+          width: 100%;
+        }
+        .emp-shell-nav-item {
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          height: 24px;
+          width: 24px;
+        }
       </style>
     <?php }
 
@@ -111,6 +236,9 @@
     ?>
   </head>
   <body <?php body_class(); ?> >
+    <?php if ((is_front_page() || is_home()) && $emp_skeleton_active) {
+      get_template_part('includes/app-shell-preload');
+    } ?>
     <div id="top_content"></div>
     <?php $global_notice = get_theme_mod('emp_components_notice_show');
     if ($global_notice){
