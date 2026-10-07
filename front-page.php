@@ -17,6 +17,15 @@ $desktop_url2 = $emp_slider_desktop2 ? (is_numeric($emp_slider_desktop2) ? wp_ge
 $mobile_url3  = $emp_slider3 ? (is_numeric($emp_slider3) ? wp_get_attachment_url($emp_slider3) : $emp_slider3) : '';
 $desktop_url3 = $emp_slider_desktop3 ? (is_numeric($emp_slider_desktop3) ? wp_get_attachment_url($emp_slider_desktop3) : $emp_slider_desktop3) : '';
 
+$mobile_webp1  = function_exists('emp_get_webp_url') ? emp_get_webp_url($mobile_url1, 80, 750) : '';
+$desktop_webp1 = function_exists('emp_get_webp_url') ? emp_get_webp_url($desktop_url1) : '';
+
+$mobile_webp2  = function_exists('emp_get_webp_url') ? emp_get_webp_url($mobile_url2, 80, 750) : '';
+$desktop_webp2 = function_exists('emp_get_webp_url') ? emp_get_webp_url($desktop_url2) : '';
+
+$mobile_webp3  = function_exists('emp_get_webp_url') ? emp_get_webp_url($mobile_url3, 80, 750) : '';
+$desktop_webp3 = function_exists('emp_get_webp_url') ? emp_get_webp_url($desktop_url3) : '';
+
 $has_sliders = $mobile_url1 || $desktop_url1 || $mobile_url2 || $desktop_url2 || $mobile_url3 || $desktop_url3;
 $emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
 $skeleton_enabled = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
@@ -29,8 +38,14 @@ if($has_sliders){ ?>
         ?>
         <li>
           <picture>
+            <?php if($mobile_webp1){ ?>
+              <source type="image/webp" media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_webp1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_webp1) . '"'; ?>>
+            <?php } ?>
             <?php if($mobile_url1){ ?>
               <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url1) . '"'; ?>>
+            <?php } ?>
+            <?php if($desktop_webp1){ ?>
+              <source type="image/webp" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($desktop_webp1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($desktop_webp1) . '"'; ?>>
             <?php } ?>
             <?php if($skeleton_enabled){ ?>
               <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
@@ -48,8 +63,14 @@ if($has_sliders){ ?>
         ?>
         <li>
           <picture>
+            <?php if($mobile_webp2){ ?>
+              <source type="image/webp" media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_webp2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_webp2) . '"'; ?>>
+            <?php } ?>
             <?php if($mobile_url2){ ?>
               <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url2) . '"'; ?>>
+            <?php } ?>
+            <?php if($desktop_webp2){ ?>
+              <source type="image/webp" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($desktop_webp2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($desktop_webp2) . '"'; ?>>
             <?php } ?>
             <?php if($skeleton_enabled){ ?>
               <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
@@ -67,8 +88,14 @@ if($has_sliders){ ?>
         ?>
         <li>
           <picture>
+            <?php if($mobile_webp3){ ?>
+              <source type="image/webp" media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_webp3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_webp3) . '"'; ?>>
+            <?php } ?>
             <?php if($mobile_url3){ ?>
               <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url3) . '"'; ?>>
+            <?php } ?>
+            <?php if($desktop_webp3){ ?>
+              <source type="image/webp" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($desktop_webp3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($desktop_webp3) . '"'; ?>>
             <?php } ?>
             <?php if($skeleton_enabled){ ?>
               <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
