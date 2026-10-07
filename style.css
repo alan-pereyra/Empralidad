@@ -715,7 +715,6 @@ section .btn-outline-light {
 }
 /*---------------------------------------------3)Sliders-------------------------------------------------*/
 #emp-sliders{
-	background-color: #e5e7eb;
 	margin: auto;
 	max-height: 822px;
 	max-width: 1200px;
@@ -763,19 +762,10 @@ section .btn-outline-light {
 }
 @media (max-width: 768px){
 	#emp-sliders {
-		aspect-ratio: 1 / 1;
-		background-color: #e5e7eb;
 		max-height: none;
-		min-height: 280px;
-		width: 100%;
 	}
 	#emp-sliders i{
 		display: none;
-	}
-}
-@media (min-width: 769px){
-	#emp-sliders {
-		aspect-ratio: 16 / 9;
 	}
 }
 #emp-sliders i:hover{
@@ -798,32 +788,21 @@ section .btn-outline-light {
 	display: none;
 }
 #emp-sliders ul li {
-	background-color: #e5e7eb;
 	flex: 0 0 100%;
 	min-width: 100%;
 	width: 100%;
 }
 #emp-sliders ul li picture {
-	background-color: #e5e7eb;
 	display: block;
-	height: 100%;
 	width: 100%;
 }
 #emp-sliders ul li img,
 #emp-sliders ul li picture img {
-	background-color: #e5e7eb;
 	display: block;
-	height: 100%;
+	height: auto;
 	margin: auto;
 	max-width: 1200px !important;
-	object-fit: cover;
-	opacity: 0;
-	transition: opacity 0.3s ease-in-out;
 	width: 100%;
-}
-#emp-sliders ul li img.is-loaded,
-#emp-sliders ul li picture img.is-loaded {
-	opacity: 1;
 }
 /* Badges de Confianza bajo el Slider */
 #emp-trust-badges {
@@ -5423,21 +5402,18 @@ li .cfvsw_variations_form {
 }
 .emp-secondary-banner-item a {
 	display: block;
-	width: 100%;
-	height: 100%;
 	text-decoration: none;
+	width: 100%;
 }
 .emp-secondary-banner-item picture {
 	display: block;
 	width: 100%;
-	height: 100%;
 }
 .emp-secondary-banner-img {
-	width: 100%;
-	height: auto;
-	display: block;
-	object-fit: cover;
 	border-radius: 16px;
+	display: block;
+	height: auto;
+	width: 100%;
 }
 @media (max-width: 768px) {
 	.emp-secondary-banners-container {

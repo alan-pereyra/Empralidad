@@ -39,22 +39,15 @@ if($has_sliders){ ?>
         <li>
           <picture>
             <?php if($mobile_webp1){ ?>
-              <source type="image/webp" media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_webp1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_webp1) . '"'; ?>>
+              <source type="image/webp" media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_webp1); ?>">
             <?php } ?>
             <?php if($mobile_url1){ ?>
-              <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url1) . '"'; ?>>
+              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url1); ?>">
             <?php } ?>
             <?php if($desktop_webp1){ ?>
-              <source type="image/webp" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($desktop_webp1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($desktop_webp1) . '"'; ?>>
+              <source type="image/webp" srcset="<?php echo esc_url($desktop_webp1); ?>">
             <?php } ?>
-            <?php if($skeleton_enabled){ ?>
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
-              <noscript>
-                <img src="<?php echo esc_url($final_desk1); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
-              </noscript>
-            <?php } else { ?>
-              <img src="<?php echo esc_url($final_desk1); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
-            <?php } ?>
+            <img src="<?php echo esc_url($final_desk1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager" fetchpriority="high" decoding="async">
           </picture>
         </li>
       <?php } ?>
@@ -64,22 +57,15 @@ if($has_sliders){ ?>
         <li>
           <picture>
             <?php if($mobile_webp2){ ?>
-              <source type="image/webp" media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_webp2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_webp2) . '"'; ?>>
+              <source type="image/webp" media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_webp2); ?>">
             <?php } ?>
             <?php if($mobile_url2){ ?>
-              <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url2) . '"'; ?>>
+              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url2); ?>">
             <?php } ?>
             <?php if($desktop_webp2){ ?>
-              <source type="image/webp" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($desktop_webp2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($desktop_webp2) . '"'; ?>>
+              <source type="image/webp" srcset="<?php echo esc_url($desktop_webp2); ?>">
             <?php } ?>
-            <?php if($skeleton_enabled){ ?>
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
-              <noscript>
-                <img src="<?php echo esc_url($final_desk2); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
-              </noscript>
-            <?php } else { ?>
-              <img src="<?php echo esc_url($final_desk2); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
-            <?php } ?>
+            <img src="<?php echo esc_url($final_desk2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy" decoding="async">
           </picture>
         </li>
       <?php } ?>
@@ -89,22 +75,15 @@ if($has_sliders){ ?>
         <li>
           <picture>
             <?php if($mobile_webp3){ ?>
-              <source type="image/webp" media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_webp3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_webp3) . '"'; ?>>
+              <source type="image/webp" media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_webp3); ?>">
             <?php } ?>
             <?php if($mobile_url3){ ?>
-              <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url3) . '"'; ?>>
+              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url3); ?>">
             <?php } ?>
             <?php if($desktop_webp3){ ?>
-              <source type="image/webp" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($desktop_webp3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($desktop_webp3) . '"'; ?>>
+              <source type="image/webp" srcset="<?php echo esc_url($desktop_webp3); ?>">
             <?php } ?>
-            <?php if($skeleton_enabled){ ?>
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
-              <noscript>
-                <img src="<?php echo esc_url($final_desk3); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
-              </noscript>
-            <?php } else { ?>
-              <img src="<?php echo esc_url($final_desk3); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
-            <?php } ?>
+            <img src="<?php echo esc_url($final_desk3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy" decoding="async">
           </picture>
         </li>
       <?php } ?>

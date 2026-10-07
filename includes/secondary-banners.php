@@ -65,8 +65,7 @@ if ( $show_secondary_banners ) {
                      alt="<?php echo esc_attr(get_bloginfo('name')); ?> - Banner 1" 
                      class="emp-secondary-banner-img" 
                      loading="lazy" 
-                     decoding="async"
-                     <?php if(!empty($w1) && !empty($h1)){ echo 'width="' . esc_attr($w1) . '" height="' . esc_attr($h1) . '"'; } ?>>
+                     decoding="async">
               </picture>
             <?php if ( !empty($banner_link_1) ) { ?>
               </a>
@@ -93,8 +92,7 @@ if ( $show_secondary_banners ) {
                      alt="<?php echo esc_attr(get_bloginfo('name')); ?> - Banner 2" 
                      class="emp-secondary-banner-img" 
                      loading="lazy" 
-                     decoding="async"
-                     <?php if(!empty($w2) && !empty($h2)){ echo 'width="' . esc_attr($w2) . '" height="' . esc_attr($h2) . '"'; } ?>>
+                     decoding="async">
               </picture>
             <?php if ( !empty($banner_link_2) ) { ?>
               </a>
