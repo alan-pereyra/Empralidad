@@ -227,6 +227,21 @@
           height: 24px;
           width: 24px;
         }
+        body.emp-loading {
+          overflow: hidden !important;
+        }
+        body.emp-loading #top_content,
+        body.emp-loading #top-notice,
+        body.emp-loading #navbar-background,
+        body.emp-loading #emp-sliders,
+        body.emp-loading #emp-trust-badges,
+        body.emp-loading main,
+        body.emp-loading section,
+        body.emp-loading footer,
+        body.emp-loading .emp-categories-carousel,
+        body.emp-loading .woocommerce {
+          visibility: hidden !important;
+        }
       </style>
     <?php }
 
@@ -235,7 +250,7 @@
     echo get_theme_mod('emp_analytics_google_script');
     ?>
   </head>
-  <body <?php body_class(); ?> >
+  <body <?php body_class(((is_front_page() || is_home()) && $emp_skeleton_active) ? 'emp-loading' : ''); ?> >
     <?php if ((is_front_page() || is_home()) && $emp_skeleton_active) {
       get_template_part('includes/app-shell-preload');
     } ?>

@@ -6013,4 +6013,9 @@ li .cfvsw_variations_form {
 .woo-page-margin .sidebar .woocommerce-breadcrumb a:hover {
 	text-decoration: underline;
 }
+#emp-style-marker {
+	display: none !important;
+	position: absolute !important;
+	z-index: 123456 !important;
+}
 

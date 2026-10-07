@@ -2,10 +2,11 @@
 /**
  * App Shell Skeleton Preload Screen
  * Covers the entire viewport instantly on Frame 0, hiding unstyled content,
- * then smoothly fades out once styles and layout are ready.
+ * and remains active until style.css and hero content are 100% loaded and applied.
  */
 if (!defined('ABSPATH')) exit;
 ?>
+<div id="emp-style-marker" aria-hidden="true"></div>
 <div id="emp-app-shell-preloader" aria-hidden="true">
   <div class="emp-shell-header">
     <div class="emp-shell-btn"></div>
@@ -38,25 +39,64 @@ if (!defined('ABSPATH')) exit;
 </div>
 <script>
 (function() {
+  var isDismissed = false;
+
+  function isStyleApplied() {
+    var marker = document.getElementById('emp-style-marker');
+    if (!marker) return false;
+    var style = window.getComputedStyle(marker);
+    return style.zIndex === '123456';
+  }
+
+  function isHeroReady() {
+    var heroImg = document.querySelector('#emp-sliders img');
+    if (!heroImg) return true;
+    return (heroImg.complete && heroImg.naturalWidth > 0);
+  }
+
   function dismissAppShell() {
+    if (isDismissed) return;
+    isDismissed = true;
     var shell = document.getElementById('emp-app-shell-preloader');
-    if (!shell || shell.classList.contains('emp-shell-dismissed')) return;
-    shell.classList.add('emp-shell-dismissed');
-    setTimeout(function() {
-      if (shell && shell.parentNode) {
-        shell.parentNode.removeChild(shell);
-      }
-    }, 400);
+
+    // 1. Reveal the fully styled page underneath
+    if (document.body) {
+      document.body.classList.remove('emp-loading');
+      document.body.classList.add('emp-loaded');
+    }
+
+    // 2. Smoothly fade out the skeleton preloader
+    if (shell) {
+      shell.classList.add('emp-shell-dismissed');
+      setTimeout(function() {
+        if (shell && shell.parentNode) {
+          shell.parentNode.removeChild(shell);
+        }
+      }, 450);
+    }
   }
 
-  // Dismiss when window completes loading or styles are ready
-  if (document.readyState === 'complete') {
-    dismissAppShell();
-  } else {
-    window.addEventListener('load', dismissAppShell);
+  // Poll with requestAnimationFrame until style.css is 100% computed & applied
+  function verifyReadiness() {
+    if (isDismissed) return;
+
+    var styleReady = isStyleApplied();
+    var heroReady = isHeroReady();
+
+    if (styleReady && heroReady) {
+      // Small pause to guarantee browser paint of styled DOM before revealing
+      requestAnimationFrame(function() {
+        setTimeout(dismissAppShell, 60);
+      });
+    } else {
+      requestAnimationFrame(verifyReadiness);
+    }
   }
 
-  // Safety fallback timeout
-  setTimeout(dismissAppShell, 2200);
+  // Start polling immediately
+  requestAnimationFrame(verifyReadiness);
+
+  // Safety fallback timeout in case of network anomaly (e.g. broken image)
+  setTimeout(dismissAppShell, 4500);
 })();
 </script>
