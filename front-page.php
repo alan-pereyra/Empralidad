@@ -22,36 +22,62 @@ $emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
 $skeleton_enabled = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
 
 if($has_sliders){ ?>
-  <div id="emp-sliders" class="<?php echo $skeleton_enabled ? 'has-skeleton' : ''; ?>">
-    <?php if($skeleton_enabled){ get_template_part('includes/skeleton-preload'); } ?>
+  <div id="emp-sliders">
     <ul>
-      <?php if($desktop_url1 || $mobile_url1){ ?>
+      <?php if($desktop_url1 || $mobile_url1){
+        $final_desk1 = $desktop_url1 ? $desktop_url1 : $mobile_url1;
+        ?>
         <li>
           <picture>
             <?php if($mobile_url1){ ?>
-              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url1); ?>">
+              <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url1) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url1) . '"'; ?>>
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url1 ? $desktop_url1 : $mobile_url1); ?>" class="emp-slider emp-hero-lcp" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager" fetchpriority="high" decoding="async">
+            <?php if($skeleton_enabled){ ?>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk1); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
+              <noscript>
+                <img src="<?php echo esc_url($final_desk1); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
+              </noscript>
+            <?php } else { ?>
+              <img src="<?php echo esc_url($final_desk1); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="eager">
+            <?php } ?>
           </picture>
         </li>
       <?php } ?>
-      <?php if($desktop_url2 || $mobile_url2){ ?>
+      <?php if($desktop_url2 || $mobile_url2){
+        $final_desk2 = $desktop_url2 ? $desktop_url2 : $mobile_url2;
+        ?>
         <li>
           <picture>
             <?php if($mobile_url2){ ?>
-              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url2); ?>">
+              <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url2) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url2) . '"'; ?>>
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url2 ? $desktop_url2 : $mobile_url2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy" decoding="async">
+            <?php if($skeleton_enabled){ ?>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk2); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
+              <noscript>
+                <img src="<?php echo esc_url($final_desk2); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
+              </noscript>
+            <?php } else { ?>
+              <img src="<?php echo esc_url($final_desk2); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+            <?php } ?>
           </picture>
         </li>
       <?php } ?>
-      <?php if($desktop_url3 || $mobile_url3){ ?>
+      <?php if($desktop_url3 || $mobile_url3){
+        $final_desk3 = $desktop_url3 ? $desktop_url3 : $mobile_url3;
+        ?>
         <li>
           <picture>
             <?php if($mobile_url3){ ?>
-              <source media="(max-width: 768px)" srcset="<?php echo esc_url($mobile_url3); ?>">
+              <source media="(max-width: 768px)" <?php echo $skeleton_enabled ? 'data-srcset="' . esc_url($mobile_url3) . '" srcset="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"' : 'srcset="' . esc_url($mobile_url3) . '"'; ?>>
             <?php } ?>
-            <img src="<?php echo esc_url($desktop_url3 ? $desktop_url3 : $mobile_url3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy" decoding="async">
+            <?php if($skeleton_enabled){ ?>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="<?php echo esc_url($final_desk3); ?>" class="emp-slider" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" decoding="async">
+              <noscript>
+                <img src="<?php echo esc_url($final_desk3); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
+              </noscript>
+            <?php } else { ?>
+              <img src="<?php echo esc_url($final_desk3); ?>" class="emp-slider is-loaded" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" loading="lazy">
+            <?php } ?>
           </picture>
         </li>
       <?php } ?>
@@ -59,6 +85,7 @@ if($has_sliders){ ?>
     <i id="emp-slider-prev" class="fa fa-chevron-left disabled"></i>
     <i id="emp-slider-next" class="fa fa-chevron-right disabled"></i>
   </div>
+  <?php if($skeleton_enabled){ get_template_part('includes/skeleton-preload'); } ?>
   <?php get_template_part('includes/trust-badges'); ?>
 <?php }
 

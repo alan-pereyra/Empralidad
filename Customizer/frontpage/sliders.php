@@ -7,7 +7,7 @@ $wp_customize->add_section('emp_section_slider', array(
 ));
 
 // =============================================
-// ESQUELETO PRELOAD & OPTIMIZACIÓN LCP
+// ESPACIO GRIS PLACEHOLDER & CARGA DE DISEÑO PRIMERO
 // =============================================
 $wp_customize->add_setting('emp_slider_skeleton_preload', array(
   'default'           => true,
@@ -15,8 +15,8 @@ $wp_customize->add_setting('emp_slider_skeleton_preload', array(
   'sanitize_callback' => 'sanitize_string'
 ));
 $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_slider_skeleton_preload_control', array(
-  'label'       => __('Esqueleto Preload y Prioridad LCP', 'empralidad'),
-  'description' => __('Muestra un esqueleto elegante (shimmer) mientras carga la portada y pre-carga la primera imagen para acelerar la velocidad en PageSpeed/LCP.', 'empralidad'),
+  'label'       => __('Cargar diseño primero con espacio gris', 'empralidad'),
+  'description' => __('Carga primero la estructura y el diseño de la web reservando un espacio gris donde irán las imágenes, descargando las fotos después para máxima velocidad.', 'empralidad'),
   'section'     => 'emp_section_slider',
   'settings'    => 'emp_slider_skeleton_preload',
   'type'        => 'checkbox'

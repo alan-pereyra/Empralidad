@@ -1,44 +1,46 @@
 <?php
 /**
- * Skeleton Preload Component for Empralidad Slider & Hero
- * Provides immediate visual feedback and zero-CLS layout reservation
+ * Deferred Image Loader for Empralidad Slider
+ * Renders the layout and gray placeholder spaces first, then loads images in background.
  */
 if (!defined('ABSPATH')) exit;
 ?>
-<div id="emp-slider-skeleton" class="emp-skeleton-overlay" aria-hidden="true">
-  <div class="emp-skeleton-shimmer emp-skeleton-hero">
-    <div class="emp-skeleton-center-icon">
-      <i class="fa fa-image"></i>
-    </div>
-  </div>
-</div>
 <script>
 (function() {
-  function dismissSkeleton() {
-    var sk = document.getElementById('emp-slider-skeleton');
-    var sliders = document.getElementById('emp-sliders');
-    if (!sk) return;
-    sk.classList.add('emp-skeleton-fade-out');
-    if (sliders) sliders.classList.add('is-loaded');
-    setTimeout(function() {
-      if (sk && sk.parentNode) {
-        sk.parentNode.removeChild(sk);
+  function revealSliderImages() {
+    var imgs = document.querySelectorAll('#emp-sliders img[data-src]');
+    for (var i = 0; i < imgs.length; i++) {
+      var img = imgs[i];
+      var picture = img.parentElement;
+      if (picture && picture.tagName.toLowerCase() === 'picture') {
+        var sources = picture.querySelectorAll('source[data-srcset]');
+        for (var j = 0; j < sources.length; j++) {
+          sources[j].srcset = sources[j].getAttribute('data-srcset');
+          sources[j].removeAttribute('data-srcset');
+        }
       }
-    }, 400);
-  }
-
-  // Dismiss on hero image load, or fallback timeout
-  var heroImg = document.querySelector('#emp-sliders img.emp-hero-lcp, #emp-sliders img');
-  if (heroImg) {
-    if (heroImg.complete && heroImg.naturalWidth > 0) {
-      dismissSkeleton();
-    } else {
-      heroImg.addEventListener('load', dismissSkeleton, { once: true });
-      heroImg.addEventListener('error', dismissSkeleton, { once: true });
+      var realSrc = img.getAttribute('data-src');
+      if (realSrc) {
+        (function(targetImg, srcUrl) {
+          targetImg.onload = function() {
+            targetImg.classList.add('is-loaded');
+          };
+          targetImg.src = srcUrl;
+          targetImg.removeAttribute('data-src');
+          if (targetImg.complete && targetImg.naturalWidth > 0) {
+            targetImg.classList.add('is-loaded');
+          }
+        })(img, realSrc);
+      }
     }
   }
 
-  // Safety fallback timeout
-  setTimeout(dismissSkeleton, 2500);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      requestAnimationFrame(revealSliderImages);
+    });
+  } else {
+    requestAnimationFrame(revealSliderImages);
+  }
 })();
 </script>
