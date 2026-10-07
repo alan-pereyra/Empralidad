@@ -8,15 +8,40 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="<?php echo esc_attr( get_theme_mod('emp_components_head_title_background') ); ?>">
     <link rel="apple-touch-icon" href="<?php echo esc_url( get_site_icon_url() ); ?>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <?php
     $emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
     $emp_skeleton_active = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
 
     if ((is_front_page() || is_home()) && $emp_skeleton_active) { ?>
-      <style id="emp-critical-placeholder-css">
+      <style id="emp-critical-layout-css">
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        html, body {
+          margin: 0;
+          padding: 0;
+        }
+        #navbar-background {
+          background-color: var(--emp-nav-bg, #22372b);
+          min-height: 50px;
+          position: sticky;
+          top: 0;
+          width: 100%;
+          z-index: 1032;
+        }
+        .navbar-img {
+          height: 50px !important;
+          max-width: 192px !important;
+          object-fit: contain;
+        }
         #emp-sliders {
           background-color: #e5e7eb;
+          margin: auto;
+          max-width: 1200px;
+          overflow: hidden;
           position: relative;
           width: 100%;
         }
@@ -35,6 +60,25 @@
             width: 100%;
           }
         }
+        #emp-sliders ul {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+        }
+        #emp-sliders ul li {
+          background-color: #e5e7eb;
+          flex: 0 0 100%;
+          min-width: 100%;
+          width: 100%;
+        }
+        #emp-sliders ul li picture {
+          background-color: #e5e7eb;
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
         #emp-sliders ul li img {
           opacity: 0;
           transition: opacity 0.3s ease-in-out;
@@ -42,9 +86,21 @@
         #emp-sliders ul li img.is-loaded {
           opacity: 1;
         }
+        #emp-trust-badges {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          box-sizing: border-box;
+          margin: 8px auto 6px auto;
+          max-width: 100%;
+          min-height: 48px;
+          width: 100%;
+        }
         .woocommerce ul.products li.product a img {
           aspect-ratio: 1 / 1;
           background-color: #e5e7eb;
+          border-radius: 20px 20px 0 0 !important;
+          display: block;
+          width: 100% !important;
         }
       </style>
     <?php }

@@ -25,4 +25,41 @@ function emp_deregister_styles() {
   wp_deregister_style('dnd-upload-cf7');
 }
 add_action('wp_print_styles', 'emp_deregister_styles', 100);
+
+// Carga asíncrona no bloqueante de hojas de estilo externas
+function emp_non_blocking_styles($html, $handle, $href, $media) {
+  if (is_admin()) return $html;
+
+  $async_handles = array(
+    'emp_styles',
+    'cormorant_garamond',
+    'font_awesome',
+    'woocommerce-layout',
+    'woocommerce-general',
+    'batllie-caja-tracking-css',
+    'batllie-caja-min-order-css'
+  );
+
+  if (in_array($handle, $async_handles, true) || (is_front_page() || is_home())) {
+    if (strpos($html, 'onload=') !== false) {
+      return $html;
+    }
+    $async_html = preg_replace('/media=([\'"])[^\'"]*([\'"])/i', 'media=$1print$2 onload="this.media=\'all\'"', $html);
+    if ($async_html && $async_html !== $html) {
+      return $async_html . '<noscript>' . $html . '</noscript>';
+    }
+  }
+  return $html;
+}
+add_filter('style_loader_tag', 'emp_non_blocking_styles', 10, 4);
+
+// Atributo defer para scripts no bloqueantes
+function emp_defer_scripts($tag, $handle, $src) {
+  if (is_admin()) return $tag;
+  if (strpos($tag, 'defer') !== false || strpos($tag, 'async') !== false) {
+    return $tag;
+  }
+  return str_replace(' src=', ' defer src=', $tag);
+}
+add_filter('script_loader_tag', 'emp_defer_scripts', 10, 3);
 ?>
