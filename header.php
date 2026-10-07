@@ -38,8 +38,8 @@
           object-fit: contain;
         }
         #emp-sliders {
-          background-color: #e5e7eb;
           margin: auto;
+          max-height: 822px;
           max-width: 1200px;
           overflow: hidden;
           position: relative;
@@ -47,17 +47,7 @@
         }
         @media (max-width: 768px) {
           #emp-sliders {
-            aspect-ratio: 1 / 1;
-            background-color: #e5e7eb;
-            min-height: 280px;
-            width: 100%;
-          }
-        }
-        @media (min-width: 769px) {
-          #emp-sliders {
-            aspect-ratio: 16 / 9;
-            background-color: #e5e7eb;
-            width: 100%;
+            max-height: none;
           }
         }
         #emp-sliders ul {
@@ -68,23 +58,21 @@
           width: 100%;
         }
         #emp-sliders ul li {
-          background-color: #e5e7eb;
           flex: 0 0 100%;
           min-width: 100%;
           width: 100%;
         }
         #emp-sliders ul li picture {
-          background-color: #e5e7eb;
           display: block;
-          height: 100%;
           width: 100%;
         }
-        #emp-sliders ul li img {
-          opacity: 0;
-          transition: opacity 0.3s ease-in-out;
-        }
-        #emp-sliders ul li img.is-loaded {
-          opacity: 1;
+        #emp-sliders ul li img,
+        #emp-sliders ul li picture img {
+          display: block;
+          height: auto;
+          margin: auto;
+          max-width: 1200px !important;
+          width: 100%;
         }
         #emp-trust-badges {
           background-color: rgba(255, 255, 255, 0.1);
