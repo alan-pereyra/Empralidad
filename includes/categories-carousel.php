@@ -45,7 +45,11 @@ if ( $categories_style === '2' ) {
       <div class="emp-categories-style-2-track">
         <?php foreach ( $categories as $cat ) {
             $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-            $image_url    = $thumbnail_id ? wp_get_attachment_image_url( $thumbnail_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+            $thumb_src    = $thumbnail_id ? wp_get_attachment_image_src( $thumbnail_id, 'woocommerce_thumbnail' ) : false;
+            $image_url    = $thumb_src ? $thumb_src[0] : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+            $thumb_w      = $thumb_src ? $thumb_src[1] : 300;
+            $thumb_h      = $thumb_src ? $thumb_src[2] : 300;
+            $webp_url     = function_exists('emp_get_webp_url') ? emp_get_webp_url( $image_url, 80, 300 ) : '';
             $link         = get_term_link( $cat, 'product_cat' );
             if ( is_wp_error( $link ) ) {
                 $link = '#';
@@ -55,7 +59,12 @@ if ( $categories_style === '2' ) {
             <a href="<?php echo esc_url( $link ); ?>" draggable="false">
               <div class="emp-category-style-2-img-wrap">
                 <?php if ( $image_url ) { ?>
-                  <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" loading="lazy" draggable="false">
+                  <picture>
+                    <?php if ( $webp_url ) { ?>
+                      <source type="image/webp" srcset="<?php echo esc_url( $webp_url ); ?>">
+                    <?php } ?>
+                    <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" loading="lazy" decoding="async" width="<?php echo esc_attr( $thumb_w ); ?>" height="<?php echo esc_attr( $thumb_h ); ?>" draggable="false">
+                  </picture>
                 <?php } ?>
               </div>
               <?php if ( $show_label ) { ?>
@@ -86,7 +95,11 @@ if ( $categories_style === '2' ) {
             <li class="emp-categories-slide" data-slide="<?php echo esc_attr( $slide_index ); ?>">
               <?php foreach ( $slide_items as $cat ) {
                 $thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-                $image_url    = $thumbnail_id ? wp_get_attachment_image_url( $thumbnail_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+                $thumb_src    = $thumbnail_id ? wp_get_attachment_image_src( $thumbnail_id, 'woocommerce_thumbnail' ) : false;
+                $image_url    = $thumb_src ? $thumb_src[0] : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+                $thumb_w      = $thumb_src ? $thumb_src[1] : 300;
+                $thumb_h      = $thumb_src ? $thumb_src[2] : 300;
+                $webp_url     = function_exists('emp_get_webp_url') ? emp_get_webp_url( $image_url, 80, 300 ) : '';
                 $link         = get_term_link( $cat, 'product_cat' );
                 if ( is_wp_error( $link ) ) {
                     $link = '#';
@@ -96,7 +109,12 @@ if ( $categories_style === '2' ) {
                   <a href="<?php echo esc_url( $link ); ?>">
                     <div class="emp-category-image-wrap">
                       <?php if ( $image_url ) { ?>
-                        <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" loading="lazy">
+                        <picture>
+                          <?php if ( $webp_url ) { ?>
+                            <source type="image/webp" srcset="<?php echo esc_url( $webp_url ); ?>">
+                          <?php } ?>
+                          <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" loading="lazy" decoding="async" width="<?php echo esc_attr( $thumb_w ); ?>" height="<?php echo esc_attr( $thumb_h ); ?>">
+                        </picture>
                       <?php } ?>
                     </div>
                     <?php if ( $show_label ) { ?>

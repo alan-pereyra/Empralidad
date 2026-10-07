@@ -27,8 +27,6 @@ $mobile_webp3  = function_exists('emp_get_webp_url') ? emp_get_webp_url($mobile_
 $desktop_webp3 = function_exists('emp_get_webp_url') ? emp_get_webp_url($desktop_url3) : '';
 
 $has_sliders = $mobile_url1 || $desktop_url1 || $mobile_url2 || $desktop_url2 || $mobile_url3 || $desktop_url3;
-$emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
-$skeleton_enabled = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
 
 if($has_sliders){ ?>
   <div id="emp-sliders">
@@ -91,7 +89,6 @@ if($has_sliders){ ?>
     <i id="emp-slider-prev" class="fa fa-chevron-left disabled"></i>
     <i id="emp-slider-next" class="fa fa-chevron-right disabled"></i>
   </div>
-  <?php if($skeleton_enabled){ get_template_part('includes/skeleton-preload'); } ?>
   <?php get_template_part('includes/trust-badges'); ?>
 <?php }
 

@@ -12,10 +12,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <?php
-    $emp_slider_skeleton = get_theme_mod('emp_slider_skeleton_preload', true);
-    $emp_skeleton_active = (!empty($emp_slider_skeleton) && $emp_slider_skeleton !== '0' && $emp_slider_skeleton !== 0);
+    if (is_front_page() || is_home()) {
+      $emp_slider1 = get_theme_mod('emp_slider_image1');
+      $emp_slider_desktop1 = get_theme_mod('emp_slider_desktop_image1');
 
-    if ((is_front_page() || is_home()) && $emp_skeleton_active) { ?>
+      $hero_mobile_url = $emp_slider1 ? (is_numeric($emp_slider1) ? wp_get_attachment_url($emp_slider1) : $emp_slider1) : '';
+      $hero_desk_url   = $emp_slider_desktop1 ? (is_numeric($emp_slider_desktop1) ? wp_get_attachment_url($emp_slider_desktop1) : $emp_slider_desktop1) : '';
+      if (!$hero_desk_url && $hero_mobile_url) {
+        $hero_desk_url = $hero_mobile_url;
+      }
+
+      $hero_mobile_webp = function_exists('emp_get_webp_url') ? emp_get_webp_url($hero_mobile_url, 80, 750) : '';
+      $hero_desk_webp   = function_exists('emp_get_webp_url') ? emp_get_webp_url($hero_desk_url) : '';
+
+      $preload_mobile = $hero_mobile_webp ? $hero_mobile_webp : $hero_mobile_url;
+      $preload_desk   = $hero_desk_webp ? $hero_desk_webp : $hero_desk_url;
+
+      if ($preload_mobile) { ?>
+        <link rel="preload" as="image" href="<?php echo esc_url($preload_mobile); ?>" media="(max-width: 768px)" fetchpriority="high">
+      <?php }
+      if ($preload_desk) { ?>
+        <link rel="preload" as="image" href="<?php echo esc_url($preload_desk); ?>" media="(min-width: 769px)" fetchpriority="high">
+      <?php }
+
+      $mob_aspect = function_exists('emp_get_image_aspect_ratio') ? emp_get_image_aspect_ratio($emp_slider1) : '';
+      $desk_aspect = function_exists('emp_get_image_aspect_ratio') ? emp_get_image_aspect_ratio($emp_slider_desktop1) : '';
+      ?>
       <style id="emp-critical-layout-css">
         *, *::before, *::after {
           box-sizing: border-box;
@@ -38,6 +60,8 @@
           object-fit: contain;
         }
         #emp-sliders {
+          <?php if (!empty($desk_aspect)) { echo 'aspect-ratio: ' . esc_attr($desk_aspect) . ';'; } ?>
+          background-color: #f1f5f9;
           margin: auto;
           max-height: 822px;
           max-width: 1200px;
@@ -47,6 +71,7 @@
         }
         @media (max-width: 768px) {
           #emp-sliders {
+            <?php if (!empty($mob_aspect)) { echo 'aspect-ratio: ' . esc_attr($mob_aspect) . ';'; } ?>
             max-height: none;
           }
         }
@@ -90,146 +115,6 @@
           display: block;
           width: 100% !important;
         }
-        @keyframes empShellPulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.55;
-          }
-        }
-        #emp-app-shell-preloader {
-          background-color: #ffffff;
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-          inset: 0;
-          overflow: hidden;
-          position: fixed;
-          transition: opacity 0.35s ease, visibility 0.35s ease;
-          width: 100vw;
-          z-index: 9999999;
-        }
-        #emp-app-shell-preloader.emp-shell-dismissed {
-          opacity: 0;
-          pointer-events: none;
-          visibility: hidden;
-        }
-        .emp-shell-header {
-          align-items: center;
-          background-color: var(--emp-nav-bg, #22372b);
-          box-sizing: border-box;
-          display: flex;
-          height: 54px;
-          justify-content: space-between;
-          padding: 0 16px;
-          width: 100%;
-        }
-        .emp-shell-btn,
-        .emp-shell-cart {
-          background-color: rgba(255, 255, 255, 0.25);
-          border-radius: 4px;
-          height: 22px;
-          width: 26px;
-        }
-        .emp-shell-brand {
-          background-color: rgba(255, 255, 255, 0.3);
-          border-radius: 6px;
-          height: 28px;
-          width: 110px;
-        }
-        .emp-shell-body {
-          box-sizing: border-box;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          overflow: hidden;
-          padding: 8px 12px;
-          width: 100%;
-        }
-        .emp-shell-slider {
-          animation: empShellPulse 1.5s ease-in-out infinite;
-          aspect-ratio: 1 / 1;
-          background-color: #e5e7eb;
-          border-radius: 8px;
-          max-height: 340px;
-          width: 100%;
-        }
-        .emp-shell-badges {
-          display: flex;
-          gap: 8px;
-          margin: 10px 0 8px 0;
-          width: 100%;
-        }
-        .emp-shell-badge {
-          animation: empShellPulse 1.5s ease-in-out infinite;
-          background-color: #f1f5f9;
-          border-radius: 20px;
-          flex: 1;
-          height: 34px;
-        }
-        .emp-shell-grid {
-          display: flex;
-          gap: 10px;
-          margin-top: 6px;
-          width: 100%;
-        }
-        .emp-shell-card {
-          background-color: #f8fafc;
-          border-radius: 12px;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          overflow: hidden;
-          padding: 6px;
-        }
-        .emp-shell-card-img {
-          animation: empShellPulse 1.5s ease-in-out infinite;
-          aspect-ratio: 1 / 1;
-          background-color: #e5e7eb;
-          border-radius: 8px;
-          width: 100%;
-        }
-        .emp-shell-card-text {
-          background-color: #e2e8f0;
-          border-radius: 4px;
-          height: 12px;
-          margin: 8px auto 2px auto;
-          width: 75%;
-        }
-        .emp-shell-bottom-bar {
-          align-items: center;
-          background-color: var(--emp-nav-bg, #22372b);
-          border-radius: 24px 24px 0 0;
-          box-sizing: border-box;
-          display: flex;
-          height: 52px;
-          justify-content: space-around;
-          margin-top: auto;
-          padding: 0 16px;
-          width: 100%;
-        }
-        .emp-shell-nav-item {
-          background-color: rgba(255, 255, 255, 0.3);
-          border-radius: 50%;
-          height: 24px;
-          width: 24px;
-        }
-        body.emp-loading {
-          overflow: hidden !important;
-        }
-        body.emp-loading #top_content,
-        body.emp-loading #top-notice,
-        body.emp-loading #navbar-background,
-        body.emp-loading #emp-sliders,
-        body.emp-loading #emp-trust-badges,
-        body.emp-loading main,
-        body.emp-loading section,
-        body.emp-loading footer,
-        body.emp-loading .emp-categories-carousel,
-        body.emp-loading .woocommerce {
-          visibility: hidden !important;
-        }
       </style>
     <?php }
 
@@ -238,10 +123,7 @@
     echo get_theme_mod('emp_analytics_google_script');
     ?>
   </head>
-  <body <?php body_class(((is_front_page() || is_home()) && $emp_skeleton_active) ? 'emp-loading' : ''); ?> >
-    <?php if ((is_front_page() || is_home()) && $emp_skeleton_active) {
-      get_template_part('includes/app-shell-preload');
-    } ?>
+  <body <?php body_class(); ?> >
     <div id="top_content"></div>
     <?php $global_notice = get_theme_mod('emp_components_notice_show');
     if ($global_notice){

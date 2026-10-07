@@ -108,3 +108,68 @@ if (!function_exists('emp_get_webp_url')) {
     return '';
   }
 }
+
+if (!function_exists('emp_get_image_dimensions')) {
+  /**
+   * Get image dimensions [width, height] for an attachment ID or image URL.
+   *
+   * @param int|string $image Attachment ID or image URL.
+   * @return array|null Array of [width, height] or null on failure.
+   */
+  function emp_get_image_dimensions($image) {
+    if (empty($image)) {
+      return null;
+    }
+
+    // 1. If numeric attachment ID
+    if (is_numeric($image)) {
+      $id = intval($image);
+      $meta = wp_get_attachment_metadata($id);
+      if (!empty($meta['width']) && !empty($meta['height'])) {
+        return array(intval($meta['width']), intval($meta['height']));
+      }
+      $src = wp_get_attachment_image_src($id, 'full');
+      if (!empty($src[1]) && !empty($src[2])) {
+        return array(intval($src[1]), intval($src[2]));
+      }
+    }
+
+    // 2. If URL string
+    $url = is_numeric($image) ? wp_get_attachment_url(intval($image)) : (string) $image;
+    if (!empty($url) && function_exists('wp_upload_dir')) {
+      $upload_dir = wp_upload_dir();
+      $baseurl = $upload_dir['baseurl'];
+      $basedir = $upload_dir['basedir'];
+
+      if (strpos($url, $baseurl) === 0) {
+        $rel_path = substr($url, strlen($baseurl));
+        $file_path = $basedir . $rel_path;
+        if (file_exists($file_path)) {
+          $size = @getimagesize($file_path);
+          if (!empty($size[0]) && !empty($size[1])) {
+            return array(intval($size[0]), intval($size[1]));
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+}
+
+if (!function_exists('emp_get_image_aspect_ratio')) {
+  /**
+   * Get CSS aspect-ratio string (e.g. '896 / 1200') for an attachment ID or image URL.
+   *
+   * @param int|string $image Attachment ID or image URL.
+   * @param string $fallback Fallback ratio if dimensions cannot be determined.
+   * @return string
+   */
+  function emp_get_image_aspect_ratio($image, $fallback = '') {
+    $dims = emp_get_image_dimensions($image);
+    if ($dims && $dims[0] > 0 && $dims[1] > 0) {
+      return $dims[0] . ' / ' . $dims[1];
+    }
+    return $fallback;
+  }
+}

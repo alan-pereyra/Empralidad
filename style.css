@@ -3798,6 +3798,10 @@ h2.woocommerce-loop-product__title {
 	transition: transform 0.2s ease;
 	width: 100%;
 }
+.emp-category-image-wrap picture,
+.emp-category-style-2-img-wrap picture {
+	display: contents;
+}
 .emp-category-item h2.woocommerce-loop-category__title {
 	color: var(--emp-content-color, inherit);
 	font-size: 13px;
