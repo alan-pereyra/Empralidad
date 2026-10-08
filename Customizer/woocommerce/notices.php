@@ -35,5 +35,21 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
     'settings'=> 'emp_woocommerce_notices_text1'
   )));
 
+  // Cartel añadido al carrito de WooCommerce
+  if ( ! $wp_customize->get_setting( 'emp_woocommerce_show_added_to_cart_notice' ) ) {
+    $wp_customize->add_setting('emp_woocommerce_show_added_to_cart_notice', array(
+      'default'          => false,
+      'transport'        => 'refresh',
+      'sanitize_callback'=> 'sanitize_string'
+    ));
+  }
+  $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocommerce_show_added_to_cart_notice_notices_control', array(
+    'label'       => __('Mostrar cartel de producto añadido al carrito', 'empralidad'),
+    'description' => __('Muestra u oculta el aviso de WooCommerce al añadir un producto ("X se ha añadido a tu carrito"). Desactivado por defecto.', 'empralidad'),
+    'section'     => 'emp_section_woocommerce_notices',
+    'settings'    => 'emp_woocommerce_show_added_to_cart_notice',
+    'type'        => 'checkbox'
+  )));
+
 }
 ?>

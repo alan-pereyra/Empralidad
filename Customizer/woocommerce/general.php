@@ -99,6 +99,22 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocomme
   'type'    => 'checkbox'
 )));
 
+// Mostrar cartel de producto añadido al carrito
+if ( ! $wp_customize->get_setting( 'emp_woocommerce_show_added_to_cart_notice' ) ) {
+  $wp_customize->add_setting('emp_woocommerce_show_added_to_cart_notice', array(
+    'default'          => false,
+    'transport'        => 'refresh',
+    'sanitize_callback'=> 'sanitize_string'
+  ));
+}
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocommerce_show_added_to_cart_notice_control', array(
+  'label'       => __('Mostrar cartel de producto añadido al carrito', 'empralidad'),
+  'description' => __('Muestra u oculta el aviso de WooCommerce al añadir un producto ("X se ha añadido a tu carrito"). Desactivado por defecto.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_show_added_to_cart_notice',
+  'type'        => 'checkbox'
+)));
+
 // 1. Activar desglose de precio de lista y descuento por medio de pago
 $wp_customize->add_setting('emp_wc_list_price_discount_enable', array(
   'default'          => false,

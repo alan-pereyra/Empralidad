@@ -624,6 +624,18 @@ table.woocommerce-product-attributes.shop_attributes {
 }
 <?php } ?>
 
+/* WooCommerce Added to Cart Notice Visibility */
+<?php
+$emp_cart_notice = get_theme_mod('emp_woocommerce_show_added_to_cart_notice', false);
+if (empty($emp_cart_notice) || $emp_cart_notice === '0' || $emp_cart_notice === 0) { ?>
+.woocommerce-message:has(.wc-forward),
+.woocommerce-message:has(a[href*="cart"]),
+.woocommerce-message:has(a[href*="carrito"]),
+.single-product .woocommerce-notices-wrapper .woocommerce-message {
+  display: none !important;
+}
+<?php } ?>
+
 /* Slider Trust Badges Custom Colors */
 .emp-trust-badge-icon,
 i.fas.emp-trust-badge-icon,

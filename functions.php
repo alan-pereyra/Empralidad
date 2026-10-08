@@ -325,6 +325,18 @@ if (class_exists('WooCommerce')){
     }
     return $html;
   } );
+
+  // Toggle "added to cart" notice based on Customizer setting (disabled by default)
+  function emp_toggle_add_to_cart_notice( $message ) {
+    $show_notice = get_theme_mod( 'emp_woocommerce_show_added_to_cart_notice', false );
+    $is_active = ( ! empty( $show_notice ) && $show_notice !== '0' && $show_notice !== 0 );
+    if ( ! $is_active ) {
+      return false;
+    }
+    return $message;
+  }
+  add_filter( 'wc_add_to_cart_message_html', 'emp_toggle_add_to_cart_notice', 99 );
+  add_filter( 'wc_add_to_cart_message', 'emp_toggle_add_to_cart_notice', 99 );
 }
 
 // Add custom field on woocommerce page
