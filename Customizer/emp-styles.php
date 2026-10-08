@@ -491,6 +491,15 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
   font-size: clamp(calc(var(--emp-woocommerce-product-price-size) * 0.72), 5vw, var(--emp-woocommerce-product-price-size)) !important;
 }
 
+.woocommerce div.product p.price,
+.summary.entry-summary p.price,
+.woocommerce-variation-price,
+.woocommerce-variation-price .price {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
 .emp-price-range-from {
   align-items: baseline !important;
   display: inline-flex !important;
