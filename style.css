@@ -4300,9 +4300,11 @@ figcaption::-webkit-scrollbar {
 	margin-right: auto !important;
 }
 .woocommerce .star-rating {
+	background-color: var(--emp-woocommerce-stars-bg, transparent) !important;
+	border-radius: 4px !important;
 	display: inline-block !important;
 	font-family: star, WooCommerce !important;
-	font-size: 30px !important;
+	font-size: calc(14px * var(--emp-woocommerce-stars-scale, 1)) !important;
 	height: 1em !important;
 	line-height: 1 !important;
 	margin-left: auto !important;
@@ -4313,7 +4315,7 @@ figcaption::-webkit-scrollbar {
 	width: 5.4em !important;
 }
 .woocommerce .star-rating::before {
-	color: var(--emp-btn-bg) !important;
+	color: var(--emp-woocommerce-stars-empty-color, #d1d5db) !important;
 	content: "sssss" !important;
 	float: left !important;
 	height: 1em !important;
@@ -4335,7 +4337,7 @@ figcaption::-webkit-scrollbar {
 	top: 0 !important;
 }
 .woocommerce .star-rating span::before {
-	color: var(--emp-btn-bg) !important;
+	color: var(--emp-woocommerce-stars-color, #ffb800) !important;
 	content: "SSSSS" !important;
 	height: 1em !important;
 	left: 0 !important;
@@ -4354,9 +4356,11 @@ figcaption::-webkit-scrollbar {
 	margin-bottom: 12px !important;
 }
 .woocommerce .woocommerce-product-rating .star-rating {
+	font-size: calc(26px * var(--emp-woocommerce-stars-scale, 1)) !important;
 	margin: auto !important;
 }
 .woocommerce .woocommerce-product-rating .woocommerce-review-link {
+	color: var(--emp-woocommerce-stars-text-color, var(--emp-woocommerce-color)) !important;
 	font-size: 13px !important;
 	opacity: 0.75 !important;
 	text-decoration: none !important;
@@ -4911,6 +4915,7 @@ div#respond {
 	padding: 1em 0 0;
 }
 .woocommerce ul.products li.product .star-rating {
+	font-size: calc(14px * var(--emp-woocommerce-stars-scale, 1)) !important;
 	margin: 8px auto !important;
 }
 .woo-page-margin {
@@ -5551,10 +5556,10 @@ li .cfvsw_variations_form {
 	margin: 8px 0 18px 0 !important;
 }
 .woocommerce-tabs p.stars a {
-	color: var(--emp-woocommerce-tabs-color, var(--emp-woocommerce-bg)) !important;
+	color: var(--emp-woocommerce-stars-empty-color, #d1d5db) !important;
 	font-size: 24px !important;
 	height: 1.2em !important;
-	opacity: 0.4 !important;
+	opacity: 0.6 !important;
 	position: relative !important;
 	text-decoration: none !important;
 	transition: color 0.2s ease, opacity 0.2s ease, transform 0.15s ease !important;
@@ -5570,12 +5575,12 @@ li .cfvsw_variations_form {
 .woocommerce-tabs p.stars:hover a::before,
 .woocommerce-tabs p.stars.selected a.active::before,
 .woocommerce-tabs p.stars.selected a:not(.active)::before {
-	color: var(--emp-btn-bg) !important;
+	color: var(--emp-woocommerce-stars-color, #ffb800) !important;
 	opacity: 1 !important;
 }
 .woocommerce-tabs p.stars a:hover ~ a::before,
 .woocommerce-tabs p.stars.selected a.active ~ a::before {
-	color: var(--emp-woocommerce-tabs-color, var(--emp-woocommerce-bg)) !important;
+	color: var(--emp-woocommerce-stars-empty-color, #d1d5db) !important;
 	opacity: 0.4 !important;
 }
 .woocommerce-tabs .comment-form input[type="text"],
@@ -5666,11 +5671,12 @@ li .cfvsw_variations_form {
 	margin-top: 8px !important;
 }
 .woocommerce-tabs ol.commentlist li.review .star-rating {
-	color: var(--emp-btn-bg) !important;
+	color: var(--emp-woocommerce-stars-color, #ffb800) !important;
+	font-size: calc(14px * var(--emp-woocommerce-stars-scale, 1)) !important;
 }
 .woocommerce-tabs ol.commentlist li.review .star-rating::before {
-	color: var(--emp-woocommerce-tabs-color, var(--emp-woocommerce-bg)) !important;
-	opacity: 0.35 !important;
+	color: var(--emp-woocommerce-stars-empty-color, #d1d5db) !important;
+	opacity: 1 !important;
 }
 @media (max-width: 768px) {
 	.woocommerce div.product .woocommerce-tabs {
@@ -5815,7 +5821,7 @@ li .cfvsw_variations_form {
 		margin: 0 !important;
 	}
 	.woocommerce .woocommerce-product-rating .woocommerce-review-link {
-		color: var(--emp-woocommerce-color) !important;
+		color: var(--emp-woocommerce-stars-text-color, var(--emp-woocommerce-color)) !important;
 		font-size: 13px !important;
 		margin: 0 !important;
 		opacity: 0.75 !important;

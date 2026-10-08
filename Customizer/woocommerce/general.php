@@ -86,6 +86,77 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_wo
   'settings'=> 'emp_woocommerce_tabs_color'
 )));
 
+// Estrellas de calificación - Color
+$wp_customize->add_setting('emp_woocommerce_stars_color', array(
+  'default'          => '#ffb800',
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_stars_color_control', array(
+  'label'       => __('Color de estrellas (calificación)', 'empralidad'),
+  'description' => __('Color para las estrellas activas/rellenas de valoración.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_stars_color'
+)));
+
+// Estrellas de calificación - Fondo de estrellas (vacías)
+$wp_customize->add_setting('emp_woocommerce_stars_empty_color', array(
+  'default'          => '#d1d5db',
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_stars_empty_color_control', array(
+  'label'       => __('Color de fondo de estrellas (vacías)', 'empralidad'),
+  'description' => __('Color para las estrellas vacías o inactivas de fondo.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_stars_empty_color'
+)));
+
+// Estrellas de calificación - Fondo del contenedor
+$wp_customize->add_setting('emp_woocommerce_stars_bg', array(
+  'default'          => 'transparent',
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_stars_bg_control', array(
+  'label'       => __('Color de fondo de contenedor de estrellas', 'empralidad'),
+  'description' => __('Color de fondo para el contenedor de la calificación (por defecto transparente).', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_stars_bg'
+)));
+
+// Estrellas de calificación - Color de texto
+$wp_customize->add_setting('emp_woocommerce_stars_text_color', array(
+  'default'          => '',
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_stars_text_color_control', array(
+  'label'       => __('Color de texto de valoraciones', 'empralidad'),
+  'description' => __('Color para el texto o enlace de número de opiniones.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_stars_text_color'
+)));
+
+// Estrellas de calificación - Escala porcentual de tamaño
+$wp_customize->add_setting('emp_woocommerce_stars_scale', array(
+  'default'          => 100,
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'absint'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocommerce_stars_scale_control', array(
+  'label'       => __('Tamaño de estrellas (%)', 'empralidad'),
+  'description' => __('Modificador porcentual: aumenta o disminuye tanto las estrellas grandes (producto) como las chicas (catálogo y reseñas) manteniendo su proporción relativa.', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_stars_scale',
+  'type'        => 'range',
+  'input_attrs' => array(
+    'min'  => 50,
+    'max'  => 200,
+    'step' => 5
+  )
+)));
+
 // Mostrar cartel de oferta en productos
 $wp_customize->add_setting('emp_woocommerce_show_sale_badge', array(
   'default'          => true,

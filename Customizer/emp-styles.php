@@ -41,6 +41,11 @@
   --emp-woocommerce-product-desc-size: <?php echo get_theme_mod('emp_woocommerce_product_desc_size', 15); ?>px;
   --emp-woocommerce-tabs-bg: <?php echo get_theme_mod('emp_woocommerce_tabs_bg', '#000000'); ?>;
   --emp-woocommerce-tabs-color: <?php echo get_theme_mod('emp_woocommerce_tabs_color', '#ffffff'); ?>;
+  --emp-woocommerce-stars-color: <?php echo get_theme_mod('emp_woocommerce_stars_color', '#ffb800'); ?>;
+  --emp-woocommerce-stars-empty-color: <?php echo get_theme_mod('emp_woocommerce_stars_empty_color', '#d1d5db'); ?>;
+  --emp-woocommerce-stars-bg: <?php echo get_theme_mod('emp_woocommerce_stars_bg', 'transparent'); ?>;
+  --emp-woocommerce-stars-text-color: <?php echo get_theme_mod('emp_woocommerce_stars_text_color') ? get_theme_mod('emp_woocommerce_stars_text_color') : 'var(--emp-woocommerce-color)'; ?>;
+  --emp-woocommerce-stars-scale: calc(<?php echo get_theme_mod('emp_woocommerce_stars_scale', 100); ?> / 100);
   --emp-slider-badges-icon-color: <?php echo get_theme_mod('emp_slider_badges_icon_color') ? get_theme_mod('emp_slider_badges_icon_color') : 'var(--emp-nav-color)'; ?>;
   --emp-slider-badges-text-color: <?php echo get_theme_mod('emp_slider_badges_text_color') ? get_theme_mod('emp_slider_badges_text_color') : 'var(--emp-nav-color)'; ?>;
 }
@@ -559,18 +564,11 @@ ul.products li.product .price .emp-price-from {
 .woocommerce-tabs .comment-form-email label,
 .woocommerce-tabs .comment-notes,
 .woocommerce-tabs label,
-.woocommerce-tabs p,
+.woocommerce-tabs p:not(.stars),
 .woocommerce-tabs span:not(.onsale),
-.woocommerce-tabs p.stars a,
-.woocommerce-tabs p.stars a::before,
 .woocommerce-tabs ol.commentlist li.review .meta,
 .woocommerce-tabs ol.commentlist li.review .meta strong,
 .woocommerce-tabs ol.commentlist li.review .description {
-  color: var(--emp-woocommerce-tabs-color) !important;
-}
-
-.woocommerce-tabs p.stars a:hover ~ a::before,
-.woocommerce-tabs p.stars.selected a.active ~ a::before {
   color: var(--emp-woocommerce-tabs-color) !important;
 }
 
@@ -646,6 +644,45 @@ i.fa.emp-trust-badge-icon {
 
 .emp-trust-badge-text {
   color: var(--emp-slider-badges-text-color) !important;
+}
+
+/* WooCommerce Star Rating Customization */
+.woocommerce .star-rating {
+  background-color: var(--emp-woocommerce-stars-bg) !important;
+  font-size: calc(14px * var(--emp-woocommerce-stars-scale)) !important;
+}
+.woocommerce .star-rating::before,
+.woocommerce-tabs ol.commentlist li.review .star-rating::before {
+  color: var(--emp-woocommerce-stars-empty-color) !important;
+  opacity: 1 !important;
+}
+.woocommerce .star-rating span::before,
+.woocommerce-tabs ol.commentlist li.review .star-rating span::before {
+  color: var(--emp-woocommerce-stars-color) !important;
+}
+.woocommerce .woocommerce-product-rating .star-rating {
+  font-size: calc(26px * var(--emp-woocommerce-stars-scale)) !important;
+}
+.woocommerce .woocommerce-product-rating .woocommerce-review-link {
+  color: var(--emp-woocommerce-stars-text-color) !important;
+}
+.woocommerce ul.products li.product .star-rating,
+.woocommerce-tabs ol.commentlist li.review .star-rating {
+  font-size: calc(14px * var(--emp-woocommerce-stars-scale)) !important;
+}
+.woocommerce-tabs p.stars a {
+  color: var(--emp-woocommerce-stars-empty-color) !important;
+}
+.woocommerce-tabs p.stars:hover a::before,
+.woocommerce-tabs p.stars.selected a.active::before,
+.woocommerce-tabs p.stars.selected a:not(.active)::before {
+  color: var(--emp-woocommerce-stars-color) !important;
+  opacity: 1 !important;
+}
+.woocommerce-tabs p.stars a:hover ~ a::before,
+.woocommerce-tabs p.stars.selected a.active ~ a::before {
+  color: var(--emp-woocommerce-stars-empty-color) !important;
+  opacity: 0.4 !important;
 }
 
 </style>
