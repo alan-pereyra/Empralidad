@@ -37,7 +37,6 @@ function emp_non_blocking_styles($html, $handle, $href, $media) {
 
   $async_handles = array(
     'cormorant_garamond',
-    'font_awesome',
     'batllie-caja-tracking-css',
     'batllie-caja-min-order-css'
   );

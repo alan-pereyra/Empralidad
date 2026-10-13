@@ -192,6 +192,9 @@
           <?php if ($has_product_search) { ?>
             <form role="search" method="get" class="emp-header-search-form" action="<?php echo esc_url(home_url('/')); ?>">
               <input type="search" class="emp-header-search-input" name="s" placeholder="<?php echo class_exists('WooCommerce') ? esc_attr__('Buscar Productos...', 'empralidad') : esc_attr__('Buscar...', 'empralidad'); ?>" value="<?php echo get_search_query(); ?>" autocomplete="off" />
+              <button type="submit" class="emp-header-search-btn" aria-label="<?php echo esc_attr__('Buscar', 'empralidad'); ?>">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
               <?php if (class_exists('WooCommerce')) { ?>
                 <input type="hidden" name="post_type" value="product" />
               <?php } ?>
