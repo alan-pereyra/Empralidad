@@ -539,6 +539,14 @@ ul.products li.product .price .emp-price-from {
   color: var(--emp-woocommerce-tabs-color) !important;
 }
 
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+  background: var(--emp-woocommerce-tabs-bg) !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  color: var(--emp-woocommerce-tabs-color) !important;
+}
+
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
   background: var(--emp-woocommerce-tabs-bg) !important;
   border-color: var(--emp-woocommerce-tabs-bg) !important;

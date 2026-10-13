@@ -3,7 +3,7 @@ Theme Name: Empralidad - Theme
 Author: Alan Pereyra
 Author URI: https://empralidad.com.ar/alan-pereyra/
 Description: Empralidad - Theme es un tema integramente hecho por Alan Pereyra. Pensado para ser gestionado por personas sin ningún conocimiento de programación. Es un tema minimalista flat desing, pensado con la filosofía de menos es más. Hecho con PHP, CSS, HTML5 y Javascript.
-Version: 9.5.3
+Version: 9.5.4
 License: Attribution-NonCommercial-NoDerivatives 3.0 IGO
 License URI: https://creativecommons.org/licenses/by-nc-nd/3.0/igo/legalcode
 Text Domain: empralidad
@@ -5488,21 +5488,22 @@ li .cfvsw_variations_form {
 	display: none !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li {
-	background: var(--emp-woocommerce-color) !important;
+	background: var(--emp-woocommerce-tabs-bg, var(--emp-woocommerce-color)) !important;
 	border-bottom: none !important;
 	border-radius: 14px 14px 0 0 !important;
+	border-top: 3px solid transparent !important;
 	cursor: pointer !important;
 	margin: 0 !important;
-	opacity: 0.55 !important;
+	opacity: 0.78 !important;
 	padding: 0 !important;
-	transition: background 0.2s ease, opacity 0.2s ease !important;
+	transition: background 0.2s ease, opacity 0.2s ease, border-color 0.2s ease !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li::before,
 .woocommerce div.product .woocommerce-tabs ul.tabs li::after {
 	display: none !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li a {
-	color: var(--emp-woocommerce-bg) !important;
+	color: var(--emp-woocommerce-tabs-color, var(--emp-woocommerce-bg)) !important;
 	display: block !important;
 	font-size: 14px !important;
 	font-weight: 600 !important;
@@ -5512,21 +5513,21 @@ li .cfvsw_variations_form {
 	transition: color 0.2s ease !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li:hover {
-	opacity: 0.85 !important;
+	opacity: 0.95 !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li:hover a {
 	color: var(--emp-btn-bg) !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
-	background: var(--emp-woocommerce-color) !important;
-	border-color: var(--emp-woocommerce-color) !important;
+	background: var(--emp-woocommerce-tabs-bg, var(--emp-woocommerce-color)) !important;
+	border-color: var(--emp-woocommerce-tabs-bg, var(--emp-woocommerce-color)) !important;
 	border-top: 3px solid var(--emp-btn-bg) !important;
 	opacity: 1 !important;
 	position: relative !important;
 	z-index: 2 !important;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
-	color: var(--emp-woocommerce-bg) !important;
+	color: var(--emp-woocommerce-tabs-color, var(--emp-woocommerce-bg)) !important;
 	font-weight: 700 !important;
 }
 .woocommerce-Tabs-panel--additional_information h2,
