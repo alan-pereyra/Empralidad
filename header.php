@@ -56,7 +56,8 @@
     $nav_has_neon = get_theme_mod('emp_components_nav_neon', true);
     $nav_neon_class = (!empty($nav_has_neon) && $nav_has_neon !== '0' && $nav_has_neon !== 0) ? 'has-neon' : '';
     $search_link = get_theme_mod('emp_components_nav_search');
-    $has_product_search = !empty($search_link);
+    $product_search_link = get_theme_mod('emp_components_nav_product_search');
+    $has_product_search = (!empty($product_search_link) && $product_search_link !== '0' && $product_search_link !== 0);
     ?>
     <!-- navbar -->
       <div id="navbar-background" class="sticky-top empFadeInBottom <?php echo esc_attr($nav_neon_class); ?> <?php if( is_admin_bar_showing() ){ ?> admin-fixed-top <?php } ?> <?php if (get_theme_mod('emp_slider_image1')||get_theme_mod('emp_slider_image2')||get_theme_mod('emp_slider_image3')||get_theme_mod('emp_slider_desktop_image1')||get_theme_mod('emp_slider_desktop_image2')||get_theme_mod('emp_slider_desktop_image3')) { ?>hover<?php }?>" style="z-index:1032;">
@@ -84,6 +85,9 @@
           <?php if ($has_product_search) { ?>
             <form role="search" method="get" class="emp-header-search-form" action="<?php echo esc_url(home_url('/')); ?>">
               <input type="search" class="emp-header-search-input" name="s" placeholder="<?php echo class_exists('WooCommerce') ? esc_attr__('Buscar Productos...', 'empralidad') : esc_attr__('Buscar...', 'empralidad'); ?>" value="<?php echo get_search_query(); ?>" autocomplete="off" />
+              <button type="submit" class="emp-header-search-btn" aria-label="<?php echo esc_attr__('Buscar', 'empralidad'); ?>">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
               <?php if (class_exists('WooCommerce')) { ?>
                 <input type="hidden" name="post_type" value="product" />
               <?php } ?>

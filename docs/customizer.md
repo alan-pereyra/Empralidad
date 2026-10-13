@@ -21,6 +21,7 @@ Configura la apariencia visual transversal a todo el sitio:
 | `emp_components_nav_logo` | Imagen | Logotipo principal mostrado en la barra de navegación. |
 | `emp_components_nav_home` | URL | URL personalizada para el clic en el logotipo (por defecto `home_url()`). |
 | `emp_components_nav_search` | Booleano | Activa el botón de búsqueda en la barra superior y móvil. |
+| `emp_components_nav_product_search` | Booleano | Activa/desactiva la barra directa de búsqueda de productos en la navegación móvil con icono de lupa. |
 | `emp_components_nav_cart` | Booleano | Muestra el acceso directo al carrito con contador dinámico. |
 | `emp_components_nav_user` | URL | Enlace para la cuenta de usuario / inicio de sesión. |
 | `emp_components_nav_wsp` | Booleano | Habilita el botón flotante de WhatsApp. |

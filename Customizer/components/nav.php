@@ -96,6 +96,19 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_componen
   'settings'=> 'emp_components_nav_search',
   'type'    => 'checkbox'
 )));
+// Barra de búsqueda de productos (navbar móvil)
+$wp_customize->add_setting('emp_components_nav_product_search', array(
+  'default'           => false,
+  'trasnport'         => 'refresh',
+  'sanitize_callback' => 'sanitize_encoded'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_components_nav_product_search_control', array(
+  'label'       => __('Barra de búsqueda de productos', 'empralidad'),
+  'description' => __('Mostrar u ocultar la barra de búsqueda de productos en la navegación móvil.', 'empralidad'),
+  'section'     => 'emp_section_components_nav',
+  'settings'    => 'emp_components_nav_product_search',
+  'type'        => 'checkbox'
+)));
 // Cart button
 $wp_customize->add_setting('emp_components_nav_cart', array(
   'trasnport'        => 'refresh',
