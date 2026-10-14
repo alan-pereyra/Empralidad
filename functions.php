@@ -130,7 +130,7 @@ add_action(  'wp_enqueue_scripts', 'emp_enqueue_comments_reply' );
 			$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
 			$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr($item->url) . '"' : '';
 
-			$attributes .= ( $args->walker->has_children ) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
+			$attributes .= ( $args->walker->has_children ) ? ' class="dropdown-toggle" data-toggle="dropdown" onclick="if(window.innerWidth<=992){toggleMobileSubmenu(event, this);}"' : '';
 
 			$item_output = $args->before;
 			$item_output .= '<a' . $attributes . '>';

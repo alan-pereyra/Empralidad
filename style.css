@@ -440,6 +440,9 @@ li.menu-item{
 }
 /*ul sub-menu*/
 @media(min-width:992px){
+	a.dropdown-toggle {
+		pointer-events: none;
+	}
 	.dropdown, .dropleft, .dropright, .dropup{
 		position: unset;
 	}
@@ -453,9 +456,6 @@ li.menu-item{
 .dropdown-menu-li a{
 	background-size: 55px!important;
 	padding-top: 69px;
-}
-a.dropdown-toggle {
-  pointer-events: none;
 }
 .dropdown:hover > .dropdown-menu{
 	color: #888;
@@ -2108,7 +2108,19 @@ a.fa.fa-times{
 	}
 }
 @media (max-width:992px){
-	#navbarContentMenu.active ul.dropdown-menu.depth_0,
+	#navbarContentMenu a.dropdown-toggle {
+		cursor: pointer !important;
+		pointer-events: auto !important;
+	}
+	#navbarContentMenu .dropdown.show > a.dropdown-toggle::after {
+		transform: translate(-50%, 50%) rotate(180deg);
+		transition: transform 0.2s ease-in-out;
+	}
+	#navbarContentMenu ul.dropdown-menu.depth_0,
+	#navbarContentMenu.active ul.dropdown-menu.depth_0:not(.show),
+	#navbarContentMenu .dropdown:not(.show) > ul.dropdown-menu.depth_0 {
+		display: none !important;
+	}
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show {
 		background: transparent !important;
 		border: none !important;
@@ -2136,7 +2148,6 @@ a.fa.fa-times{
 		white-space: normal !important;
 		width: 100% !important;
 	}
-	#navbarContentMenu.active ul.dropdown-menu.depth_0 li,
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show li {
 		border: none !important;
 		display: flex !important;
@@ -2148,14 +2159,11 @@ a.fa.fa-times{
 		padding: 0 !important;
 		width: 68px !important;
 	}
-	#navbarContentMenu.active ul.dropdown-menu.depth_0 li:focus,
-	#navbarContentMenu.active ul.dropdown-menu.depth_0 li:hover,
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show li:focus,
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show li:hover {
 		border: none !important;
 		filter: none !important;
 	}
-	#navbarContentMenu.active ul.dropdown-menu.depth_0 li a,
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show li a {
 		align-items: center !important;
 		border: none !important;
@@ -2171,7 +2179,6 @@ a.fa.fa-times{
 		text-decoration: none !important;
 		width: 100% !important;
 	}
-	#navbarContentMenu.active ul.dropdown-menu.depth_0 .emp-menu-cat-img-wrap,
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show .emp-menu-cat-img-wrap {
 		align-items: center !important;
 		background-color: rgba(255, 255, 255, 0.1) !important;
@@ -2185,7 +2192,6 @@ a.fa.fa-times{
 		overflow: hidden !important;
 		width: 44px !important;
 	}
-	#navbarContentMenu.active ul.dropdown-menu.depth_0 .emp-menu-cat-title,
 	#navbarContentMenu.active ul.dropdown-menu.depth_0.show .emp-menu-cat-title {
 		color: var(--emp-nav-color, #ffffff) !important;
 		display: block !important;
@@ -2198,10 +2204,8 @@ a.fa.fa-times{
 		text-overflow: ellipsis !important;
 		white-space: nowrap !important;
 	}
-	#navbarContentMenu ul.dropdown-menu.depth_0 {
-		display: none !important;
-	}
 }
+
 @media (min-width: 992px){
 	#searchform-woocommerce{
 		font-size: 25px;
