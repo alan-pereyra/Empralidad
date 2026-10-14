@@ -270,6 +270,7 @@ nav.navbar.navbar-scroll a.fa.fa-shopping-cart.mr-4.fadein.show-desktop.text-whi
 	position: relative;
 }
 .emp-header-search-input {
+	-webkit-appearance: none;
 	appearance: none;
 	background: #ffffff;
 	border: 1px solid rgba(0, 0, 0, 0.18);
@@ -283,6 +284,20 @@ nav.navbar.navbar-scroll a.fa.fa-shopping-cart.mr-4.fadein.show-desktop.text-whi
 	padding: 0 34px 0 10px;
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 	width: 100%;
+}
+.emp-header-search-input::-webkit-search-cancel-button,
+.emp-header-search-input::-webkit-search-decoration,
+.emp-header-search-input::-webkit-search-results-button,
+.emp-header-search-input::-webkit-search-results-decoration {
+	-webkit-appearance: none;
+	appearance: none;
+	display: none;
+}
+.emp-header-search-input::-ms-clear,
+.emp-header-search-input::-ms-reveal {
+	display: none;
+	height: 0;
+	width: 0;
 }
 .emp-header-search-btn {
 	align-items: center;
