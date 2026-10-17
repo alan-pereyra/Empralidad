@@ -86,12 +86,27 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_wo
   'settings'=> 'emp_woocommerce_tabs_color'
 )));
 
+// Estrellas de calificación - Opción de estrellas doradas
+$wp_customize->add_setting('emp_woocommerce_stars_gold', array(
+  'default'          => false,
+  'transport'        => 'refresh',
+  'sanitize_callback'=> 'sanitize_string'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocommerce_stars_gold_control', array(
+  'label'       => __('Estrellas doradas', 'empralidad'),
+  'description' => __('Activa esta opción para que las estrellas sean doradas (#efb81f / #ffb800).', 'empralidad'),
+  'section'     => 'emp_woocommerce_general',
+  'settings'    => 'emp_woocommerce_stars_gold',
+  'type'        => 'checkbox'
+)));
+
 // Estrellas de calificación - Color
 $wp_customize->add_setting('emp_woocommerce_stars_color', array(
   'default'          => '#ffb800',
   'transport'        => 'refresh',
   'sanitize_callback'=> 'sanitize_string'
 ));
+
 $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_stars_color_control', array(
   'label'       => __('Color de estrellas (calificación)', 'empralidad'),
   'description' => __('Color para las estrellas activas/rellenas de valoración.', 'empralidad'),

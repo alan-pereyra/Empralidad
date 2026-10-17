@@ -5981,7 +5981,7 @@ li .cfvsw_variations_form {
 		gap: 8px !important;
 		justify-content: flex-start !important;
 		margin: 0 0 14px 0 !important;
-		order: 2 !important;
+		order: 3 !important;
 		text-align: left !important;
 		width: auto !important;
 	}
@@ -6004,7 +6004,7 @@ li .cfvsw_variations_form {
 		font-weight: 800 !important;
 		justify-content: center !important;
 		margin: 0 0 16px 0 !important;
-		order: 3 !important;
+		order: 2 !important;
 		text-align: center !important;
 		width: 100% !important;
 	}

@@ -41,7 +41,7 @@
   --emp-woocommerce-product-desc-size: <?php echo get_theme_mod('emp_woocommerce_product_desc_size', 15); ?>px;
   --emp-woocommerce-tabs-bg: <?php echo get_theme_mod('emp_woocommerce_tabs_bg', '#000000'); ?>;
   --emp-woocommerce-tabs-color: <?php echo get_theme_mod('emp_woocommerce_tabs_color', '#ffffff'); ?>;
-  --emp-woocommerce-stars-color: <?php echo get_theme_mod('emp_woocommerce_stars_color', '#ffb800'); ?>;
+  --emp-woocommerce-stars-color: <?php echo get_theme_mod('emp_woocommerce_stars_gold', false) ? '#efb81f' : get_theme_mod('emp_woocommerce_stars_color', '#ffb800'); ?>;
   --emp-woocommerce-stars-empty-color: <?php echo get_theme_mod('emp_woocommerce_stars_empty_color', '#d1d5db'); ?>;
   --emp-woocommerce-stars-bg: <?php echo get_theme_mod('emp_woocommerce_stars_bg', 'transparent'); ?>;
   --emp-woocommerce-stars-text-color: <?php echo get_theme_mod('emp_woocommerce_stars_text_color') ? get_theme_mod('emp_woocommerce_stars_text_color') : 'var(--emp-woocommerce-color)'; ?>;

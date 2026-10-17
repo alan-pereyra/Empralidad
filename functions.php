@@ -558,7 +558,14 @@ add_filter( 'wp_insert_post_data', function( $data, $postarr ) {
 	return $data;
 	}, 99, 2 );
 
-// Variable product price range: show only min price with "Desde" prefix
+// Re-order single product rating below price
+add_action( 'init', 'emp_reorder_single_product_rating', 50 );
+function emp_reorder_single_product_rating() {
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+	add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 15 );
+}
+
+// Variable product price range: show only min price with "Desde" prefix when prices differ
 add_filter( 'woocommerce_variable_price_html', 'emp_variable_product_price_from', 10, 2 );
 function emp_variable_product_price_from( $price, $product ) {
 	if ( ! $product || ! $product->is_type( 'variable' ) ) {
@@ -570,20 +577,35 @@ function emp_variable_product_price_from( $price, $product ) {
 		return $price;
 	}
 
-	$min_price = current( $prices['price'] );
-	$max_price = end( $prices['price'] );
+	$min_price = min( $prices['price'] );
+	$max_price = max( $prices['price'] );
+	$has_different_prices = ( floatval( $max_price ) - floatval( $min_price ) > 0.001 );
 
-	if ( $min_price !== $max_price ) {
+	if ( $has_different_prices ) {
 		$price = sprintf(
 			'<span class="emp-price-range-from"><span class="emp-price-from">%s</span> %s</span>',
 			esc_html__( 'Desde', 'empralidad' ),
 			wc_price( $min_price )
 		);
 		$price .= $product->get_price_suffix();
+	} else {
+		if ( $product->is_on_sale() && ! empty( $prices['regular_price'] ) ) {
+			$min_reg = min( $prices['regular_price'] );
+			$max_reg = max( $prices['regular_price'] );
+			if ( abs( floatval( $max_reg ) - floatval( $min_reg ) ) <= 0.001 && floatval( $max_reg ) > floatval( $min_price ) ) {
+				$price = wc_format_sale_price( wc_price( $max_reg ), wc_price( $min_price ) );
+			} else {
+				$price = wc_price( $min_price );
+			}
+		} else {
+			$price = wc_price( $min_price );
+		}
+		$price .= $product->get_price_suffix();
 	}
 
 	return $price;
 }
+
 
 /**
  * Add generic Arial sans-serif class to BACS account number
