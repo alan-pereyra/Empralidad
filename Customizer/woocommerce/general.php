@@ -64,8 +64,8 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocomme
 
 // Color de fondo pestañas / información adicional
 $wp_customize->add_setting('emp_woocommerce_tabs_bg', array(
-  'default'          => '#000000',
-  'trasnport'        => 'refresh',
+  'default'          => '#e8e8e8',
+  'transport'        => 'refresh',
   'sanitize_callback'=> 'sanitize_string'
 ));
 $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_tabs_bg_control', array(
@@ -76,8 +76,8 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_wo
 
 // Color de texto pestañas / información adicional
 $wp_customize->add_setting('emp_woocommerce_tabs_color', array(
-  'default'          => '#ffffff',
-  'trasnport'        => 'refresh',
+  'default'          => '#000000',
+  'transport'        => 'refresh',
   'sanitize_callback'=> 'sanitize_string'
 ));
 $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_woocommerce_tabs_color_control', array(
@@ -94,8 +94,8 @@ $wp_customize->add_setting('emp_woocommerce_stars_gold', array(
 ));
 
 $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocommerce_stars_gold_control', array(
-  'label'       => __('Estrellas doradas', 'empralidad'),
-  'description' => __('Activa esta opción para que las estrellas sean doradas (#efb81f / #ffb800).', 'empralidad'),
+  'label'       => __('Estrellas doradas (dorado metal)', 'empralidad'),
+  'description' => __('Activa esta opción para que las estrellas tengan efecto dorado metalizado con reflejos brillantes.', 'empralidad'),
   'section'     => 'emp_woocommerce_general',
   'settings'    => 'emp_woocommerce_stars_gold',
   'type'        => 'checkbox'

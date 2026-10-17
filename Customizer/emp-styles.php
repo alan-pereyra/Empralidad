@@ -39,8 +39,8 @@
   --emp-woocommerce-bg: <?php echo get_theme_mod('emp_woocommerce_bg'); ?>;
   --emp-woocommerce-product-price-size: <?php echo get_theme_mod('emp_woocommerce_product_price_size', 36); ?>px;
   --emp-woocommerce-product-desc-size: <?php echo get_theme_mod('emp_woocommerce_product_desc_size', 15); ?>px;
-  --emp-woocommerce-tabs-bg: <?php echo get_theme_mod('emp_woocommerce_tabs_bg', '#000000'); ?>;
-  --emp-woocommerce-tabs-color: <?php echo get_theme_mod('emp_woocommerce_tabs_color', '#ffffff'); ?>;
+  --emp-woocommerce-tabs-bg: <?php echo get_theme_mod('emp_woocommerce_tabs_bg', '#e8e8e8'); ?>;
+  --emp-woocommerce-tabs-color: <?php echo get_theme_mod('emp_woocommerce_tabs_color', '#000000'); ?>;
   --emp-woocommerce-stars-color: <?php echo get_theme_mod('emp_woocommerce_stars_gold', true) ? '#efb81f' : get_theme_mod('emp_woocommerce_stars_color', '#ffb800'); ?>;
   --emp-woocommerce-stars-empty-color: <?php echo get_theme_mod('emp_woocommerce_stars_empty_color', '#d1d5db'); ?>;
   --emp-woocommerce-stars-bg: <?php echo get_theme_mod('emp_woocommerce_stars_bg', 'transparent'); ?>;
@@ -566,13 +566,36 @@ ul.products li.product .price .emp-price-from {
   color: var(--emp-woocommerce-tabs-color) !important;
 }
 
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+  background: var(--emp-woocommerce-tabs-bg) !important;
+  filter: brightness(0.93) !important;
+  opacity: 0.9 !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  color: var(--emp-woocommerce-tabs-color) !important;
+  opacity: 0.75 !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li:hover {
+  filter: brightness(0.97) !important;
+  opacity: 1 !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li:hover a {
+  opacity: 1 !important;
+}
+
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
   background: var(--emp-woocommerce-tabs-bg) !important;
   border-color: var(--emp-woocommerce-tabs-bg) !important;
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
   color: var(--emp-woocommerce-tabs-color) !important;
+  opacity: 1 !important;
 }
 
 .woocommerce-Tabs-panel--additional_information h2,
@@ -678,15 +701,36 @@ i.fa.emp-trust-badge-icon {
   color: var(--emp-woocommerce-stars-empty-color) !important;
   opacity: 1 !important;
 }
+<?php if (get_theme_mod('emp_woocommerce_stars_gold', true)) { ?>
+.woocommerce .star-rating span::before,
+.woocommerce-tabs ol.commentlist li.review .star-rating span::before,
+.woocommerce-tabs p.stars:hover a::before,
+.woocommerce-tabs p.stars.selected a.active::before,
+.woocommerce-tabs p.stars.selected a:not(.active)::before {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background: linear-gradient(135deg, #c59b27 0%, #f6e27a 28%, #cb9b2b 55%, #dfac40 72%, #fcf6ba 88%, #c59b27 100%) !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(0 1px 1px rgba(80, 50, 0, 0.35)) !important;
+}
+<?php } else { ?>
 .woocommerce .star-rating span::before,
 .woocommerce-tabs ol.commentlist li.review .star-rating span::before {
   color: var(--emp-woocommerce-stars-color) !important;
 }
+.woocommerce-tabs p.stars:hover a::before,
+.woocommerce-tabs p.stars.selected a.active::before,
+.woocommerce-tabs p.stars.selected a:not(.active)::before {
+  color: var(--emp-woocommerce-stars-color) !important;
+  opacity: 1 !important;
+}
+<?php } ?>
 .woocommerce .woocommerce-product-rating .star-rating {
   font-size: calc(26px * var(--emp-woocommerce-stars-scale)) !important;
 }
 .woocommerce .woocommerce-product-rating .woocommerce-review-link {
-  color: var(--emp-woocommerce-stars-text-color) !important;
+  display: none !important;
 }
 .woocommerce ul.products li.product .star-rating,
 .woocommerce-tabs ol.commentlist li.review .star-rating {
@@ -694,12 +738,6 @@ i.fa.emp-trust-badge-icon {
 }
 .woocommerce-tabs p.stars a {
   color: var(--emp-woocommerce-stars-empty-color) !important;
-}
-.woocommerce-tabs p.stars:hover a::before,
-.woocommerce-tabs p.stars.selected a.active::before,
-.woocommerce-tabs p.stars.selected a:not(.active)::before {
-  color: var(--emp-woocommerce-stars-color) !important;
-  opacity: 1 !important;
 }
 .woocommerce-tabs p.stars a:hover ~ a::before,
 .woocommerce-tabs p.stars.selected a.active ~ a::before {
