@@ -4549,29 +4549,30 @@ figcaption::-webkit-scrollbar {
 }
 .woocommerce div.product p.price,
 .summary.entry-summary p.price {
+	align-items: center !important;
+	color: #000000 !important;
 	display: flex !important;
 	flex-direction: column !important;
-	align-items: center !important;
-	justify-content: center !important;
 	font-size: 2.2rem !important;
-	margin: 8px auto 16px auto !important;
+	justify-content: center !important;
 	line-height: 1.2 !important;
-	order: -1;
-	width: 100% !important;
+	margin: 8px auto 16px auto !important;
 	max-width: none !important;
-	text-align: center !important;
+	order: -1;
 	overflow: visible !important;
 	padding: 0 !important;
+	text-align: center !important;
+	width: 100% !important;
 }
 .woocommerce div.product p.price del,
 .summary.entry-summary p.price del {
+	color: #888888 !important;
+	display: inline-block !important;
 	font-size: 1.05rem !important;
 	font-weight: 500 !important;
-	color: #888888 !important;
+	margin-bottom: 4px !important;
 	opacity: 0.75 !important;
 	text-decoration: line-through !important;
-	margin-bottom: 4px !important;
-	display: inline-block !important;
 }
 .woocommerce div.product p.price del bdi,
 .summary.entry-summary p.price del bdi,
@@ -4581,22 +4582,25 @@ figcaption::-webkit-scrollbar {
 }
 .woocommerce div.product p.price ins,
 .summary.entry-summary p.price ins {
+	color: #000000 !important;
+	display: inline-block !important;
 	font-size: 2.2rem !important;
 	font-weight: 800 !important;
-	color: #111111 !important;
-	text-decoration: none !important;
 	line-height: 1.1 !important;
-	display: inline-block !important;
+	text-decoration: none !important;
 }
 .woocommerce div.product p.price ins bdi,
 .summary.entry-summary p.price ins bdi,
 .woocommerce div.product p.price ins .amount,
-.woocommerce div.product p.price > span.amount,
-.woocommerce div.product p.price > span.amount bdi {
-	text-decoration: none !important;
-	color: #111111 !important;
+.woocommerce div.product p.price .amount,
+.woocommerce div.product p.price bdi,
+.summary.entry-summary p.price .amount,
+.summary.entry-summary p.price bdi {
+	color: #000000 !important;
 	font-weight: 800 !important;
+	text-decoration: none !important;
 }
+
 td.product-name a {
 	color: #fff
 }
@@ -5997,7 +6001,7 @@ li .cfvsw_variations_form {
 	.woocommerce div.product p.price,
 	.summary.entry-summary p.price {
 		align-items: center !important;
-		color: var(--emp-woocommerce-color) !important;
+		color: #000000 !important;
 		display: flex !important;
 		flex-direction: column !important;
 		font-size: 2.25rem !important;
@@ -6023,15 +6027,19 @@ li .cfvsw_variations_form {
 	.summary.entry-summary p.price ins,
 	.woocommerce div.product p.price ins bdi,
 	.summary.entry-summary p.price ins bdi,
-	.woocommerce div.product p.price > span.amount,
-	.woocommerce div.product p.price > span.amount bdi {
-		color: var(--emp-woocommerce-color) !important;
+	.woocommerce div.product p.price .amount,
+	.summary.entry-summary p.price .amount,
+	.woocommerce div.product p.price bdi,
+	.summary.entry-summary p.price bdi {
+		color: #000000 !important;
 		display: inline-block !important;
 		font-size: 2.25rem !important;
 		font-weight: 800 !important;
 		margin: 0 auto !important;
 		text-align: center !important;
+		width: 100% !important;
 	}
+
 	.woocommerce div.product .woocommerce-product-details__short-description {
 		color: var(--emp-woocommerce-color) !important;
 		font-size: 14.5px !important;

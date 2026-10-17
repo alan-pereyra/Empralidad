@@ -41,7 +41,7 @@
   --emp-woocommerce-product-desc-size: <?php echo get_theme_mod('emp_woocommerce_product_desc_size', 15); ?>px;
   --emp-woocommerce-tabs-bg: <?php echo get_theme_mod('emp_woocommerce_tabs_bg', '#000000'); ?>;
   --emp-woocommerce-tabs-color: <?php echo get_theme_mod('emp_woocommerce_tabs_color', '#ffffff'); ?>;
-  --emp-woocommerce-stars-color: <?php echo get_theme_mod('emp_woocommerce_stars_gold', false) ? '#efb81f' : get_theme_mod('emp_woocommerce_stars_color', '#ffb800'); ?>;
+  --emp-woocommerce-stars-color: <?php echo get_theme_mod('emp_woocommerce_stars_gold', true) ? '#efb81f' : get_theme_mod('emp_woocommerce_stars_color', '#ffb800'); ?>;
   --emp-woocommerce-stars-empty-color: <?php echo get_theme_mod('emp_woocommerce_stars_empty_color', '#d1d5db'); ?>;
   --emp-woocommerce-stars-bg: <?php echo get_theme_mod('emp_woocommerce_stars_bg', 'transparent'); ?>;
   --emp-woocommerce-stars-text-color: <?php echo get_theme_mod('emp_woocommerce_stars_text_color') ? get_theme_mod('emp_woocommerce_stars_text_color') : 'var(--emp-woocommerce-color)'; ?>;
@@ -496,9 +496,22 @@ if ($emp_slider1||$emp_slider2||$emp_slider3||$emp_slider_desktop1||$emp_slider_
 .woocommerce-variation-price,
 .woocommerce-variation-price .price {
   align-items: center !important;
+  color: #000000 !important;
   justify-content: center !important;
   text-align: center !important;
 }
+
+.woocommerce div.product p.price .amount,
+.woocommerce div.product p.price bdi,
+.summary.entry-summary p.price .amount,
+.summary.entry-summary p.price bdi,
+.woocommerce-variation-price .amount,
+.woocommerce-variation-price bdi,
+.emp-price-range-from .amount,
+.emp-price-range-from bdi {
+  color: #000000 !important;
+}
+
 
 .emp-price-range-from {
   align-items: baseline !important;

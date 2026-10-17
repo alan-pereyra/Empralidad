@@ -88,10 +88,11 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'emp_wo
 
 // Estrellas de calificación - Opción de estrellas doradas
 $wp_customize->add_setting('emp_woocommerce_stars_gold', array(
-  'default'          => false,
+  'default'          => true,
   'transport'        => 'refresh',
   'sanitize_callback'=> 'sanitize_string'
 ));
+
 $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'emp_woocommerce_stars_gold_control', array(
   'label'       => __('Estrellas doradas', 'empralidad'),
   'description' => __('Activa esta opción para que las estrellas sean doradas (#efb81f / #ffb800).', 'empralidad'),
